@@ -121,7 +121,10 @@ app.post('/downloadpdf', (req, res) => {
   
     var input = path+filename;
     (async () => {
-        await captureWebsite.file(p.bodygraph,loc);
+        await captureWebsite.file(p.bodygraph,loc, {
+            height: 350,
+            width: 332
+        });
     })();
 
 
@@ -136,7 +139,6 @@ app.post('/downloadpdf', (req, res) => {
     const payload = {
         "title": "My PDF Title",
         "fontSize": 10,
-        "textColor": "#CC0000",
         "data": {
             "Nombre": p.name,
             "Fecha": p.fecha,
@@ -153,22 +155,22 @@ app.post('/downloadpdf', (req, res) => {
             "PerfilDescripcion": p.perfilDescripcion,
             "Definicion": p.definicion,
             "Bodygraph": response.data.link,
-            "Cabeza": p.cabeza == 'opened' ? 'https://charbase.com/images/glyph/9653' : 'https://charbase.com/images/glyph/9650',
-            "Ajna": p.ajna == 'opened' ? 'https://charbase.com/images/glyph/9661' : 'https://charbase.com/images/glyph/9660' ,
-            "Garganta": p.garganta == 'opened' ? 'https://charbase.com/images/glyph/11041' : 'https://charbase.com/images/glyph/11042',
-            "GI": p.gi == 'opened' ? 'https://cdn.icon-icons.com/icons2/906/PNG/512/rhombus_icon-icons.com_69955.png' : 'https://images.vexels.com/media/users/3/139261/isolated/preview/e81900b82cb04c2f11cff7427def25fa-rhombus-shape-by-vexels.png',
-            "Corazon": p.corazon == 'opened' ? 'https://charbase.com/images/glyph/9675' : 'https://charbase.com/images/glyph/9679',
-            "PlexoSolar": p.plexoSolar == 'opened' ? 'https://charbase.com/images/glyph/9665' : 'https://charbase.com/images/glyph/9664',
-            "Sacral": p.sacral == 'opened' ? 'https://charbase.com/images/glyph/9711' : 'https://charbase.com/images/glyph/11044',
-            "Bazo": p.bazo == 'opened' ? 'https://charbase.com/images/glyph/9655' : 'https://charbase.com/images/glyph/9654' ,
-            "Raiz": p.raiz == 'opened' ? 'https://charbase.com/images/glyph/9634' : 'https://charbase.com/images/glyph/9632',
+            "Cabeza": p.cabeza == 'opened' ? 'https://i.imgur.com/BdU4va9.jpg' : 'https://i.imgur.com/TPLIbop.jpg',
+            "Ajna": p.ajna == 'opened' ? 'https://i.imgur.com/Ib8EyKZ.jpg' : 'https://i.imgur.com/pjicwet.jpg' ,
+            "Garganta": p.garganta == 'opened' ? 'https://i.imgur.com/vWA2Hhs.jpg' : 'https://i.imgur.com/nuGnPzR.jpg',
+            "GI": p.gi == 'opened' ? 'https://i.imgur.com/mrBgCDI.jpg' : 'https://i.imgur.com/VJ6yuTV.jpg' ,
+            "Corazon": p.corazon == 'opened' ? 'https://i.imgur.com/Esl4tuy.jpg' : 'https://i.imgur.com/qJ4hXEM.jpg',
+            "PlexoSolar": p.plexoSolar == 'opened' ? 'https://i.imgur.com/WySdnAP.jpg' : 'https://i.imgur.com/B0C0XsT.jpg',
+            "Sacral": p.sacral == 'opened' ? 'https://i.imgur.com/4GZbKZZ.jpg' : 'https://i.imgur.com/q5J0vYu.jpg',
+            "Bazo": p.bazo == 'opened' ? 'https://i.imgur.com/vPDlxKk.jpg' : 'https://i.imgur.com/Mzmwe2o.jpg' ,
+            "Raiz": p.raiz == 'opened' ? 'https://i.imgur.com/mooSy9b.jpg' : 'https://i.imgur.com/7xVrCXi.jpg',
             "PuertasUnoUno": puno, 
             "PuertasUnoDos": pdos,
             "PuertasDosUno": ptres,
             "PuertasDosDos": pcuatro,
             "CruzNombre": p.cruzNombre,
             "FechaDiseno": p.currdate,
-            "QNDLogo": "https://placekitten.com/800/168",
+            "Logo": "https://i.imgur.com/qcm5Al0.jpg",
             "CanalUno": p.CanalUno,
             "CanalDos": p.CanalDos,
             "CanalTres": p.CanalTres,
@@ -189,11 +191,12 @@ app.post('/downloadpdf', (req, res) => {
         const anvilClient = new Anvil({ apiKey });
         const { statusCode, data } = await anvilClient.fillPDF(pdfTemplateID, payload, options);
         console.log(statusCode);
+        
         fs.writeFileSync(`${p.name.split(' ').join('')}.pdf`, data, { encoding: null })
     }
 
     
-    getData(payload, options);
+    getData(payload, options).catch(err => console.log(err));
     })();
    
      

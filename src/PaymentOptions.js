@@ -63,7 +63,7 @@ export default class PaymentOptions extends Component {
                     </Modal.Header>
                         <Modal.Body>
                             <Elements stripe={stripePromise}>
-                              <CheckoutForm price='1000' name='orientacion'/>
+                              <CheckoutForm price='1000' name='orientacion' redirect='/resultado' />
                             </Elements>
                           <PaypalButton price='10' description='orientacion' />
                         </Modal.Body>
@@ -80,16 +80,16 @@ export default class PaymentOptions extends Component {
                     </Modal.Header>
                         <Modal.Body>
                           <Elements stripe={stripePromise}>
-                                <CheckoutForm price='50000' name='personalBasico'/>
+                                <CheckoutForm price='50000' name='personalBasico' redirect='/resultadocompleto' />
+              
                           </Elements>
+                          <PaypalButton price='50' description='personalBasico' />
                         </Modal.Body>
                         <Modal.Footer>
                         <Button variant="secondary" onClick={this.openModalTwo}>
-                            Close
+                            Cerrar
                         </Button>
-                        <Button variant="primary" onClick={this.openModalTwo}>
-                            Save Changes
-                        </Button>
+                
                         </Modal.Footer>
                     </Modal>
 

@@ -16,7 +16,7 @@ import PaymentOptionsEmpresa from "./PaymentOptionsEmpresa";
 import LoginFunctional from './Loginfunctional';
 
 import Result from './resultado';
-
+import ResultadoCompleto from './resultadocompleto';
 
 
 export class App extends React.Component {
@@ -104,7 +104,8 @@ export class App extends React.Component {
                 <Route path="/paymentoptionspareja" component={PaymentOptionsPareja} />
                 <Route path="/paymentoptionsfamilia" component={PaymentOptionsFamilia} />
                 <Route path="/paymentoptionsempresa" component={PaymentOptionsEmpresa} />
-                <Route path='/resultado' component={Result} />     
+                <Route path='/resultado' component={Result} />
+                <Route path='/resultadocompleto' component={ResultadoCompleto}   />  
               </Switch>
             </div>
           </div>

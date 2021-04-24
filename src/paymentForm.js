@@ -4,7 +4,7 @@ import {loadStripe} from '@stripe/stripe-js';
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import {Button, Form, Spinner} from 'react-bootstrap';
 import axios from 'axios';
-import {useDispatch, connect} from 'react-redux';
+import {useSelector, useDispatch, connect} from 'react-redux';
 import firebase from 'firebase';
 
 const stripePromise = loadStripe('pk_test_51IRxezLeEfBz7v63k9cbeDrQN070PKRpVeqOu6QcDibWFUFf1UpQeBp7P6HTFBQWjVuWr0OCEmUw6UUIuxMACRx500akoLgTlj');
@@ -102,7 +102,7 @@ export class CheckoutForm extends Component {
             <>
             <CheckoutFormInner price={this.props.price} name={this.props.name} sucess={this.success} failure={this.failure} uid={this.props.uid} />
             {
-                this.state.paymentSucess && <><h4>Pagado!</h4><Link to='/resultado'><Button>Ver resultado</Button></Link></>             
+                this.state.paymentSucess && <><h4>Pagado!</h4><Link to={this.props.redirect}><Button>Ver resultado</Button></Link></>             
             }
             {
                 this.state.paymentFailure && <h4>Algo ha salido mal. Trata otra vez</h4>

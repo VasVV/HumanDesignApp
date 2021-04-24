@@ -1,14 +1,39 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Button } from 'react-bootstrap';
-import * as Icon from 'react-bootstrap-icons';
 import logo from './img/logologo.png';
 import {connect} from 'react-redux';
 import axios from 'axios';
-import { ReactSVG } from 'react-svg';
-import { Icon as Icons } from '@iconify/react';
-import rhombusIcon from '@iconify/icons-mdi/rhombus';
-import rhombusOutline from '@iconify/icons-mdi/rhombus-outline';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
+import ajnaAbierto from './img/AJNA BL.png';
+import ajnaCerrado from './img/AJNA COLOR.png';
+
+import bazoAbierto from './img/BAZO BL.png';
+import bazoCerrado from './img/BAZO COLOR.png';
+
+import cabezaAbierto from './img/CABEZA BL.png';
+import cabezaCerrado from './img/CABEZA COLOR.png';
+
+import corazonAbierto from './img/CORAZON BL.png';
+import corazonCerrado from './img/CORAZON COLOR.png';
+
+import gargantaAbierto from './img/GARGANTA BL.png';
+import gargantaCerrado from './img/GARGANTA COLOR.png';
+
+import GIAbierto from './img/GI BL.png';
+import GICerrado from './img/GI COLOR.png';
+
+import plexoAbierto from './img/PLEXO BL.png';
+import plexoCerrado from './img/PLEXO COLOR.png';
+
+
+import raizAbierto from './img/RAIZ BL.png';
+import raizCerrado from './img/RAIZ COLOR.png';
+
+
+import sacralAbierto from './img/SACRAL BL.png';
+import sacralCerrado from './img/SACRAL COLOR.png';
 
 
 
@@ -80,10 +105,10 @@ const angulos = [
     ["42/32","60/56","Angulo Izquierdo", "Cruz de los Límites 1"],
     
     ["3/50","60/56","Angulo Derecho", "Cruz de las Ley 1"],
-    ["3/50",41/31,"Yuxtapuesta", "Cruz de la Mutación"],
+    ["3/50","41/31","Yuxtapuesta", "Cruz de la Mutación"],
     ["3/50","41/31","Angulo Izquierdo", "Cruz de los Deseos 1"],
     
-    ["27/28",41/31,"Angulo Derecho", "Cruz de lo Inesperado 1 "],
+    ["27/28","41/31","Angulo Derecho", "Cruz de lo Inesperado 1 "],
     ["27/28","19/33","Yuxtapuesta", "Cruz del Cuidado"],
     ["27/28","19/33","Angulo Izquierdo", "Cruz del Alinearse 1"],
     
@@ -419,7 +444,7 @@ const autorities = [{
         codename: 'plexo',
         desc: 'PLEXO: DESDE TUS EMOCIONES INTERNAS' 
     }},
-    {Cакральный: {
+    {Сакральный: {
         codename: 'sacral',
         desc: 'SACRAL: DESDE TU VIBRACIÓN INTERIOR'
     }},
@@ -450,32 +475,37 @@ const typesDesc = [ {Генератор: {
     desc: 'Persona con energía. Fuerza para realizar y poner en marcha actividades. Sabes responder a la vida y has de despertar a la propuesta correcta que se te pondrá delante',
     corr: 'SATISFACCIÓN',
     incorr: 'FRUSTRACIÓN',
-    estrategia: 'RESPONDIENDO A LOS ESTÍMULOS EXTERNOS'
+    estrategia: 'RESPONDIENDO A LOS ESTÍMULOS EXTERNOS',
+    cuantas: '2,884,236,073'
  }},
 {МанифестирующийГенератор: {
     desc: 'Persona con energía. Fuerza para realizar y poner en marcha actividades. Sabes responder a la vida y has de despertar a la propuesta correcta que se te pondrá delante',
     corr: 'SATISFACCIÓN Y PAZ',
     incorr: 'FRUSTRACIÓN Y RABIA',
-    estrategia: 'CLARIDAD PARA RESPONDER AL ESTÍMULO EXTERNO'
+    estrategia: 'CLARIDAD PARA RESPONDER AL ESTÍMULO EXTERNO',
+    cuantas: '2,572,426,768'
 
 }},
 {Манифестор: {
     desc: 'Persona de acción con energía. Inician sin necesitar a nadie. Saben pasar todas las etapas hasta concretar su idea',
     corr: 'PAZ',
     incorr: 'RABIA',
-    estrategia: 'INFORMANDO ANTES DE ACTUAR'
+    estrategia: 'INFORMANDO ANTES DE ACTUAR',
+    cuantas: '1,650,021,821'
     }},
 {Проектор: {
     desc: 'Persona no energética. Tienes la fuerza para guiar la energía de los demás. Buenos mediadores y organizadores natos. Ven lo que los demás no aprecian inicialmente',
     corr: 'ÉXITO',
     incorr: 'AMARGURA',
-    estrategia: 'ESPERADO A SER RECONOCIDO E INVITADO A ACTUAR'
+    estrategia: 'ESPERADO A SER RECONOCIDO E INVITADO A ACTUAR',
+    cuantas: '628,579,741'
     }},
 {Рефлектор: {
     desc: 'Persona con gran conocimiento y sabiduría. Son el espejo que refleja la realidad social. Ecuánimes y justos',
     corr: 'SORPRESA',
     incorr: 'DESILUSIÓN',
-    estrategia: 'ESPERANDO PASAR EL CICLO LUNAR'
+    estrategia: 'ESPERANDO PASAR EL CICLO LUNAR',
+    cuantas: '78,572,467'
     }}
 ];
 
@@ -518,8 +548,15 @@ export class Result extends Component {
     this.cruzWorker = this.cruzWorker.bind(this);
     this.sendMail = this.sendMail.bind(this);
     this.svgRef = React.createRef();
+    this.textChange = this.textChange.bind(this);
     }
 
+
+    textChange(e) {
+        this.setState({
+            text: e.target.value
+        });
+    }
 
     sendMail() {
         axios.post('http://localhost:3001/sendmail',{
@@ -541,19 +578,26 @@ export class Result extends Component {
         } else {
             cruzAngulo = 'Yuxtapuesta'
         }
-
+     
         if (cruzAngulo == 'Angulo Derecho') {
+            
             angulos.forEach(e => {
+                
                 if (e[2] == 'Angulo Derecho' && this.state.cruzadd.person == e[0] && this.state.cruzadd.design == e[1]) { //
+                   
                     cruzNombre = e[3]
                    
-                } else {
-                    if (this.state.cruzadd.person == e[0] && this.state.cruzadd.design == e[1] && e[2] == cruzAngulo) {
-                        cruzNombre = e[3];
-                        
-                    }
-                }
+                } 
+                
             })
+        } else {
+            angulos.forEach(e => {
+             if (this.state.cruzadd.person == e[0] && this.state.cruzadd.design == e[1] && e[2] == cruzAngulo) { //["51/57","61/62","Angulo Izquierdo", "Cruz del Clarín 1"],
+                console.log('yes')
+                cruzNombre = e[3];
+                
+            }
+        });
         }
         if (this.state.cruzstr == '') {
             this.setState({
@@ -579,7 +623,8 @@ export class Result extends Component {
                     typeDescription: temp['desc'],
                     corr:  temp['corr'],
                     incorr:  temp['incorr'],
-                    estrategia:  temp['estrategia']
+                    estrategia:  temp['estrategia'],
+                    cuantas: temp['cuantas']
                 })
             }
         });
@@ -701,12 +746,15 @@ export class Result extends Component {
         const weekDays = ['Domingo','Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
         const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
         let date = new Date(); 
+        let hours = date.getHours();
+        let minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes() ;
         let weekDay = weekDays[date.getDay()];
         let day = date.getDate();
         let month = months[date.getMonth()];
         let year = date.getFullYear();
         this.setState({
-            date: `${weekDay}, ${day} de ${month} de ${year}`
+            date: `${weekDay}, ${day} de ${month} de ${year}`,
+            time: `${hours}:${minutes}`
         })
     }
 
@@ -721,7 +769,7 @@ export class Result extends Component {
         console.log(this.state.fecha);
         const name = `${this.state.firstName} ${this.state.lastName}`
         const fecha =  this.state.fecha;
-        const currdate = this.state.date;
+        const currdate = this.state.date + ' ' + this.state.time;
         const hora = this.state.hora;
         const lugar = this.state.lugar;
         const tipo=  this.state.tipo;
@@ -745,6 +793,7 @@ export class Result extends Component {
         const CanalSeis = this.state.canalesCompleto[5] ? this.state.canalesCompleto[5] : '';
         const CanalSiete = this.state.canalesCompleto[6] ? this.state.canalesCompleto[6] : '';
         const CanalOcho = this.state.canalesCompleto[7] ? this.state.canalesCompleto[7] : '';
+        const CanalNueve = this.state.canalesCompleto[8] ? this.state.canalesCompleto[8] : '';
         const cabeza = this.state.cabezaCentro;
         const ajna = this.state.ajnaCentro;
         const garganta = this.state.gargantaCentro;
@@ -755,6 +804,7 @@ export class Result extends Component {
         const bazo = this.state.bazoCentro;
         const raiz = this.state.raizCentro;
         const bodygraph = this.state.bodygraph;
+        const resumen = this.state.text;
         let params =  {
             bodygraph,
             name,
@@ -791,7 +841,9 @@ export class Result extends Component {
             CanalCinco,
             CanalSeis,
             CanalSiete, 
-            CanalOcho
+            CanalOcho,
+            CanalNueve,
+            resumen
           }    
          axios.post('http://localhost:3001/downloadpdf', {params}).catch(error => console.log(error));
    }
@@ -863,197 +915,347 @@ export class Result extends Component {
 
     render() {
         return (
-            <div id='tableToPdf'>
             <div className='result'>
+
+
                 <h1>Resultado</h1>
                 <Button onClick={this.convertToPdf}>Descargar</Button>
                 <Button onClick={this.sendMail}>Enviar correo</Button>
-                <Container fluid >
-                    <Row className='border' className='border'>
-                        <Col className='border'>
-                            <img src={logo} alt='logo' />
-                        </Col>
-                        <Col className='border'>
-                            {this.state.date}
-                        </Col>
+                    <Container fluid>
+                    <Row>
+                        <Col><img className='logo' src={logo} alt='logo' /></Col>
+                        <Col><h3>Basic Design</h3></Col>
+                        <Col>{this.state.date} {this.state.time}</Col>
                     </Row>
-                    <Row className='border'>
-                        <Col className='border'>Basic Design</Col>
-                        <Col className='border'>Resumen Terapeuta</Col>
-                        <Col className='border'>Espacio para comentarios</Col>
-                    </Row>
-                    <Row className='border'>
-                        <Col className='border'>Nombre: {this.state.firstName} {this.state.lastName}</Col>
-                        <Col className='border'>Fecha: {this.state.fecha}</Col>
-                        <Col className='border'>Hora: {this.state.hora}</Col>
-                        <Col className='border'>Lugar: {this.state.lugar}</Col>
-                    </Row>
-                    <Row className='border'>
-                        <Col className='border'>TIPO</Col>
-                        <Col className='border'>{this.state.tipo}</Col>
-                        <Col className='border'>{this.state.typeDescription}</Col>
 
-                        <Col className='border'>Correcto
-        <Row className='border'>{this.state.corr}</Row>
+                    <Row className='border'>
+                        <Col className='border'>NOMBRE</Col>
+                        <Col className='border'>{this.state.firstName} {this.state.lastName}</Col>
+                        <Col className='border'>FECHA</Col>
+                        <Col className='border'>{this.state.fecha}</Col>
+                        <Col className='border'>HORA</Col>
+                        <Col className='border'>{this.state.hora}</Col>
+                        <Col className='border'>LUGAR</Col>
+                        <Col className='border'>{this.state.lugar}</Col>
+                    </Row>
+
+                    <Row>
+                        <Col className='border bold' xs={3}>TIPO 
+                        <Popup
+                            trigger={<Button> ? </Button>}
+                            position="top center"
+                            nested
+                        >
+                            <div>
+                            Nos presenta a cual de los cinco tipos energéticos pertenecemos y sus características
+                                </div>
+                                </Popup>
                         </Col>
-                        <Col className='border'>Incorrecto
-        <Row className='border'>{this.state.incorr}</Row></Col>
-
-
-                    </Row>
-                    <Row className='border'>
-                        <Col className='border'>Estrategia</Col>
-                        <Col className='border'>Como afrontar la vida <Icon.ArrowRightCircle /></Col>
-                        <Col className='border'>{this.state.estrategia}</Col>
-                    </Row>
-                    <Row className='border'>
-                        <Col className='border'>Autoridad</Col>
-                        <Col className='border'>Como tomar las decisiones adecuadas <Icon.ArrowRightCircle /></Col>
-                        <Col className='border'>{this.state.autoridad}</Col>
-                    </Row>
-                    <Row className='border'>
-                        <Col className='border'>Perfil</Col>
-                        <Col className='border'>{this.state.perfilUno}</Col>
-                        <Col className='border'>{this.state.perfilDos}</Col>
-                        <Col className='border'>Como es nuestro <br /> personaje autentico <Icon.ArrowRightCircle /> </Col>
-                        <Col className='border'>{this.state.perfilCompleto}</Col>
-                    </Row>
-                    <Row className='border'>
-                        <Col className='border'>Tus centros energeticos
-      <Row className='border'>
-                                <Col >Cabeza <br /> Inspiracion</Col>
-                                <Col> <div className='smallcentros' id='cabeza'>{this.state.cabezaCentro == 'opened' ? <Icon.Triangle /> :  <Icon.TriangleFill />} </div>
-                                {this.state.cabezaCentro}
-                                 </Col>
-                                <Col >Son las preguntas, las dudas y la presion para que se expanda la conciencia</Col>
-                            </Row>
-                           
-                            <Row className='border'>
-                                <Col >AJNA  <br /> Pensamiento</Col>
-                                <Col ><div className='smallcentros' id='uptodown'>{this.state.ajnaCentro == 'opened' ? <Icon.Triangle /> : <Icon.TriangleFill />} </div>
-                                 </Col> 
-                                <Col >Analiza e investiga la vida de forma intelectual, racional, autoreflexiva</Col>
-                            </Row>
-                            <Row className='border'>
-                                <Col >Garganta <br /> Expresion</Col>
-                                <Col ><div className='smallcentros'>{this.state.gargantaCentro == 'opened' ? <Icon.Hexagon /> : <Icon.HexagonFill />}</div>
-                                </Col> 
-                                <Col >Analiza e investiga la vida de forma intelectual, racional, autoreflexiva</Col>
-                            </Row>
-                            <Row className='border'>
-                                <Col className='border'>G I <br /> Direccion</Col>
-                                <Col className='border'>
-                                    <div className='smallcentros'>
-                                        {this.state.giCentro == 'opened' ? <Icons icon={rhombusOutline} /> : <Icons icon={rhombusIcon} />}
-                                    </div>
-                                </Col>
-                                <Col className='border'>Marca la indentidad del ser, el amor y la direccion hacia la Fuente superior</Col>
-                            </Row>
-                            <Row className='border'>
-                                <Col className='border'>Corazon<br /> Ego</Col>
-                                <Col className='border'>
-                                    <div className='smallCentros'>
-                                        {this.state.corazonCentro == 'opened' ? <Icon.Circle /> : <Icon.CircleFill />} 
-                                    </div>
-                                </Col>
-                                <Col className='border'>La supervivencia material. El impulso de la voluntad hacia la autoestima</Col>
-                            </Row>
+                        <Col className='border' xs={3}>
+                            <Row className='border'>{this.state.tipo}</Row>
                             
-                            <Row className='border'>
-                                <Col className='border'>Plexo solar<br /> Emociones</Col>
-                                <Col className='border'>
-                                    <div className='smallCentros' >
-                                        {this.state.plexosolarCentro == 'opened' ? <Icon.Triangle id='turnright' /> : <Icon.TriangleFill id='turnright' />}
-                                    </div>
-                                </Col>
-                                <Col className='border'>La experiencia de los sentimientos, las emociones, sensaciones</Col>
-                            </Row>
-                            <Row className='border'>
-                                <Col className='border'>Sacral<br /> Energia</Col>
-                                <Col className='border'>
-                                    <div className='smallCentros' >
+                            <Row className='border lightyellow'>¿CUANTOS HAY COMO TÚ?</Row>
+                            <Row className='border '>{this.state.cuantas}</Row>
+                            
+                        </Col>
+                        <Col className='border'>
+                            <Row>{this.state.typeDescription} </Row>
+                            <Row className='lightyellow'>Esta cifra es de los millones de personas que hay con tu mismo tipo, pero recuerda que como túsolo hay UNA</Row>
+                        </Col>
+                    </Row>
+
+                    <Row>
+                        <Col className='border bold' xs={3}>ESTRATEGIA
+                        <Popup
+                            trigger={<Button> ? </Button>}
+                            position="top center"
+                            nested
+                        >
+                            <div>
+                            Es la manera que el diseño te propone para afrontar la vida de forma correcta en base a tu Tipo
+                                </div>
+                                </Popup>
+                        </Col>
+                        <Col className='border lightyellow' xs={3} >COMO AFRONTAR LA VIDA</Col>
+                        <Col className='border' >{this.state.estrategia}</Col>
+                        <Col className='border'>
+                            <Row className='lightgreen '>CORRECTO</Row>
+                            <Row>{this.state.corr}</Row>
+                        </Col>
+                        <Col className='border'>
+                            <Row className='orange'>INCORRECTO</Row>
+                            <Row>{this.state.incorr}</Row>
+                        </Col>
+                    </Row>
+
+                    <Row>
+                        <Col className='border bold' xs={3}>AUTORIDAD
+                        <Popup
+                            trigger={<Button> ? </Button>}
+                            position="top center"
+                            nested
+                        >
+                            <div>
+                            Es la forma sencilla y adecuada de que tu tipología aprenda a tomar las decisiones que te son adecuadas
+                                </div>
+                                </Popup>
+                        </Col>
+                        <Col className='border lightyellow' xs={3}>COMO TOMAR LAS DECISIONES ADECUADAS</Col>
+                        <Col className='border' xs={6}>{this.state.autoridad}</Col>
+                    </Row>
+
+                    <Row>
+                        <Col className='border bold' xs={3}>DEFINICIÓN
+                        <Popup
+                            trigger={<Button> ? </Button>}
+                            position="top center"
+                            nested
+                        >
+                            <div>
+                            Nos muestra cuantas activaciones de energía tienes  y como se interaccionan y componen en tu plano energético
+                                </div>
+                                </Popup>
+                        </Col>
+                        <Col className='border lightyellow' xs={6}>Es la forma en que nuestrossistemas de energíase conectan entre sí, dando como resultado diferentes configuraciones, dependiendo la disposición de las puertas</Col>
+                        <Col className='border' xs={3}>{this.state.definicion}</Col>
+                    </Row>
+                    </Container>
+                    
+
+                    
+
+
+                    <Container fluid>
+                        <h1 className='text-center' >TUS CENTROS ENERGÉTICOS <Popup
+                            trigger={<Button> ? </Button>}
+                            position="top center"
+                            nested
+                        >
+                            <div>
+                            Los nueve centros que definen los bloque de energía diferenciada  con sus cualidades propias y únicas
+                                </div>
+                            </Popup></h1>
+                        <Row className='border lightyellow'>Tienes 9 centros y cada uno con sus características concretas,los coloreados estánactivados y por ellos emites y los que estánen blanco estánabiertos y por ellos recibes la informaciónde tu entornoo personas que te rodean</Row>
+                        <div className='hideonlargescreen'>]
+                         <img  src={this.state.bodygraph}/>
+                         <Popup
+                            trigger={<Button> ? </Button>}
+                            position="top center"
+                            nested
+                        >
+                            <div>
+                            Es el plano energético donde está toda la información que nos ofrece el Diseño Humano
+                                </div>
+                            </Popup>
+                        </div>
+                    <Row>
+                        <Col className='border'>
+                        <Row>
+                        <Col className='border bold' >CABEZA</Col>
+                        <Col className='border'>{this.state.cabezaCentro == 'opened' ? <img className='openclose' src={cabezaAbierto} /> : <img className='openclose' src={cabezaCerrado} /> }</Col>
+                        <Col className='border lightyellow'>Son las preguntas, las dudas y la presion para que se expanda la conciencia</Col>
+                        </Row>
+
+                        <Row>
+                        <Col className='border bold'>GARGANTA</Col>
+                        <Col className='border'>{this.state.gargantaCentro == 'opened' ? <img className='openclose' src={gargantaAbierto} /> : <img className='openclose' src={gargantaCerrado} />}</Col>
+                        <Col className='border lightyellow'>Pensamiento emoción y sentimientos en palabras y hechos</Col>
+                        </Row>
+
+                        <Row>
+                        <Col className='border bold'>CORAZON</Col>
+                        <Col className='border'>  {this.state.corazonCentro == 'opened' ? <img className='openclose' src={corazonAbierto} /> : <img className='openclose' src={corazonCerrado} />} </Col>
+                        <Col className='border lightyellow'>La supervivencia material. El impulso de la voluntad hacia la autoestima</Col>
+                        </Row>
+
+                        <Row>
+                        <Col className='border bold'>SACRAL</Col>
+                        <Col className='border'>{this.state.sacralCentro == 'opened' ? <img className='openclose' src={sacralAbierto} /> : <img className='openclose' src={sacralCerrado} />}</Col>
+                        <Col className='border lightyellow'>Energía vital para hacer cosas y activación del impulso sexual </Col>
+                        </Row>
+
+
+                        <Row>
+                        <Col className='border bold'>RAIZ</Col>
+                        <Col className='border'>{this.state.raizCentro == 'opened' ? <img className='openclose' src={raizAbierto} /> : <img className='openclose' src={raizCerrado} />} </Col>
+                        <Col className='border lightyellow'>El impulso de crecer, la presión de ser, el estrés, la adrenalina </Col>
+                        </Row>
+
+                        
+
+                        </Col>
+
+                        <Col className='border d-none d-lg-block '>
+
+                    <Row><img className='img-fluid h-100' src={this.state.bodygraph}/></Row>
+                    <Popup
+                            trigger={<Button> ? </Button>}
+                            position="top center"
+                            nested
+                        >
+                            <div>
+                            Es el plano energético donde está toda la información que nos ofrece el Diseño Humano
+                                </div>
+                                </Popup>
+                     
+                        
+                        </Col>
+
+                        <Col className='border'>
+                        <Row>
+                        <Col className='border bold'>AJNA</Col>
+                        <Col className='border'>{this.state.ajnaCentro == 'opened' ? <img className='openclose' src={ajnaAbierto} /> : <img className='openclose' src={ajnaCerrado} /> }</Col>
+                        <Col className='border lightyellow'>Analiza e investiga la vida de forma intelectual racional, autorreflexiva</Col>
+                        </Row>
+
+                        <Row>
+                        <Col className='border bold'>GI</Col>
+                        <Col className='border'>{this.state.giCentro == 'opened' ? <img className='openclose' src={GIAbierto} /> : <img className='openclose' src={GICerrado} />}</Col>
+                        <Col className='border lightyellow'>Marca la identidad del ser, el amor y la dirección hacia la Fuente superior </Col>
+                        </Row>
+
+                        <Row>
+                        <Col className='border bold'>PLEXO</Col>
+                        <Col className='border'>{this.state.plexosolarCentro == 'opened' ? <img className='openclose' src={plexoAbierto} /> : <img className='openclose' src={plexoCerrado} />}</Col>
+                        <Col className='border lightyellow'>La experiencia de los sentimientos, las emociones, sensaciones</Col>
+                        </Row>
+
+                        <Row>
+                        <Col className='border bold'>BAZO</Col>
+                        <Col className='border'>{this.state.bazoCentro == 'opened' ? <img className='openclose' src={bazoAbierto} /> : <img className='openclose' src={bazoCerrado} /> }</Col>
+                        <Col className='border lightyellow'>La conciencia del cuerpo, la intuición, el gusto, los miedos</Col>
+                        </Row>
+
+                        <Row >
+                        <Col className='border lightgreen bold'>LA GRAN BÚSQUEDA</Col>
+                        <Col className='border lightgreen bold'>Estar en el lugar correcto Con la persona adecuada Haciendo lo que te gusta</Col>
+                       
+                        </Row>
+                        
+                        </Col>
+                    </Row>
+                    <Row >
+                        <Col className='border bold'>PERFIL 
+                        <Popup
+                            trigger={<Button> ? </Button>}
+                            position="top center"
+                            nested
+                        >
+                            <div>
+                            Muestran la energía que nos pone delante nuestro verdadero personaje
+                                </div>
+                            </Popup>
+                        </Col>
+                        <Col className='border lightyellow'>NUESTRO PERSONAJE AUTENTICO</Col>
+                        
+                            <Col className='border red '>{this.state.perfilUno}</Col>
+                            <Col className='border black'>{this.state.perfilDos}</Col>
+                            <Col className='border'>{this.state.perfilCompleto}</Col>
+                        
+                        </Row>
+                    </Container>
+                    <br />
+                    <Container fluid>
+                        <Row>
+                            <Col >
+                                <Row>
+                                    <Col className='border-top border-bottom border-left redtext'>
+                                    <div className='text-center'>INCONSCIENTES</div>
                                     
-                                           {this.state.sacralCentro == 'opened' ? <Icon.Circle id='bigger' /> : <Icon.CircleFill id='bigger' />}
-                                    </div>
-                                </Col>
-                                <Col className='border'>La vitalidad para hacer cosas y la activacion del impulso sexual</Col>
-                            </Row>
-                        </Col>
-                        <Col className='border'>Tu circuito energetico
-                        <Row className='border'> ReactSV
-                        
-                          {this.state.firstName ? <ReactSVG ref={this.svgRef} id='bodygraph' src={`http://localhost:3001/${this.state.firstName}${this.state.lastName}.svg`} /> : '' } 
-                            <img src={this.state.bodygraph}/>
-                      
-                        
+                                    <Row className='border-top border-bottom border-left'>
+                                    {this.state.cruzUno[0]}
+                                    </Row>
+                                    <Row className='border-top  border-left'>
+                                    {this.state.cruzUno[1]}
+                                    </Row>
+                                    </Col>
+                                </Row>
+                            </Col>
 
-                         </Row>
-     
-      <Row className='border'>Definicion: {this.state.definicion}</Row>
-                        </Col>
+                            <Col className='border'>
+                                <Row>
+                                    <Col  >
+                                    <Row>PUERTAS
+                                    <Popup
+                            trigger={<Button> ? </Button>}
+                            position="top center"
+                            nested
+                        >
+                            <div>
+                            Marcan las cualidades más poderosas que configuran tu plano energético
+                                </div>
+                                </Popup>
 
-                    </Row>
-                    <Row className='border'>
-                        <Col className='border'>
-                            <Row className='border'>
-                                <Col className='border'>Bazo<br /> Instinto</Col>
-                                <Col className='border'>
-                                    <div className='smallCentros' >
-                                        {this.state.bazoCentro == 'opened' ? <Icon.Triangle id='turnleft' /> : <Icon.TriangleFill id='turnleft' /> }
-                                    </div>
-                                </Col>
-                                <Col className='border'>La conciencia del cuerpo, la intuicion, el gusto, los miedos</Col>
-                            </Row>
-                            <Row className='border'>
-                                <Col className='border'>Raiz<br /> Adrenalina</Col>
-                                <Col className='border'>
-                                    <div className='smallCentros'>
-                                        {this.state.raizCentro == 'opened' ? <Icon.Square /> : <Icon.SquareFill />} 
-                                    </div>
-                                </Col>
-                                <Col className='border'>El impulso de crecer, la presion de ser, el estres la adrenalina</Col>
-                            </Row>
-                            <Row className='border'>
-    <Col className='border'>Cruz</Col>
-    <Col className='border'>Nuestro verdadero proposito <Icon.ArrowRightCircle /> </Col>
-    </Row>
-                        </Col>
-                        <Col className='border'>
-                            Las cualidades que marcan tu vida
+                                    </Row>
+                                    <Row className='lightyellow border-top'>LAS CUALIDADES</Row>
+                                    <Row className='lightyellow'> QUE MARCAN TU VIDA</Row>
+                                    </Col>
+                                    </Row>
+                            </Col>
+
+                            <Col className='border'>
+                                <Row>
+                                    <Col className='border bold'>
+                                    <div className='text-center'> CONSCIENTES </div>
+                                    
+                                    <Row className='border-top border-bottom '>
+                                    {this.state.cruzDos[0]}
+                                    </Row>
+                                    <Row className='border-top'>
+                                    {this.state.cruzDos[1]}
+                                    </Row>
+                                    </Col>
+                                </Row>
+                            </Col>
+                        </Row>
+
+                        <Row>
+                            <Col className='border'>CRUZ 
+
+                            <Popup
+                            trigger={<Button> ? </Button>}
+                            position="top center"
+                            nested
+                        >
+                            <div>
+                            Muestra nuestro propósito a realizar en esta vida
+                                </div>
+                                </Popup>
                             
-<Row className='border'>
-                                <Col className='border'>Inconsientes</Col>
-                                <Col className='border'>Puertas</Col>
-                                <Col className='border'> Concientes</Col>
-                            </Row>
-                            <Row className='border'>
-                                <Col className='border fullHeightCol'> {this.state.cruzUno[0]} <br /> {this.state.cruzUno[1]}</Col>
-                                <Col className='border'>{this.state.cruzDos[0]}<br /> {this.state.cruzDos[1]}</Col>
-                                
-                               
-                                
-                            </Row>
-                            <Col className='border bottomCol'>{this.state.cruzstr}</Col>
-                        </Col>
-                    </Row>
-<Row className='border'>
-    
-    
-    
-</Row>
-<Row className='border'>
-    <Col className='border'>Caracteristicas vitales <Icon.ArrowRightCircle /> <br /> <div className='verticaltext'>selanac</div></Col>
-    <Col className='border'>Elija el elemento:
-    {this.state.canalesCompleto.map(e => <Row className='border'>{e}</Row>)}
-    </Col>
-</Row>
-<Row className='border'>
-    Si quieres tener acceso a la informacion completa contacta...
-    <img src=''></img>
-</Row>
-                </Container>
-            </div>
-            </div>
+                            </Col>
+                            <Col className='border lightyellow'>TU VERDADERO PROPÓSITO</Col>
+                            <Col className='border'>{this.state.cruzstr}</Col>
+                        </Row>
+
+                        <Row>
+                            <Col className='border'></Col>
+                            <Col className='border'>CANALES
+                            <Popup
+                            trigger={<Button> ? </Button>}
+                            position="top center"
+                            nested
+                        >
+                            <div>
+                            Muestran la energía de nuestras características vitales
+                                </div>
+                                </Popup>
+                            </Col>
+                            <Col className='border lightyellow'>TUS CARACTERÍSTICAS VITALES</Col>
+                        </Row>
+
+                        {this.state.canalesCompleto.map((e,i) => <Row className='border'>{i} {e}</Row>)}
+                        
+                       
+                        <Row>NOTAS Y RESUMEN</Row>
+                        <Row><input type='text' onChange={this.textChange} className=' form-control form-control-lg mb-2' /></Row>
+                        
+                        
+
+                    </Container>
+
+                </div>
+
+
         )
     }
 }
