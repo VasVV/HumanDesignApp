@@ -105,6 +105,7 @@ class SignUp extends Component {
             })
             .then(json => {
                 const results = json.result.results;
+                console.log(results.bodygraph);
                 axios.post('http://localhost:3001/downloadimg', {
                     params: {
                         url: results.bodygraph,

@@ -37,486 +37,946 @@ import sacralCerrado from './img/SACRAL COLOR.png';
 
 
 
+
 const angulos = [
 
-    ["13/7" , "2/1" , "Angulo Derecho", "Cruz de la Esfinge 1"],
-    
-    ["13/7","23/43","Yuxtapuesta", " Cruz de Escuchar "],
-    ["13/7", "23/43","Angulo Izquierdo", "Cruz de las Máscaras 1"],
-    
-    ["49/4","23/43", "Ángulo Derecho", "Cruz de la Explicación 1"],
-    
-    ["49/4","14/8","Yuxtapuesta", "Cruz de los Principios"],
-    
-    ["49/4", "14/8","Angulo Izquierdo", " Cruz de la Revolución 1"],
-    
-    ["30/29","14/8","Angulo Derecho", "Cruz del Contagio 1"],
-    
-    ["30/29","20/34","Yuxtapuesta", "Cruz de los Hados "],
-    ["30/29", "20/34","Angulo Izquierdo", "Cruz de la Industriosidad 1"],
-    
-    ["55/59","20/34","Angulo Derecho", "Cruz del Fénix Dormido 1"],
-    ["55/59", "16/9","Yuxtapuesta", " Cruz de los Ánimos Cambiantes"],
-    ["55/59","16/9","Angulo Izquierdo", "Cruz del Espíritu 1"],
-    
-    ["37/40","16/9","Angulo Derecho", " Cruz de la Planificación 1 "],
-    ["37/40","35/5","Yuxtapuesta", "Cruz de los Contratos"],
-    
-    
-    
-    
-    ["37/40","35/5","Angulo Izquierdo", "Cruz de la Migración 1"],
-    
-    ["63/63","35/5","Angulo Derecho", "Cruz de la Conciencia 1"],
-    ["63/64","45/26","Yuxtapuesta", "Cruz de las Dudas"],
-    ["63/64","45/26","Angulo Izquierdo", "Cruz del Dominio 1"],
-    
-    ["22/47","26/45","Angulo Derecho", "Cruz del Gobierno 1"],
-    ["22/47","12/11","Yuxtapuesta", "Cruz de la Gracia"],
-    ["22/47","12/11","Angulo Izquierdo", "Cruz de Informar 1"],
-    
-    ["36/6","12/11","Angulo Derecho", "Cruz del Edén 1"],
-    ["36/6","15/10","Yuxtapuesta", "Cruz de la Crisis"],
-    ["36/6","15/10","Angulo Izquierdo", "Cruz del Plano 1"],
-    
-    ["25/46","15/10","Angulo Derecho", "Cruz del recipiente de Amor 1 "],
-    ["25/46","58/52","Yuxtapuesta", "Cruz de la Inocencia 1"],
-    ["25/46","58/52","Angulo Izquierdo", "Cruz de la Sanación 1"],
-    
-    
-    ["17/18","58/52","Angulo Derecho", "Cruz del Servicio 1"],
-    ["17/18","38/39","Yuxtapuesta", "Cruz de las Opiniones "],
-    ["17/18", "38/39","Angulo Izquierdo", "Cruz del Tumulto, levantamiento 1"],
-    
-    
-    
-    
-    
-    ["21/48","38/39","Angulo Derecho", "Cruz de la Tensión 1"],
-    ["21/48","54/53","Yuxtapuesta", "Cruz del Control"],
-    ["21/48","54/53","Angulo Izquierdo", "Cruz del Esfuerzo 1"],
-    
-    ["51/57","54/53","Angulo Derecho", " Cruz de la Penetración 1"],
-    ["51/57","61/62","Yuxtapuesta", "Cruz del Shock"],
-    ["51/57","61/62","Angulo Izquierdo", "Cruz del Clarín 1"],
-    
-    ["42/32","61/62","Angulo Derecho", "Cruz del May 1"],
-    ["42/32","60/56","Yuxtapuesta", "Cruz de la Plenitud"],
-    ["42/32","60/56","Angulo Izquierdo", "Cruz de los Límites 1"],
-    
-    ["3/50","60/56","Angulo Derecho", "Cruz de las Ley 1"],
-    ["3/50","41/31","Yuxtapuesta", "Cruz de la Mutación"],
-    ["3/50","41/31","Angulo Izquierdo", "Cruz de los Deseos 1"],
-    
-    ["27/28","41/31","Angulo Derecho", "Cruz de lo Inesperado 1 "],
-    ["27/28","19/33","Yuxtapuesta", "Cruz del Cuidado"],
-    ["27/28","19/33","Angulo Izquierdo", "Cruz del Alinearse 1"],
-    
-    ["24/44","19/33","Angulo Derecho", "Cruz de los Cuatro Caminos 1"],
-    ["24/44","13/7","Yuxtapuesta", "Cruz de la Racionalización 1 "],
-    ["24/44","13/7","Angulo Izquierdo", "Cruz de la Encarnación 1"],
-    
-    
-    ["2/1","13/7","Angulo Derecho", "Cruz de la Esfinge 2"],
-    ["2/1","49/4","Yuxtapuesta", "Cruz del Chauffeur (conductor)"],
-    ["2/1","49/4","Angulo Izquierdo", "Cruz del Desafío 1"],
-    
-    ["23/43","49/4","Angulo Derecho", "Cruz de la Explicación 2"],
-    ["23/43","30/29","Yuxtapuesta", "Cruz de la Asimilación"],
-    ["23/43","30/29","Angulo Izquierdo", "Cruz de la Dedicación 1"],
-    
-    
-    
-    
-    ["8/14","30/29","Angulo Derecho", "Cruz del Contagio 2"],
-    ["8/14","55/59","Yuxtapuesta", "Cruz de la Contribución"],
-    ["8/14","55/59","Angulo Izquierdo", "Cruz de la Incertidumbre 1"],
-    
-    ["20/34","55/59","Angulo Derecho", "Cruz del Fénix Dormido 2"] ,
-    ["20/34","37/40","Yuxtapuesta", "Cruz del Ahora"],
-    ["20/34","37/40","Angulo Izquierdo", "Cruz de la Dualidad 1"],
-    
-    ["16/9","37/40","Angulo Derecho", "Cruz de la Planificación 2"],
-    ["16/9","63/64","Yuxtapuesta", "Cruz de la Experimentación"],
-    ["16/9","63/64","Angulo Izquierdo", " Cruz de la Identificación 1"],
-    
-    ["35/5","63/64","Angulo Derecho", "Cruz de la Conciencia 2 "],
-    ["35/5","47/22","Yuxtapuesta", " Cruz de la Experiencia"],
-    ["35/5","47/22","Angulo Izquierdo", "Cruz de la Separación 1"],
-    
-    ["45/26","47/22","Angulo Derecho", "Cruz del Gobierno 2"],
-    ["45/26","36/6","Yuxtapuesta", "Cruz de la Posesión "],
-    ["45/26", "36/6","Angulo Izquierdo", "Cruz de la Confrontación 1"],
-    
-    ["12/11","36/6","Angulo Derecho", "Cruz del Edén 2"],
-    ["12/11","25/46","Yuxtapuesta", "Cruz de la Articulación"],
-    ["12/11","25/46","Angulo Izquierdo", "Cruz de la Educación 1"],
-    
-    ["15/10","25/46","Angulo Derecho", "Cruz del Recipiente de Amor 2 "],
-    ["15/10","17/18","Yuxtapuesta", "Cruz de los Extremos"],
-    ["15/10","17/18","Angulo Izquierdo", "Cruz de la Prevención 1"],
-    
-    ["52/58","17/18","Angulo Derecho", "Cruz del Servicio 2"],
-    ["52/58","21/48","Yuxtapuesta", "Cruz de la Quietud "],
-    ["52/58","21/48", "Angulo Izquierdo", "Cruz de las Exigencias 1"],
-    
-    ["39/38","21/48","Angulo Derecho", "Cruz de la Tensión 2 "],
-    ["39/38","51/57","Yuxtapuesta", "Cruz de la Provocación"],
-    ["39/38","51/57", "Angulo Derecho", "Cruz del Individualismo 1"],
-    
-    ["53/54","51/57","Angulo Derecho", "Cruz de la Penetración 2"],
-    ["53/54","42/32","Yuxtapuesta", "Cruz de los Comienzos"],
-    ["53/54","42/32","Angulo Izquierdo", "Cruz de los Ciclos 1"],
-    
-    ["62/61","42/32","Angulo Derecho", "Cruz del May 2"],
-    ["62/61","3/50","Yuxtapuesta", "Cruz del Detalle "],
-    ["62/61", "3/50","Angulo Izquierdo", "Cruz del Oscurantismo 1"],
-    
-    ["56/60","3/50","Angulo Derecho", "Cruz de las Ley 2 "],
-    ["56/60","27/28","Yuxtapuesta", "Cruz de la Estimulación"],
-    ["56/60", "27/28","Angulo Izquierdo", "Cruz de la Distracción 1"],
-    
-    ["31/41","27/28","Angulo Derecho", "Cruz de lo Inesperado 2 "],
-    ["31/41", "24/44","Yuxtapuesta", "Cruz de la Influencia"],
-    ["31/41","24/44","Angulo Izquierdo", "Cruz del Alfa 1"],
-    
-    ["33/19","24/44","Angulo Derecho", "Cruz de los Cuatro Caminos 2"],
-    ["33/19","1/2","Yuxtapuesta", "Cruz de la Retirado"],
-    ["33/19", "1/2","Angulo Izquierdo", "Cruz del Refinamiento 1"],
-    
-    
-    ["7/13","1/2","Angulo Derecho", "Cruz de la Esfinge 3 "],
-    ["7/13","43/23","Yuxtapuesta", "Cruz de la Interacción"],
-    
-    
-    
-    
-    ["7/13","43/23","Angulo Izquierdo", "Cruz de las Máscaras 2"],
-    ["4/49","43/23","Angulo Derecho", "Cruz de la Explicación 3"],
-    
-    ["4/49","8/14","Yuxtapuesta", "Cruz de las Fórmulas"],
-    ["4/49","8/14","Angulo Izquierdo", "Cruz de la Revolución 2"],
-    ["29/30","8/14","Angulo Derecho", "Cruz del Contagio 3"],
-    
-    ["29/30","20/34","Yuxtapuesta", "Cruz del Compromiso "],
-    ["29/30","20/34","Angulo Izquierdo", "Cruz de la Industriosidad 2 "],
-    ["59/55","20/34","Angulo Derecho", "Cruz del Fénix Dormido 3"],
-    
-    ["59/55","16/9","Yuxtapuesta", "Cruz de la Estrategia"],
-    ["59/55","16/9","Angulo Izquierdo", "Cruz del Espíritu 1"] ,
-    ["40/37","16/9"," Angulo Derecho", "Cruz de la Planificación 3"],
-    ["40/37","35/5","Yuxtapuesta", "Cruz de la Negación"],
-    
-    ["40/37","35/5","Angulo Izquierdo", "Cruz de la Migración 2"],
-    ["64/63","35/5","Angulo Derecho", "Cruz de la Conciencia 3"],
-    ["64/63","45/26","Yuxtapuesta", "Cruz de la Confusión"],
-    
-    ["64/63","45/26","Angulo Izquierdo", "Cruz del Dominio 2"],
-    ["47/22","45/26","Angulo Derecho", "Cruz del Gobierno 3"],
-    ["47/22","12/11","Yuxtapuesta", "Cruz de la Opresión"],
-    
-    ["47/22","12/11","Angulo Izquierdo", "Cruz de Informar 1"],
-    
-    ["6/36","12/11","Angulo Derecho", "Cruz del Edén 3"],
-    ["6/36","10/15","Yuxtapuesta", "Cruz del Conflicto "],
-    ["6/36", "10/15","Angulo Izquierdo", "Cruz del Plano Terrenal 2"],
-    
-    ["46/25","10/15","Angulo Derecho", "Cruz del recipiente de Amor 3"],
-    ["46/25","58/52","Yuxtapuesta", "Cruz de Serendipidad"],
-    ["46/25","58/52","Angulo Izquierdo", "Cruz de la Sanación 2"],
-    
-    
-    
-    
-    ["18/17","58/52","Angulo Derecho", "Cruz del Servicio 3 "],
-    ["18/17", "38/39","Yuxtapuesta", "Cruz de la Corrección "],
-    ["18/17","38/39", "Angulo Izquierdo", "Cruz del Tumulto o Sublevación 2"],
-    
-    ["48/21","38/39","Angulo Derecho", "Cruz de la Tensión 3 "],
-    ["48/21","53/54","Yuxtapuesta", "Cruz de la Profundidad "],
-    ["48/21","53/54", "Angulo Izquierdo", "Cruz del Esfuerzo 2"],
-    
-    ["57/51","53/54","Angulo Derecho", "Cruz de la Penetración 3 "],
-    ["57/51","62/61","Yuxtapuesta", "Cruz de la Intuición"],
-    ["57/51","62/61","Angulo Izquierdo", "Cruz del Clarín 2"],
-    
-    ["32/42","62/61","Angulo Derecho", "Cruz del May 3"],
-    ["32/42","56/60","Yuxtapuesta", "Cruz del Conservadurismo"],
-    ["32/42","56/60","Angulo Izquierdo", "Cruz de los Límites 2"],
-    
-    ["50/3","56/60","Angulo Derecho", "Cruz de las Ley 3"],
-    ["50/3","31/41","Yuxtapuesta", "Cruz de los Valores"],
-    ["50/3","31/41","Angulo Izquierdo", "Cruz de los Deseos 2"],
-    
-    ["28/27","31/41","Angulo Derecho", "Cruz de lo Inesperado 3 "],
-    ["28/27","33/19","Yuxtapuesta", "Cruz del Riesgo "],
-    ["28/27","33/19","Angulo Izquierdo", "Cruz del Alineamiento 2"],
-    
-    ["44/24","33/19","Angulo Derecho", "Cruz de los Cuatro Caminos 3 "],
-    ["44/24","7/13","Yuxtapuesta", "Cruz del Alerta"],
-    ["44/24","7/13","Angulo Izquierdo", "Cruz de la Encarnación 2"],
-    
-    
-    
-    
-    
-    ["1/2","7/13","Angulo Derecho", "Cruz de la Esfinge"],
-    ["1/2","4/49","Yuxtapuesta", "Cruz de la Autoexpresión "],
-    ["1/2","4/49","Angulo Izquierdo", "Cruz del Desafío 2"],
-    
-    ["43/23","4/49","Angulo Derecho", "Cruz de la Explicación 4"],
-    ["43/23","29/30","Yuxtapuesta", "Cruz del Insight (Perspicacia)"],
-    ["43/23","29/30","Angulo Izquierdo", "Cruz de la Dedicación 2"],
-    
-    ["14/8","29/30","Angulo Derecho", "Cruz del Contagio 4"],
-    ["14/8","59/55","Yuxtapuesta", "Cruz de Potenciación"],
-    ["14/8","59/55","Angulo Izquierdo", "Cruz de la Incertidumbre 2"],
-    
-    ["34/20","59/55","Angulo Derecho", "Cruz del Fénix Dormido 4"],
-    ["34/20","37/40","Yuxtapuesta", "Cruz del Poder"],
-    ["34/20","37/40","Angulo Izquierdo", "Cruz de la Dualidad 2"],
-    
-    
-    ["9/16","37/40","Angulo Derecho", "Cruz de la Planificación 4 "],
-    ["9/16","63/64","Yuxtapuesta", "Cruz del Foco"],
-    ["9/16","63/64","Angulo Izquierdo", "Cruz de la Identificación 2"],
-    
-    ["5/35","63/64","Angulo Derecho", "Cruz de la Conciencia 4"],
-    ["5/35","22/47","Yuxtapuesta", "Cruz de los Hábitos"],
-    ["5/35","22/47","Angulo Izquierdo", "Cruz de la Separación 2"],
-    
-    
-    ["26/45","47/22","Angulo Derecho", "Cruz del Gobierno 4"],
-    ["26/45","36/6","Yuxtapuesta", "Cruz del Pícaro"] ,
-    ["26/45","36/6","Angulo Izquierdo", "Cruz de la Confrontación 2"],
-    
-    ["11/12","36/6","Angulo Derecho", "Cruz del Edén 4"],
-    ["11/12","25/46","Yuxtapuesta", "Cruz de las Ideas"],
-    ["11/12","25/46","Angulo Izquierdo", "Cruz de la Educación 2"],
-    
-    
-    
-    
-    ["10/15","25/46","Angulo Derecho", "Cruz del Recipiente de Amor 4"],
-    ["10/15","18/17","Yuxtapuesta", "Cruz del Comportamiento"],
-    ["10/15","18/17","Angulo Izquierdo", "Cruz de la Prevención 2"],
-    
-    ["58/52","18/17","Angulo Derecho", "Cruz Del servicio 4"],
-    ["58/52","48/21","Yuxtapuesta", "Cruz de la Vitalidad"],
-    ["58/52","48/21","Angulo Izquierdo", "Cruz de las Exigencias 2"],
-    
-    ["38/39","48/21","Angulo Derecho", "Cruz de la Tensión 4"],
-    ["38/39","51/57","Yuxtapuesta", "Cruz de la Oposición "],
-    ["38/39", "51/57","Angulo Izquierdo", "Cruz de la Individualidad 2"],
-    
-    ["54/53","51/57","Angulo Derecho", "Cruz de la Penetración 4"],
-    ["54/53","32/42","Yuxtapuesta", "Cruz de la Ambición"],
-    ["54/53","32/42","Angulo Izquierdo", "Cruz de los Ciclos 2"],
-    
-    ["61/62","32/42","Angulo Derecho", "Cruz del May 4 "],
-    ["61/62","50/3","Yuxtapuesta", "Cruz del Pensamiento "],
-    ["61/62" ,"50/3","Angulo Izquierdo", "Cruz del Oscurantismo 2"],
-    
-    ["60/56","50/3","Angulo Derecho", "Cruz de las Ley 4"],
-    ["60/56","27/28","Yuxtapuesta", "Cruz de la Limitación"],
-    ["60/56","27/28","Angulo Izquierdo", "Cruz de la Distracción 2"],
-    
-    ["41/31","27/28","Angulo Derecho", "Cruz de lo Inesperado 4"],
-    ["41/31","24/44","Yuxtapuesta", "Cruz de la Fantasía"],
-    ["41/31","24/44","Angulo Izquierdo", "Cruz del Alfa 2"],
-    
-    ["19/33","24/44","Angulo Derecho", "Cruz de los Cuatro Caminos 4"],
-    ["19/33","2/1","Yuxtapuesta", "Cruz de la Necesidad"],
-    ["19/33","24/44","Angulo Izquierdo", "Cruz del Refinamiento "]
-    
+ 
+
+    ["13/7" , "2/1" , "Angulo Derecho", "de la Esfinge 1"],
+
+ 
+
+    ["13/7","23/43","Yuxtapuesta", " de Escuchar "],
+
+    ["13/7", "23/43","Angulo Izquierdo", "de las Máscaras 1"],
+
+ 
+
+    ["49/4","23/43", "Ángulo Derecho", "de la Explicación 1"],
+
+ 
+
+    ["49/4","14/8","Yuxtapuesta", "de los Principios"],
+
+ 
+
+    ["49/4", "14/8","Angulo Izquierdo", " de la Revolución 1"],
+
+ 
+
+    ["30/29","14/8","Angulo Derecho", "del Contagio 1"],
+
+ 
+
+    ["30/29","20/34","Yuxtapuesta", "de los Hados "],
+
+    ["30/29", "20/34","Angulo Izquierdo", "de la Industrialización 1"],
+
+ 
+
+    ["55/59","20/34","Angulo Derecho", "del Fénix Dormido 1"],
+
+    ["55/59", "16/9","Yuxtapuesta", " de los Ánimos Cambiantes"],
+
+    ["55/59","16/9","Angulo Izquierdo", "del Espíritu 1"],
+
+ 
+
+    ["37/40","16/9","Angulo Derecho", " de la Planificación 1 "],
+
+    ["37/40","35/5","Yuxtapuesta", "de los Contratos"],
+
+ 
+
+ 
+
+ 
+
+ 
+
+    ["37/40","35/5","Angulo Izquierdo", "de la Migración 1"],
+
+ 
+
+    ["63/63","35/5","Angulo Derecho", "de la Conciencia 1"],
+
+    ["63/64","45/26","Yuxtapuesta", "de las Dudas"],
+
+    ["63/64","45/26","Angulo Izquierdo", "del Dominio 1"],
+
+ 
+
+    ["22/47","26/45","Angulo Derecho", "del Gobierno 1"],
+
+    ["22/47","12/11","Yuxtapuesta", "de la Gracia"],
+
+    ["22/47","12/11","Angulo Izquierdo", "de Informar 1"],
+
+ 
+
+    ["36/6","12/11","Angulo Derecho", "del Edén 1"],
+
+    ["36/6","15/10","Yuxtapuesta", "de la Crisis"],
+
+    ["36/6","15/10","Angulo Izquierdo", "del Plano 1"],
+
+ 
+
+    ["25/46","15/10","Angulo Derecho", "del recipiente de Amor 1 "],
+
+    ["25/46","58/52","Yuxtapuesta", "de la Inocencia 1"],
+
+    ["25/46","58/52","Angulo Izquierdo", "de la Sanación 1"],
+
+ 
+
+ 
+
+    ["17/18","58/52","Angulo Derecho", "del Servicio 1"],
+
+    ["17/18","38/39","Yuxtapuesta", "de las Opiniones "],
+
+    ["17/18", "38/39","Angulo Izquierdo", "del Tumulto, levantamiento 1"],
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+    ["21/48","38/39","Angulo Derecho", "de la Tensión 1"],
+
+    ["21/48","54/53","Yuxtapuesta", "del Control"],
+
+    ["21/48","54/53","Angulo Izquierdo", "del Esfuerzo 1"],
+
+ 
+
+    ["51/57","54/53","Angulo Derecho", " de la Penetración 1"],
+
+    ["51/57","61/62","Yuxtapuesta", "del Shock"],
+
+    ["51/57","61/62","Angulo Izquierdo", "del Clarión 1"],
+
+ 
+
+    ["42/32","61/62","Angulo Derecho", "del Maya 1"],
+
+    ["42/32","60/56","Yuxtapuesta", "de la Plenitud"],
+
+    ["42/32","60/56","Angulo Izquierdo", "de los Límites 1"],
+
+ 
+
+    ["3/50","60/56","Angulo Derecho", "de las Ley 1"],
+
+    ["3/50",'41/31',"Yuxtapuesta", "de la Mutación"],
+
+    ["3/50","41/31","Angulo Izquierdo", "de los Deseos 1"],
+
+ 
+
+    ["27/28",'41/31',"Angulo Derecho", "de lo Inesperado 1 "],
+
+    ["27/28","19/33","Yuxtapuesta", "del Cuidado"],
+
+    ["27/28","19/33","Angulo Izquierdo", "del Alinearse 1"],
+
+ 
+
+    ["24/44","19/33","Angulo Derecho", "de los Cuatro Caminos 1"],
+
+    ["24/44","13/7","Yuxtapuesta", "de la Racionalización 1 "],
+
+    ["24/44","13/7","Angulo Izquierdo", "de la Encarnación 1"],
+
+ 
+
+ 
+
+    ["2/1","13/7","Angulo Derecho", "de la Esfinge 2"],
+
+    ["2/1","49/4","Yuxtapuesta", "del Chofer"],
+
+    ["2/1","49/4","Angulo Izquierdo", "del Desafío 1"],
+
+ 
+
+    ["23/43","49/4","Angulo Derecho", "de la Explicación 2"],
+
+    ["23/43","30/29","Yuxtapuesta", "de la Asimilación"],
+
+    ["23/43","30/29","Angulo Izquierdo", "de la Dedicación 1"],
+
+ 
+
+ 
+
+ 
+
+ 
+
+    ["8/14","30/29","Angulo Derecho", "del Contagio 2"],
+
+    ["8/14","55/59","Yuxtapuesta", "de la Contribución"],
+
+    ["8/14","55/59","Angulo Izquierdo", "de la Incertidumbre 1"],
+
+ 
+
+["20/34","55/59","Angulo Derecho", "del Fénix Dormido 2"] ,
+
+    ["20/34","37/40","Yuxtapuesta", "del Ahora"],
+
+    ["20/34","37/40","Angulo Izquierdo", "de la Dualidad 1"],
+
+ 
+
+    ["16/9","37/40","Angulo Derecho", "de la Planificación 2"],
+
+    ["16/9","63/64","Yuxtapuesta", "de la Experimentación"],
+
+    ["16/9","63/64","Angulo Izquierdo", " de la Identificación 1"],
+
+ 
+
+    ["35/5","63/64","Angulo Derecho", "de la Conciencia 2 "],
+
+    ["35/5","47/22","Yuxtapuesta", " de la Experiencia"],
+
+    ["35/5","47/22","Angulo Izquierdo", "de la Separación 1"],
+
+ 
+
+    ["45/26","47/22","Angulo Derecho", "del Gobierno 2"],
+
+    ["45/26","36/6","Yuxtapuesta", "de la Posesión "],
+
+    ["45/26", "36/6","Angulo Izquierdo", "de la Confrontación 1"],
+
+ 
+
+    ["12/11","36/6","Angulo Derecho", "del Edén 2"],
+
+    ["12/11","25/46","Yuxtapuesta", "de la Articulación"],
+
+    ["12/11","25/46","Angulo Izquierdo", "de la Educación 1"],
+
+ 
+
+    ["15/10","25/46","Angulo Derecho", "del Recipiente de Amor 2 "],
+
+    ["15/10","17/18","Yuxtapuesta", "de los Extremos"],
+
+    ["15/10","17/18","Angulo Izquierdo", "de la Prevención 1"],
+
+ 
+
+    ["52/58","17/18","Angulo Derecho", "del Servicio 2"],
+
+    ["52/58","21/48","Yuxtapuesta", "de la Quietud "],
+
+    ["52/58","21/48", "Angulo Izquierdo", "de las Exigencias 1"],
+
+ 
+
+    ["39/38","21/48","Angulo Derecho", "de la Tensión 2 "],
+
+    ["39/38","51/57","Yuxtapuesta", "de la Provocación"],
+
+    ["39/38","51/57", "Angulo Derecho", "del Individualismo 1"],
+
+ 
+
+    ["53/54","51/57","Angulo Derecho", "de la Penetración 2"],
+
+    ["53/54","42/32","Yuxtapuesta", "de los Comienzos"],
+
+    ["53/54","42/32","Angulo Izquierdo", "de los Ciclos 1"],
+
+ 
+
+    ["62/61","42/32","Angulo Derecho", "del Maya 2"],
+
+    ["62/61","3/50","Yuxtapuesta", "del Detalle "],
+
+    ["62/61", "3/50","Angulo Izquierdo", "del Oscurecimiento 1"],
+
+ 
+
+    ["56/60","3/50","Angulo Derecho", "de las Leyes 2 "],
+
+    ["56/60","27/28","Yuxtapuesta", "de la Estimulación"],
+
+    ["56/60", "27/28","Angulo Izquierdo", "de la Distracción 1"],
+
+ 
+
+    ["31/41","27/28","Angulo Derecho", "de lo Inesperado 2 "],
+
+    ["31/41", "24/44","Yuxtapuesta", "de la Influencia"],
+
+    ["31/41","24/44","Angulo Izquierdo", "del Alfa 1"],
+
+ 
+
+    ["33/19","24/44","Angulo Derecho", "de los Cuatro Caminos 2"],
+
+    ["33/19","1/2","Yuxtapuesta", "de la Retirada"],
+
+    ["33/19", "1/2","Angulo Izquierdo", "del Refinamiento 1"],
+
+ 
+
+ 
+
+    ["7/13","1/2","Angulo Derecho", "de la Esfinge 3 "],
+
+    ["7/13","43/23","Yuxtapuesta", "de la Interacción"],
+
+ 
+
+ 
+
+ 
+
+ 
+
+    ["7/13","43/23","Angulo Izquierdo", "de las Máscaras 2"],
+
+    ["4/49","43/23","Angulo Derecho", "de la Explicación 3"],
+
+ 
+
+    ["4/49","8/14","Yuxtapuesta", "de las Fórmulas"],
+
+    ["4/49","8/14","Angulo Izquierdo", "de la Revolución 2"],
+
+    ["29/30","8/14","Angulo Derecho", "del Contagio 3"],
+
+ 
+
+    ["29/30","20/34","Yuxtapuesta", "del Compromiso "],
+
+    ["29/30","20/34","Angulo Izquierdo", "de la Industrialización 2 "],
+
+    ["59/55","20/34","Angulo Derecho", "del Fénix Dormido 3"],
+
+ 
+
+    ["59/55","16/9","Yuxtapuesta", "de la Estrategia"],
+
+    ["59/55","16/9","Angulo Izquierdo", "del Espíritu 1"] ,
+
+    ["40/37","16/9"," Angulo Derecho", "de la Planificación 3"],
+
+    ["40/37","35/5","Yuxtapuesta", "de la Negación"],
+
+ 
+
+    ["40/37","35/5","Angulo Izquierdo", "de la Migración 2"],
+
+    ["64/63","35/5","Angulo Derecho", "de la Conciencia 3"],
+
+    ["64/63","45/26","Yuxtapuesta", "de la Confusión"],
+
+ 
+
+    ["64/63","45/26","Angulo Izquierdo", "del Dominio 2"],
+
+    ["47/22","45/26","Angulo Derecho", "del Gobierno 3"],
+
+    ["47/22","12/11","Yuxtapuesta", "de la Opresión"],
+
+ 
+
+    ["47/22","12/11","Angulo Izquierdo", "de Informar 1"],
+
+ 
+
+    ["6/36","12/11","Angulo Derecho", "del Edén 3"],
+
+    ["6/36","10/15","Yuxtapuesta", "del Conflicto "],
+
+    ["6/36", "10/15","Angulo Izquierdo", "del Plano Terrenal 2"],
+
+ 
+
+    ["46/25","10/15","Angulo Derecho", "del recipiente de Amor 3"],
+
+    ["46/25","58/52","Yuxtapuesta", "de Serendipia"],
+
+    ["46/25","58/52","Angulo Izquierdo", "de la Sanación 2"],
+
+ 
+
+ 
+
+ 
+
+ 
+
+    ["18/17","58/52","Angulo Derecho", "del Servicio 3 "],
+
+    ["18/17", "38/39","Yuxtapuesta", "de la Corrección "],
+
+    ["18/17","38/39", "Angulo Izquierdo", "de la Convulsión 2"],
+
+ 
+
+    ["48/21","38/39","Angulo Derecho", "de la Tensión 3 "],
+
+    ["48/21","53/54","Yuxtapuesta", "de la Profundidad "],
+
+    ["48/21","53/54", "Angulo Izquierdo", "del Esfuerzo 2"],
+
+ 
+
+    ["57/51","53/54","Angulo Derecho", "de la Penetración 3 "],
+
+    ["57/51","62/61","Yuxtapuesta", "de la Intuición"],
+
+    ["57/51","62/61","Angulo Izquierdo", "del Clarión 2"],
+
+ 
+
+    ["32/42","62/61","Angulo Derecho", "del Maya 3"],
+
+    ["32/42","56/60","Yuxtapuesta", "de la Conservación"],
+
+    ["32/42","56/60","Angulo Izquierdo", "de los Límites 2"],
+
+ 
+
+    ["50/3","56/60","Angulo Derecho", "de las Leyes 3"],
+
+    ["50/3","31/41","Yuxtapuesta", "de los Valores"],
+
+    ["50/3","31/41","Angulo Izquierdo", "de los Deseos 2"],
+
+ 
+
+    ["28/27","31/41","Angulo Derecho", "de lo Inesperado 3 "],
+
+    ["28/27","33/19","Yuxtapuesta", "del Riesgo "],
+
+    ["28/27","33/19","Angulo Izquierdo", "del Alineamiento 2"],
+
+ 
+
+    ["44/24","33/19","Angulo Derecho", "de los Cuatro Caminos 3 "],
+
+    ["44/24","7/13","Yuxtapuesta", "del Alerta"],
+
+    ["44/24","7/13","Angulo Izquierdo", "de la Encarnación 2"],
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+    ["1/2","7/13","Angulo Derecho", "de la Esfinge"],
+
+    ["1/2","4/49","Yuxtapuesta", "de la Autoexpresión "],
+
+    ["1/2","4/49","Angulo Izquierdo", "del Desafío 2"],
+
+ 
+
+    ["43/23","4/49","Angulo Derecho", "de la Explicación 4"],
+
+    ["43/23","29/30","Yuxtapuesta", "de la Perspicacia interior"],
+
+    ["43/23","29/30","Angulo Izquierdo", "de la Dedicación 2"],
+
+ 
+
+    ["14/8","29/30","Angulo Derecho", "del Contagio 4"],
+
+    ["14/8","59/55","Yuxtapuesta", "de Potenciación"],
+
+    ["14/8","59/55","Angulo Izquierdo", "de la Incertidumbre 2"],
+
+ 
+
+    ["34/20","59/55","Angulo Derecho", "del Fénix Dormido 4"],
+
+    ["34/20","37/40","Yuxtapuesta", "del Poder"],
+
+    ["34/20","37/40","Angulo Izquierdo", "de la Dualidad 2"],
+
+ 
+
+ 
+
+    ["9/16","37/40","Angulo Derecho", "de la Planificación 4 "],
+
+    ["9/16","63/64","Yuxtapuesta", "del Foco"],
+
+    ["9/16","63/64","Angulo Izquierdo", "de la Identificación 2"],
+
+ 
+
+    ["5/35","63/64","Angulo Derecho", "de la Conciencia 4"],
+
+    ["5/35","22/47","Yuxtapuesta", "de los Hábitos"],
+
+    ["5/35","22/47","Angulo Izquierdo", "de la Separación 2"],
+
+ 
+
+ 
+
+    ["26/45","47/22","Angulo Derecho", "del Gobierno 4"],
+
+    ["26/45","36/6","Yuxtapuesta", "del Embaucador"] ,
+
+    ["26/45","36/6","Angulo Izquierdo", "de la Confrontación 2"],
+
+ 
+
+    ["11/12","36/6","Angulo Derecho", "del Edén 4"],
+
+    ["11/12","25/46","Yuxtapuesta", "de las Ideas"],
+
+    ["11/12","25/46","Angulo Izquierdo", "de la Educación 2"],
+
+ 
+
+ 
+
+ 
+
+ 
+
+    ["10/15","25/46","Angulo Derecho", "del Recipiente de Amor 4"],
+
+    ["10/15","18/17","Yuxtapuesta", "del Comportamiento"],
+
+    ["10/15","18/17","Angulo Izquierdo", "de la Prevención 2"],
+
+ 
+
+    ["58/52","18/17","Angulo Derecho", "Del servicio 4"],
+
+    ["58/52","48/21","Yuxtapuesta", "de la Vitalidad"],
+
+    ["58/52","48/21","Angulo Izquierdo", "de las Exigencias 2"],
+
+ 
+
+    ["38/39","48/21","Angulo Derecho", "de la Tensión 4"],
+
+    ["38/39","51/57","Yuxtapuesta", "de la Oposición "],
+
+    ["38/39", "51/57","Angulo Izquierdo", "de la Individualidad 2"],
+
+ 
+
+    ["54/53","51/57","Angulo Derecho", "de la Penetración 4"],
+
+    ["54/53","32/42","Yuxtapuesta", "de la Ambición"],
+
+    ["54/53","32/42","Angulo Izquierdo", "de los Ciclos 2"],
+
+ 
+
+    ["61/62","32/42","Angulo Derecho", "del Maya 4 "],
+
+    ["61/62","50/3","Yuxtapuesta", "del Pensamiento "],
+
+    ["61/62" ,"50/3","Angulo Izquierdo", "del Oscurecimiento 2"],
+
+ 
+
+    ["60/56","50/3","Angulo Derecho", "de las Leyes 4"],
+
+    ["60/56","27/28","Yuxtapuesta", "de la Limitación"],
+
+    ["60/56","27/28","Angulo Izquierdo", "de la Distracción 2"],
+
+ 
+
+    ["41/31","27/28","Angulo Derecho", "de lo Inesperado 4"],
+
+    ["41/31","24/44","Yuxtapuesta", "de la Fantasía"],
+
+    ["41/31","24/44","Angulo Izquierdo", "del Alfa 2"],
+
+ 
+
+    ["19/33","24/44","Angulo Derecho", "de los Cuatro Caminos 4"],
+
+    ["19/33","2/1","Yuxtapuesta", "de la Necesidad"],
+
+    ["19/33","24/44","Angulo Izquierdo", "del Refinamiento "],
+
+ 
+
     ]
 
 
 
-const canales = {
-    "1-8": "  INSPIRACIÓN: UN DISEÑO CREATIVO DEL MODELO DE ROLES",
-    "2-14": "  DIRECCIÓN : UN DISEÑO DE RESPONSABILIDAD",
-    "3-60": " INNOVACIÓN: UN DISEÑO DE TRANSICION DE LO VIEJO A LO NUEVO",
-    "4-63": " LOGICA: UN DISEÑO UN DISEÑO QUE DUDA Y CUESTIONA E INDAGA",
-    "5-15": " RITMO: UN DISEÑO QUE MARCA EL RITMO DE LOS PROCESOS",
-    "6-59": " RESOLUCIÓN: UN DISEÑO QUE INICIA LOS PROYECTOS",
-    "7-31": " LIDERAZGO: LIDESRES POR INVITACIÓN DEL EQUIPO ",
-    "9-52": " CONCENTRACION: APORTAN DETERMINACION Y FOCO EN LO QUE HACEN",
-    "10-20": " AUTENTIZIDAD: EXPRESIVOS Y CLAROS EN LO QUE EXPRESAN",
-    "10-34": " EXPLORACIÓN: IDEAS Y ACCIONES MUY DECIDIDAS",
-    "10-57": " SUPERVIVENCIA: INTUICION ESPONTANEA",
-    "11-56": " CURIOSIDAD: CREAN PROCESOS PARA ESTIMULAR AL EQUIPO",
-    "12-22": "APERTURA: CREAN Y TRASMITEN LA PASION AL EQUIPO",
-    "13-33": " EXPERIENCIA: TRASMITEN SU CONOCIMIENTO EXPERIMENTADO ",
-    "16-48": " TALENTO: MAESTRIA A TRAVES DE LA EXPERIMENTACION Y LA REPETICIÓN CONTINUA",
-    "17-62": " CONCENTRACIÓN: DON DE ENFOCARSE EN LO QUE HACEN",
-    "18-58": " JUICIO: JUZGAN, CORRIGEN, MEJORAN PATRONES",
-    "19-49": " SINTESIS:CAPACIDAD DE TRABAJO BASADOS EN CONFIANZA Y ENTREGA",
-    "20-34": " CARISMA: INFLUENCIA EN TRASMITIR A GRUPO QUE LAS IDEAS SE REALIZAN",
-    "20-57": " CHISPA CEREBRAL: AGUDEZA INTUITIVA PARA VER LAS COSAS LOS PRIMEROS",
-    "21-45": " MATERIALISMO: FUERZA DE VOLUNTAD PAR HACER NEGOCIOS ",
-    "23-43": " ESTRUCTURAR: APORTAN CONCEPTOS INNOVADORES Y EFICIENTES ",
-    "24-61": " CONCIENCIA: NSPIRADORES DEL GRUPO",
-    "25-51": " INICIACIÓN: COMPETITIVOS DESEO DE SER LOS PRIMEROS",
-    "26-44": " CONVICCIÓN: VENDEN Y TRASMITEN EL CAPITALISMO",
-    "27-58": " PRESERVACIÓN: CUSTODIAN, CUIDAN Y PROTEGEN AL GRUPO ",
-    "28-38": " LUCHA: BUSCAN UN RETO POR EL QUE LUCHAR EMPUJANDO AL GRUPO",
-    "29-46": " DESCUBRIMIENTO: TRIUNFAN DONDE OTROS FRACASAN SERENDIPIA ",
-    "30-41": " RECONOCIMIENTO: EN BUSCA DE GRANDES ESPERIENCIAS ",
-    "32-54": " TRANSFORMACIÓN: TRASFORMAN EL TRABAJO EN EXITO MATERIAL",
-    "34-57": " PODER: SUPERVIVIENTES ATENTOS A TODAS LAS CIRCUSTANCIAS",
-    "35-36": " TRANSITORIEDAD: EXPERIENCIAS Y APRENDIZAJE PROBANDO TODO LO POSIBLE ",
-    "37-40": " COMUNIDAD: BUSQUEDA DE ACUERDOS JUSTOS Y DE CONFIANZA",
-    "39-55": " EMOCIONES: CAMBIOSDE ESTADO DE ANIMO SIN PREVIO AVISO",
-    "42-53": " MADURACIÓN: FACILIDAD POR COMPLETAR LOS PROCESOS",
-    "47-64": " ABSTRACCIÓN: TIENEN PERSPECTIVA DEL PASADO PARA AFRONTAR LA REALIDAD",
-    };
+    const canales = {
 
-const puertas = {
-    1:  "IMPLEMENTACION",
-2:  "VISIÓN",
-  3:  "INNOVACIÓN", 
-  4:  "RESPUESTAS" ,
-  5:  "CULTURA" ,
-  6:  "ENTORNO" ,
-  7:  "PLANIFICACIÓN", 
-  8:  "RELAC.PUBLICAS", 
-  9:  "ENFOQUE" ,
-10:  "POTENCIAL" ,
- 11: "IDEAS" ,
- 12: "CAUTELA", 
- 13: "CONTABILIDAD", 
- 14: "FINANZAS" ,
- 15: "FIABILIDAD", 
- 16: "HABILIDADES", 
- 17: "OPINIONES" ,
- 18: "CORRECCIÓN" ,
- 19: "UNIÓN" ,
- 20: "MOMEN. PRESENTE", 
- 21: "IMPLEMENACIÓN" ,
- 22: "ESCUCHAR" ,
- 23: "ASIMILACIÓN", 
- 24: "RACIONALIDAD", 
- 25: "CAPACIDAD " ,
- 26: "ASTUCIA" ,
- 27: "RECONOCIMIENTO" ,
- 28: "ASUMIR RIESGOS" ,
- 29: "COMPROMISO" ,
- 30: "DESEOS" ,
- 31: "ADMINISTRACIÓN", 
- 32: "EXITO" ,
- 33: "SUPERVISIÓN", 
- 34: "PODER" ,
- 35: "PROGRESO", 
- 36: "EXPLORACIÓN", 
- 37: "ACUERDOS" ,
- 38: "LUCHA" ,
- 39: "CREATIVIDAD", 
- 40: "AMOR AL TRABAJO", 
- 41: "IMAGINACIÓN" ,
- 42: "CRECIMIENTO", 
- 43: "RESOLUCIÓN" ,
- 44: "RELAC. HUMANAS", 
- 45: "EDUCACIÓN" ,
- 46: "COORDINACIÓN", 
- 47: "COMPRENSIÓN" ,
- 48: "TALENO" ,
- 49: "PRINCIPIOS", 
- 50: "SEGURIDAD" ,
- 51: "COMPETICIÓN" ,
- 52: "CONCENTRACIÓN", 
- 53: "INICIACIÓN" ,
- 54: "AMBICIÓN" ,
- 55: "MUTACIÓN" ,
- 56: "ESTIMULACIÓN", 
- 57: "INTUICIÓN" ,
- 58: "VITALIDAD" ,
- 59: "INVESTIGACIÓN", 
- 60: "ESTRUCTURA" ,
- 61: "CONOCIMIENTO" ,
- 62: "MINUCIOSIDAD" ,
- 63: "CUESTIONAR" ,
- 64: "ORDEN"
-}
+        "1-8": "  INSPIRACIÓN: APORTAS TU CREATIVIDAD A LOS DEMÁS PARA LLEGAR A SER UN MODELO DE ROLES",
+    
+        "2-14": "  COMPÁS : ERES ESA PERSONA QUE SABE COMO GUIAR CORRECTAMENTE A LOS DEMÁS",
+    
+        "3-60": " MUTACIÓN: SABES CREAR UN PUENTE DE TRANSICIÓN ENTRE LO VIEJO Y LO NUEVO",
+    
+        "4-63": " LOGICA: TU COMBUSTIBLE MENTÁL SON LAS DUDAS QUE CUESTIONAS E INDAGAS",
+    
+        "5-15": " RITMO: SABES MARCA EL RITMO DE LOS PROCESOS Y TERMINARLOS CORRECTAMENTE",
+    
+        "6-59": " FERTILIDAD: ERES UNA PERSONA PROLÍFICA EN PROYECTOS DE TODO TIPO ",
+    
+        "7-31": " ALFA: ERES LIDER POR INVITACIÓN DEL EQUIPO AL QUE GUIAS ADECUADAMENTE ",
+    
+        "9-52": " CONCENTRACION: APORTAS ESA DETERMINACION Y ENFOQUE EN TODO LO QUE HACES",
+    
+        "10-20": " DESPERTAR: LO MAS IMPORTANTE PARA TI, ERES TU MISMO Y TUS CONVICCIONES",
+    
+        "10-34": " EXPLORACIÓN: TIENES IDEAS PARA PODER EMPRENDER ACCIONES CON DECISIÓN",
+    
+        "10-57": " SUPERVIVENCIA: TIENES UNA INTUICION ESPONTANEA PARA AFRONTAR TODOS LOS RETOS",
+    
+        "11-56": " CURIOSIDAD: ERES EL ETERNO BUSCADOR DEL FUNCIONAMIENTO DE LAS COSAS",
+    
+        "12-22": "APERTURA: ESA PERSONA QUE SERÁ SOCIALMENE RECONOCIDA DEPENDIENDO TU ESTADO DE ÁNIMO",
+    
+        "13-33": " PRÓDIGO: TRASMITES TU CONOCIMIENTO Y EXPERIENCIAS EXPERIMENTADAS FUERA DE TU ENTORNO ",
+    
+        "16-48": " TALENTO: APORTAS MAESTRIA A TRAVÉS DE LA EXPERIMENTACION Y LA REPETICIÓN CONTINUA",
+    
+        "17-62": " ORGANIZACIÓN: TIENES EL DON DE ENFOCARTE EFICIENTEMENTE EN TODO LO QUE HACES",
+    
+        "18-58": " JUICIO: SABES JUZGAR, CORREGIR Y MEJORAR LOS PATRONES DE ACTUACIÓN QUE SE TE PRESENTAN ",
+    
+        "19-49": " SENSIBILIDAD: CREAS FUERTES VÍNCULOS DE UNIÓN BASADOS EN LA CONFIANZA Y ENTREGA",
+    
+        "20-34": " CARISMA: TIENES CAPACIDAD DE INFLUENCIAR Y TRASMITIR QUE LAS IDEAS SE PUEDEN REALIZAR",
+    
+        "20-57": " CHISPA CEREBRAL: TIENES ESA AGUDEZA INTUITIVA PARA VER LAS COSAS EL PRIMERO",
+    
+        "21-45": " MATERIALISMO: SABES APORTAR FUERZA DE VOLUNTAD PAR HACER NEGOCIOS Y TRATOS",
+    
+        "23-43": " ESTRUCTURAR: APORTAS CONCEPTOS INNOVADORES, ORGANIZADOS Y EFICIENTES A LA COMUNIDAD ",
+    
+        "24-61": " CONCIENCIA: ERES UNA FUENTE DE INSPIRACIÓN Y PENSAMIENTO PARA TI Y EL GRUPO",
+    
+        "25-51": " INICIACIÓN: TIENES UN AFÁN COMPETITIVO EN LO QUE REALIZAS.  ESE DESEO DE SER EL PRIMERO",
+    
+        "26-44": " RENDICIÓN: TIENES DOTES PARA CONVENCER, VENDER Y TRASMITIR TUS IDEAS O PRODUCTOS ",
+    
+        "27-50": " PRESERVACIÓN: TE PREOCUPAS POR CUSTODIAR, CUIDAR Y PROTEGER A TU GRUPO ",
+    
+        "28-38": " LUCHA: BUSCAS UN RETO POR EL QUE LUCHAR EMPUJANDO AL GRUPO QUE TE ACOMPAÑA",
+    
+        "29-46": " DESCUBRIMIENTO: TIENES ESE DON DE TRIUNFAR DONDE OTROS FRACASAN -SERENDIPIA- ",
+    
+        "30-41": " RECONOCIMIENTO: ESTÁS EN BUSCA DE GRANDES ESPERIENCIAS QUE PODER EXPERIMENTAR ",
+    
+        "32-54": " TRANSFORMACIÓN: SABES COMO TRASFORMAR FACILMENTE EL TRABAJO EN EXITO MATERIAL",
+    
+        "34-57": " PODER: ERES UN SUPERVIVIENTE NATO, ATENTO A TODAS LAS CIRCUSTANCIAS QUE TE RODEAN",
+    
+        "35-36": " TRANSITORIEDAD: TIENES ESA NECESIDAD DE NUEVAS  EXPERIENCIAS PROBANDO TODO LO POSIBLE ",
+    
+        "37-40": " COMUNIDAD: TIENES FACILIDAD PARA LA BUSQUEDA DE ACUERDOS JUSTOS Y DE CONFIANZA",
+    
+        "39-55": " EMOCIONES: ERES ESE ROMANTICO Y APASIONADO BUSCANDO CONECTAR CON TU ESPÍRITU",
+    
+        "42-53": " MADURACIÓN: NO PARAS DE BUSCAR ESAS EXPERIENCIAS QUE TE APORTAN CRECIMIENTO ",
+    
+        "47-64": " ABSTRACCIÓN: TU MENTE SABE CREAR ALGO NUEVO DE LAS EXPERICENCIAS DEL PASADO ",
+    
+        };
 
-const autorities = [{
-    Эмоциональный: {
-        codename: 'plexo',
-        desc: 'PLEXO: DESDE TUS EMOCIONES INTERNAS' 
-    }},
-    {Сакральный: {
-        codename: 'sacral',
-        desc: 'SACRAL: DESDE TU VIBRACIÓN INTERIOR'
-    }},
-    {Селезеночный: {
-        codename: 'bazo',
-        desc: 'BAZO: DESDE TU INSTINTO E INTUICION'
-    }},
-    {Эгоманифестируемый: {
-        codename: 'corazon',
-        desc: 'CORAZÓN: DESDE TU VOZ INTERIOR'
-    }},
-    {Самопроецируемый: {
-        codename: 'g',
-        desc: 'DESDE TU AMOR Y DIRECCIÓN'
-    }},
-    {Внутренний: {
-        codename: 'entorno',
-        desc: 'DESDE EL ENTORNO'
-    }},
-    {Лунный: {
-        codename: 'lunar',
-        desc: 'ANALIZANDO TU CICLO LUNAR'
-    }}
-];
+        const puertas = {
+
+            1:  "CREATIVIDAD",
+          
+            2:  "DIRECCIÓN",
+          
+            3:  "INNOVACIÓN",
+          
+            4:  "RESPUESTAS" ,
+          
+            5:  "RITMO" ,
+          
+            6:  "CONFLICTO" ,
+          
+            7:  "LIDERAZGO",
+          
+            8:  "CONTRIBUCIÓN",
+          
+            9:  "ENFOQUE" ,
+          
+          10:  "PORTE" ,
+          
+          11: "IDEAS" ,
+          
+          12: "CAUTELA",
+          
+          13: "ESCUCHAR",
+          
+          14: "PROSPERIDAD" ,
+          
+          15: "EXTREMOS",
+          
+          16: "HABILIDADES",
+          
+          17: "OPINIONES" ,
+          
+          18: "CORRECCIÓN" ,
+          
+          19: "QUERER" ,
+          
+          20: "AHORA",
+          
+          21: "CONTROL" ,
+          
+          22: "APERTURA" ,
+          
+          23: "ASIMILACIÓN",
+          
+          24: "RACIONALIZACIÓN",
+          
+          25: "INOCENCIA " ,
+          
+          26: "ASTUCIA" ,
+          
+          27: "CUIDAR" ,
+          
+          28: "RIESGOS" ,
+          
+          29: "COMPROMISO" ,
+          
+          30: "DESEOS" ,
+          
+          31: "INFLUENCIA",
+          
+          32: "CONTINUIDAD" ,
+          
+          33: "PRIVACIDAD",
+          
+          34: "PODER" ,
+          
+          35: "PROGRESO",
+          
+          36: "EXPLORACIÓN",
+          
+          37: "AFECTO" ,
+          
+          38: "LUCHADOR" ,
+          
+          39: "PROVOCACIÓN",
+          
+          40: "SOLEDAD",
+          
+          41: "IMAGINACIÓN" ,
+          
+          42: "CRECIMIENTO",
+          
+          43: "RESOLUCIÓN" ,
+          
+          44: "ALERTA",
+          
+          45: "AUTORIDAD" ,
+          
+          46: "DETERMINACIÓN",
+          
+          47: "COMPRENSIÓN" ,
+          
+          48: "TALENO" ,
+          
+          49: "PRINCIPIOS",
+          
+          50: "VALORES" ,
+          
+          51: "SHOCK" ,
+          
+          52: "CALMA",
+          
+          53: "INICIO" ,
+          
+          54: "AMBICIÓN" ,
+          
+          55: "ESPÍRITU" ,
+          
+          56: "ESTIMULACIÓN",
+          
+          57: "INTUICIÓN" ,
+          
+          58: "VITALIDAD" ,
+          
+          59: "SEXUALIDAD",
+          
+          60: "ACEPTACIÓN" ,
+          
+          61: "MISTERIO" ,
+          
+          62: "DETALLES" ,
+          
+          63: "DUDAS",
+          
+          64: "CONFUSIÓN",
+          
+          };
+
+          const autorities = [{
+
+            Эмоциональный: {
+        
+                codename: 'plexo',
+        
+                desc: 'PLEXO: TUS DECISIONES CORRECTAS SON ESAS QUE TOMAS DE FORMA CONSISTENTE EN TODO TU CICLO EMOCIONAL. UNA DECISON CORRECTA ES AQUELLA QUE TE RESUENA TANTO EN LO ALTO DE LA OLA EMOCIONAL COMO EN SU FASE MAS BAJA',
+        
+            }},
+        
+            {Cакральный: {
+        
+                codename: 'sacral',
+        
+                desc: 'SACRAL: TU DECISIÓN CORRECTA ES ESA QUE TE RESUENA EN TU VIENTRE CON ESA ENERGIA ESPECIAL Y NOTAS ESE BRILLO INTERIOR QUE TE DICE QUE ESO ES CORRECTO PARA TI',
+        
+            }},
+        
+            {Селезеночный: {
+        
+                codename: 'bazo',
+        
+                desc: 'BAZO: TU DICISIÓN CORRECTA ES ESA QUE TE LLEGA DE FORMA INSTANTANEA DESDE TU INSTINTO E INTUICION Y QUE NO SE REPITE MAS QUE UNA VEZ, ASI QUE HAS DE ESTAR ATENTO Y SER VALIENTE',
+        
+            }},
+        
+            {Эгоманифестируемый: {
+        
+                codename: 'corazon',
+        
+                desc: 'CORAZÓN-EGO: TU VOLUNTAD ES LA ÚNICA PARTE DE TU SER QUE TE PUEDE DECIR LO QUE ES CORRECTO PARA TU PROCESO INDIVIDUAL DE TOMA DE DECISIONES DESDE TU VOZ INTERIOR',
+        
+            }},
+        
+            {Самопроецируемый: {
+        
+                codename: 'g',
+        
+                desc: ' GI-DIRECCIÓN-AMOR: TU VERDADERA AUTORIDAD ES LA ESPONTÁNEA LIBERACIÓN VERBAL QUE APARECE DE FORMA NATURAL HABLANDO DESDE LO MAS PROFUNDO DE TU SER',
+        
+            }},
+        
+            {Внутренний: {
+        
+                codename: 'entorno',
+        
+                desc: ' TU TOMA DE DECISIONES VIENE DESDE FUERA, DESDE EL ENTORNO QUE TE DA SENSACION DE CONFIANZA. HAS DE RODEARTE DE PERSONAS QUE TE APORTEN CONFIANZA PARA PODER DECIDIR CORRECTAMENTE',
+        
+            }},
+        
+            {Лунный: {
+        
+                codename: 'lunar',
+        
+                desc: 'TU TOMA DE DECISIONES SE BASA EN UN PROCESO DE 28 DIAS PARA DECIDIR LO IMPORTANTE, ADEMAS DE RODEARTE DE LAS PERSONAS DE CONFIANZA QUE TE PODRÁN ORIENTAR ADECUADAMENTE',
+        
+            }}
+        
+        ];
 
 
-const typesDesc = [ {Генератор: {
-    desc: 'Persona con energía. Fuerza para realizar y poner en marcha actividades. Sabes responder a la vida y has de despertar a la propuesta correcta que se te pondrá delante',
-    corr: 'SATISFACCIÓN',
-    incorr: 'FRUSTRACIÓN',
-    estrategia: 'RESPONDIENDO A LOS ESTÍMULOS EXTERNOS',
-    cuantas: '2,884,236,073'
- }},
-{МанифестирующийГенератор: {
-    desc: 'Persona con energía. Fuerza para realizar y poner en marcha actividades. Sabes responder a la vida y has de despertar a la propuesta correcta que se te pondrá delante',
-    corr: 'SATISFACCIÓN Y PAZ',
-    incorr: 'FRUSTRACIÓN Y RABIA',
-    estrategia: 'CLARIDAD PARA RESPONDER AL ESTÍMULO EXTERNO',
-    cuantas: '2,572,426,768'
+        const typesDesc = [ {Генератор: {
 
-}},
-{Манифестор: {
-    desc: 'Persona de acción con energía. Inician sin necesitar a nadie. Saben pasar todas las etapas hasta concretar su idea',
-    corr: 'PAZ',
-    incorr: 'RABIA',
-    estrategia: 'INFORMANDO ANTES DE ACTUAR',
-    cuantas: '1,650,021,821'
-    }},
-{Проектор: {
-    desc: 'Persona no energética. Tienes la fuerza para guiar la energía de los demás. Buenos mediadores y organizadores natos. Ven lo que los demás no aprecian inicialmente',
-    corr: 'ÉXITO',
-    incorr: 'AMARGURA',
-    estrategia: 'ESPERADO A SER RECONOCIDO E INVITADO A ACTUAR',
-    cuantas: '628,579,741'
-    }},
-{Рефлектор: {
-    desc: 'Persona con gran conocimiento y sabiduría. Son el espejo que refleja la realidad social. Ecuánimes y justos',
-    corr: 'SORPRESA',
-    incorr: 'DESILUSIÓN',
-    estrategia: 'ESPERANDO PASAR EL CICLO LUNAR',
-    cuantas: '78,572,467'
-    }}
-];
+            desc: 'Eres una persona con energía. Con fuerza para realizar y poner en marcha actividades de todo tipo. Sabes responder a la vida y has de despertar a las propuestas correctas que irán apareciendo con el transcurso del tiempo',
+        
+            corr: 'SATISFACCIÓN',
+        
+            incorr: 'FRUSTRACIÓN',
+        
+            estrategia: 'NO INICIES NADA, ESPERA A RESPONDER A LAS INVITACIONES EXTERNAS QUE TE IRÁN APARECIENDO A LO LARGO DE LA VIDA Y ACTUA SEGÚN TE INDICA TU AUTORIDAD',
+            cuantas: '2,884,236,073'
+        
+        }},
+        
+        {МанифестирующийГенератор: {
+        
+            desc: 'Eres una persona con energía. Con fuerza para realizar y poner en marcha actividades de todo tipo. Sabes responder a la vida y has de despertar a la propuesta correcta que irán apareciendo con el transcurso del tiempo.  Es importante Informar a tu entorno de tus acciones que vas a tomar',
+        
+            corr: 'SATISFACCIÓN Y PAZ',
+        
+            incorr: 'FRUSTRACIÓN Y RABIA',
+        
+            estrategia: 'NO INICIES NADA, ESPERA A RESPONDER A LAS INVITACIONES EXTERNAS QUE TE IRÁN APARECIENDO A LO LARGO DE LA VIDA Y ACTUA SEGÚN TE INDICA TU AUTORIDAD',
+            cuantas: '2,572,426,768'
+         
+        
+        }},
+        
+        {Манифестор: {
+        
+            desc: 'Eres una persona de acción y con energía para Iniciar sin necesitar a nadie. Sabes pasar todas las etapas hasta concretar tu idea. Eres quien inicia los procesos ',
+        
+            corr: 'PAZ',
+        
+            incorr: 'RABIA',
+        
+            estrategia: 'ES IMPORTANTE Y NECESARIO QUE INFORMES A TODAS LAS PERSONAS QUE PUEDEN ESTAR IMPLICADAS EN TUS ACTOS Y DECISIONES ANTES DE ACTUAR',
+            cuantas: '1,650,021,821'
+            }},
+        
+        {Проектор: {
+        
+            desc: 'Eres una persona que has de saber gestionar tu energía. Tienes la fuerza para saber guiar a los demás. Eres un buen  mediador y organizador nato. Ves lo que los demás no aprecian inicialmente',
+        
+            corr: 'ÉXITO',
+        
+            incorr: 'AMARGURA',
+        
+            estrategia: 'ES IMPORTANTE QUE ESPERES UNA INVITACION QUE RECONOZCA TUS HABILIDADES Y TE INVITE A ACTUAR',
+            cuantas: '628,579,741'
+          }},
+        
+        {Рефлектор: {
+        
+            desc: 'Eres una Persona con gran conocimiento y sabiduría. Eres el espejo que refleja la realidad social que te rodea. Sueles ser ecuánime y justo si te colocar de forma adecuada en todos los aspectos de tu vida',
+        
+            corr: 'SORPRESA',
+        
+            incorr: 'DESILUSIÓN',
+        
+            estrategia: 'ES ACONSEJABLE QUE ESPERES UN CICLO LUNAR DE 28 DIAS ANTES DE TOMAR DESCIONES IMPORTANTES',
+            cuantas: '78,572,467'
+            }}
+           
+        ];
 
-const perfiles = {
-        1: 'Investigator',
-        2: 'Ermitaño',
-        3: 'Mártir',
-        4: 'Oportunista',
-        5: 'Hereje',
-        6: 'Modelo de roles'
-    }; 
+        const perfiles = {
+
+            1: 'Investigador',
+    
+            2: 'Ermitaño',
+    
+            3: 'Mártir',
+    
+            4: 'Oportunista',
+    
+            5: 'Hereje',
+    
+            6: 'Modelo de roles',
+    
+        };
+    
+     
 
 export class Result extends Component {
     constructor() {
@@ -583,8 +1043,15 @@ export class Result extends Component {
             
             angulos.forEach(e => {
                 
-                if (e[2] == 'Angulo Derecho' && this.state.cruzadd.person == e[0] && this.state.cruzadd.design == e[1]) { //
-                   
+                let personone = this.state.cruzadd.person.split('/')[0];
+                let persontwo = this.state.cruzadd.person.split('/')[1];
+
+                let designone = this.state.cruzadd.design.split('/')[0];
+                let designtwo = this.state.cruzadd.design.split('/')[1];
+                
+                
+                if (e[2] == 'Angulo Derecho' && e[0].includes(personone) && e[0].includes(persontwo) && e[1].includes(designone) && e[1].includes(designtwo)) { //
+                   console.log('!!!!!!!');
                     cruzNombre = e[3]
                    
                 } 
@@ -592,7 +1059,12 @@ export class Result extends Component {
             })
         } else {
             angulos.forEach(e => {
-             if (this.state.cruzadd.person == e[0] && this.state.cruzadd.design == e[1] && e[2] == cruzAngulo) { //["51/57","61/62","Angulo Izquierdo", "Cruz del Clarín 1"],
+                let personone = this.state.cruzadd.person.split('/')[0];
+                let persontwo = this.state.cruzadd.person.split('/')[1];
+
+                let designone = this.state.cruzadd.design.split('/')[0];
+                let designtwo = this.state.cruzadd.design.split('/')[1];
+             if (e[0].includes(personone) && e[0].includes(persontwo) && e[1].includes(designone) && e[1].includes(designtwo)) { //["51/57","61/62","Angulo Izquierdo", "Cruz del Clarín 1"],
                 console.log('yes')
                 cruzNombre = e[3];
                 
@@ -601,7 +1073,7 @@ export class Result extends Component {
         }
         if (this.state.cruzstr == '') {
             this.setState({
-                cruzstr: `${cruzAngulo} ${cruzNombre}`
+                cruzstr: `Cruz ${cruzAngulo} ${cruzNombre}`
             })
         }
     }
@@ -637,6 +1109,11 @@ export class Result extends Component {
                 let temp =  Object.values(e)[0];
                 this.setState({
                     autoridad: temp['desc']
+                })
+            }
+            if (this.state.autoridad == 'Нет внутреннего авторитета') {
+                this.setState({
+                    autoridad: 'Ninguna'
                 })
             }
         });
@@ -767,15 +1244,18 @@ export class Result extends Component {
         console.log(this.state.date);
         console.log('fecha');
         console.log(this.state.fecha);
+        const cuantas = this.state.cuantas;
         const name = `${this.state.firstName} ${this.state.lastName}`
         const fecha =  this.state.fecha;
         const currdate = this.state.date + ' ' + this.state.time;
         const hora = this.state.hora;
         const lugar = this.state.lugar;
-        const tipo=  this.state.tipo;
+        const tipo=  this.state.tipo.toUpperCase();
         const tipodesc = this.state.typeDescription;
-        const corr = this.state.corr;
-        const incorr = this.state.incorr;
+        const corr1 = this.state.corr.split('Y')[1] ? this.state.corr.split('Y')[0] + '/' : this.state.corr;
+        const incorr1 = this.state.incorr.split('Y')[1] ? this.state.incorr.split('Y')[0] + '/' : this.state.incorr;
+        const corr2 = this.state.corr.split('Y')[1] ? this.state.corr.split('Y')[1].toLowerCase() : '';
+        const incorr2 = this.state.incorr.split('Y')[1] ? this.state.incorr.split('Y')[1].toLowerCase() : '';
         const estrategia = this.state.estrategia;
         const autoridad = this.state.autoridad;
         const perfilUno = this.state.perfilUno;
@@ -813,8 +1293,10 @@ export class Result extends Component {
             lugar,
             tipo,
             tipodesc,
-            corr,
-            incorr,
+            corr1,
+            corr2,
+            incorr1,
+            incorr2,
             estrategia,
             autoridad,
             perfilUno,
@@ -843,7 +1325,8 @@ export class Result extends Component {
             CanalSiete, 
             CanalOcho,
             CanalNueve,
-            resumen
+            resumen,
+            cuantas
           }    
          axios.post('http://localhost:3001/downloadpdf', {params}).catch(error => console.log(error));
    }
@@ -930,7 +1413,7 @@ export class Result extends Component {
 
                     <Row className='border'>
                         <Col className='border'>NOMBRE</Col>
-                        <Col className='border'>{this.state.firstName} {this.state.lastName}</Col>
+                        <Col className='border text-center'>{this.state.firstName} {this.state.lastName}</Col>
                         <Col className='border'>FECHA</Col>
                         <Col className='border'>{this.state.fecha}</Col>
                         <Col className='border'>HORA</Col>
@@ -952,10 +1435,10 @@ export class Result extends Component {
                                 </Popup>
                         </Col>
                         <Col className='border' xs={3}>
-                            <Row className='border'>{this.state.tipo}</Row>
+                            <Row className='border'>{this.state.tipo.toUpperCase()}</Row>
                             
                             <Row className='border lightyellow'>¿CUANTOS HAY COMO TÚ?</Row>
-                            <Row className='border '>{this.state.cuantas}</Row>
+                            <Row className='border text-center'>{this.state.cuantas}</Row>
                             
                         </Col>
                         <Col className='border'>
@@ -980,11 +1463,13 @@ export class Result extends Component {
                         <Col className='border' >{this.state.estrategia}</Col>
                         <Col className='border'>
                             <Row className='lightgreen '>CORRECTO</Row>
-                            <Row>{this.state.corr}</Row>
+                            <Row>{this.state.corr.split('Y')[1] ? this.state.corr.split('Y')[0] + '/' : this.state.corr} </Row>
+                            <Row>{this.state.corr.split('Y')[1] ? this.state.corr.split('Y')[1] :' '}</Row>
                         </Col>
                         <Col className='border'>
                             <Row className='orange'>INCORRECTO</Row>
-                            <Row>{this.state.incorr}</Row>
+                            <Row>{this.state.incorr.split('Y')[1] ? this.state.incorr.split('Y')[0] + '/' : this.state.incorr}</Row>
+                            <Row>{this.state.incorr.split('Y')[1] ? this.state.incorr.split('Y')[1] :' '}</Row>
                         </Col>
                     </Row>
 
@@ -1017,7 +1502,7 @@ export class Result extends Component {
                                 </Popup>
                         </Col>
                         <Col className='border lightyellow' xs={6}>Es la forma en que nuestrossistemas de energíase conectan entre sí, dando como resultado diferentes configuraciones, dependiendo la disposición de las puertas</Col>
-                        <Col className='border' xs={3}>{this.state.definicion}</Col>
+                        <Col className='border text-center' xs={3}>{this.state.definicion}</Col>
                     </Row>
                     </Container>
                     

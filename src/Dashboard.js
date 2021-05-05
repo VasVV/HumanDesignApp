@@ -73,7 +73,7 @@ export class Dashboard extends React.Component {
                              break;                    
                     }
                 });
-                console.log('cabeza ajdsadna gar');
+                console.log('cabeza, ajna, garganta, gi, corazon, plexosolar, sacral, bazo, raiz');
                 console.log(cabeza, ajna, garganta, gi, corazon, plexosolar, sacral, bazo, raiz);
                 this.props.dispatch({type: 'ADDCENTERS', payload: {cabeza, ajna, garganta, gi, corazon, plexosolar, sacral, bazo, raiz} });
       
