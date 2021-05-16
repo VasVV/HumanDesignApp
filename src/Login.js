@@ -71,15 +71,14 @@ export default class Login extends Component {
       
       handleSubmit(e) {
           e.preventDefault();
-          firebaseConfig.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-          .then((userCredential) => {
-            var user = userCredential.user; 
-            var uid = user.uid;
-            console.log(uid);
+          (async () => {
+            const userCredential = await firebaseConfig.auth().signInWithEmailAndPassword(this.state.email, this.state.password).catch(e => console.log(e));
+            const uid = userCredential.user.uid;
             this.setState({
                 isLoggedIn: true,
             });
-            var db = firebase.database().ref('users/' + uid);
+            console.log('IN!!!!')
+            let db = firebase.database().ref('users/' + uid);
             db.on('value', (snapshot) => {
                 const data = snapshot.val();
                 this.setState({
@@ -89,17 +88,9 @@ export default class Login extends Component {
                 })
             });
 
-          })
-          .catch((error) => {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            this.setState({
-                error: true
-            })
-            console.log(errorCode + ' ' + errorMessage);
-          });
-      }
-
+          })();
+    
+        }
     render() {
         
         return (

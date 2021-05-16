@@ -54,14 +54,20 @@ const CheckoutFormInner = (props) => {
     }
 
     return (
+        <>
         <Form onSubmit ={handleSubmit}>
-            <CardElement />
+            <CardElement options={{
+                hidePostalCode: true
+            }}/>
             <p classN>Precio: {props.price/100} eur</p>
+            <br />
             <Button type='submit'>
                 {loading ? <Spinner animation="border" /> : 'Comprar'}
             </Button>
            
         </Form>
+        <br />
+        </>
     )
 }
 

@@ -59,7 +59,7 @@ export default class PaymentOptions extends Component {
             <div className='pricingext'>
                 <Modal show={this.state.modalOneIsOpened} onHide={this.state.modalOneIsOpened}>
                     <Modal.Header>
-                        <Modal.Title>Orientacion</Modal.Title>
+                        <Modal.Title>Basic design</Modal.Title>
                     </Modal.Header>
                         <Modal.Body>
                             <Elements stripe={stripePromise}>
@@ -76,7 +76,7 @@ export default class PaymentOptions extends Component {
 
                     <Modal show={this.state.modalTwoIsOpened} onHide={this.state.modalTwoIsOpened}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Basico</Modal.Title>
+                        <Modal.Title>Completo</Modal.Title>
                     </Modal.Header>
                         <Modal.Body>
                           <Elements stripe={stripePromise}>
@@ -129,7 +129,7 @@ export default class PaymentOptions extends Component {
                         <div class="col">
                             <div class="card mb-5 mb-lg-0">
                                  <div class="card-body">
-                                    <h5 class="card-title text-muted text-uppercase text-center">Orientacion</h5>
+                                    <h5 class="card-title text-muted text-uppercase text-center">Basic design</h5>
                                     <h6 class="card-price text-center">$10<span class="period">/month</span></h6>
                                     <hr />
                                     <ul class="fa-ul">
@@ -150,7 +150,7 @@ export default class PaymentOptions extends Component {
       <div class="col">
         <div class="card mb-5 mb-lg-0">
           <div class="card-body">
-            <h5 class="card-title text-muted text-uppercase text-center">Basico</h5>
+            <h5 class="card-title text-muted text-uppercase text-center">Design completo</h5>
             <h6 class="card-price text-center">$50<span class="period">/month</span></h6>
             <hr />
             <ul class="fa-ul">
@@ -171,7 +171,7 @@ export default class PaymentOptions extends Component {
       <div class="col">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title text-muted text-uppercase text-center">Completo</h5>
+            <h5 class="card-title text-muted text-uppercase text-center">Libro</h5>
             <h6 class="card-price text-center">$49<span class="period">/month</span></h6>
             <hr />
             <ul class="fa-ul">
@@ -191,7 +191,7 @@ export default class PaymentOptions extends Component {
       <div class="col">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title text-muted text-uppercase text-center">Completo</h5>
+            <h5 class="card-title text-muted text-uppercase text-center">Sesion adicional </h5>
             <h6 class="card-price text-center">$49<span class="period">/month</span></h6>
             <hr />
             <ul class="fa-ul">

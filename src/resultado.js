@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button, Popover } from 'react-bootstrap';
 import logo from './img/logologo.png';
 import {connect} from 'react-redux';
 import axios from 'axios';
@@ -1423,9 +1423,14 @@ export class Result extends Component {
                     </Row>
 
                     <Row>
-                        <Col className='border bold' xs={3}>TIPO 
+                        
+                        <Col className='border bold' xs={3}> 
+                        <div className='inline-btn-text'>
+                        <div className='near-btn-text'>TIPO </div>
+
+                        
                         <Popup
-                            trigger={<Button> ? </Button>}
+                            trigger={<Button className='same-line'>?</Button>}
                             position="top center"
                             nested
                         >
@@ -1433,6 +1438,7 @@ export class Result extends Component {
                             Nos presenta a cual de los cinco tipos energéticos pertenecemos y sus características
                                 </div>
                                 </Popup>
+                                </div>
                         </Col>
                         <Col className='border' xs={3}>
                             <Row className='border'>{this.state.tipo.toUpperCase()}</Row>
@@ -1448,9 +1454,13 @@ export class Result extends Component {
                     </Row>
 
                     <Row>
-                        <Col className='border bold' xs={3}>ESTRATEGIA
+                        <Col className='border bold' xs={3}>
+                        <div className='inline-btn-text'>
+                        <div className='near-btn-text'>   ESTRATEGIA </div>
+                        <div>
                         <Popup
-                            trigger={<Button> ? </Button>}
+                            className='popup-btn'
+                            trigger={<Button className='popup-btn'> ? </Button>}
                             position="top center"
                             nested
                         >
@@ -1458,6 +1468,8 @@ export class Result extends Component {
                             Es la manera que el diseño te propone para afrontar la vida de forma correcta en base a tu Tipo
                                 </div>
                                 </Popup>
+                                </div>
+                                </div>
                         </Col>
                         <Col className='border lightyellow' xs={3} >COMO AFRONTAR LA VIDA</Col>
                         <Col className='border' >{this.state.estrategia}</Col>
@@ -1476,7 +1488,7 @@ export class Result extends Component {
                     <Row>
                         <Col className='border bold' xs={3}>AUTORIDAD
                         <Popup
-                            trigger={<Button> ? </Button>}
+                            trigger={<Button className='popup-btn'> ? </Button>}
                             position="top center"
                             nested
                         >
@@ -1492,7 +1504,7 @@ export class Result extends Component {
                     <Row>
                         <Col className='border bold' xs={3}>DEFINICIÓN
                         <Popup
-                            trigger={<Button> ? </Button>}
+                            trigger={<Button className='popup-btn'> ? </Button>}
                             position="top center"
                             nested
                         >
@@ -1512,7 +1524,7 @@ export class Result extends Component {
 
                     <Container fluid>
                         <h1 className='text-center' >TUS CENTROS ENERGÉTICOS <Popup
-                            trigger={<Button> ? </Button>}
+                            trigger={<Button className='popup-btn'> ? </Button>}
                             position="top center"
                             nested
                         >
@@ -1524,7 +1536,7 @@ export class Result extends Component {
                         <div className='hideonlargescreen'>]
                          <img  src={this.state.bodygraph}/>
                          <Popup
-                            trigger={<Button> ? </Button>}
+                            trigger={<Button className='popup-btn'> ? </Button>}
                             position="top center"
                             nested
                         >
@@ -1574,7 +1586,7 @@ export class Result extends Component {
 
                     <Row><img className='img-fluid h-100' src={this.state.bodygraph}/></Row>
                     <Popup
-                            trigger={<Button> ? </Button>}
+                            trigger={<Button className='popup-btn'> ? </Button>}
                             position="top center"
                             nested
                         >
@@ -1622,7 +1634,7 @@ export class Result extends Component {
                     <Row >
                         <Col className='border bold'>PERFIL 
                         <Popup
-                            trigger={<Button> ? </Button>}
+                            trigger={<Button className='popup-btn'> ? </Button>}
                             position="top center"
                             nested
                         >
@@ -1662,7 +1674,7 @@ export class Result extends Component {
                                     <Col  >
                                     <Row>PUERTAS
                                     <Popup
-                            trigger={<Button> ? </Button>}
+                            trigger={<Button className='popup-btn'> ? </Button>}
                             position="top center"
                             nested
                         >
@@ -1698,7 +1710,7 @@ export class Result extends Component {
                             <Col className='border'>CRUZ 
 
                             <Popup
-                            trigger={<Button> ? </Button>}
+                            trigger={<Button className='popup-btn'> ? </Button>}
                             position="top center"
                             nested
                         >
@@ -1716,7 +1728,7 @@ export class Result extends Component {
                             <Col className='border'></Col>
                             <Col className='border'>CANALES
                             <Popup
-                            trigger={<Button> ? </Button>}
+                            trigger={<Button className='popup-btn'> ? </Button>}
                             position="top center"
                             nested
                         >

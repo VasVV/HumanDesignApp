@@ -4,7 +4,7 @@ import firebaseConfig from "./firebaseconfig";
 import firebase from 'firebase';
 import SocialLogin from "./SocialLogin";
 import {useSelector, useDispatch} from 'react-redux';
-
+import {Alert} from 'react-bootstrap/';
 
 
 function LoginFunctional() {
@@ -13,7 +13,7 @@ function LoginFunctional() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const [err, setErr] = useState(false);
   function handleLogin(){
     setIsLoggedIn(true);
     dispatch({type: 'HASLOGGEDIN'});
@@ -30,26 +30,26 @@ function LoginFunctional() {
   }
   function Submit(e){
     e.preventDefault();
-    firebaseConfig.auth().signInWithEmailAndPassword(email, password)
-          .then((userCredential) => {
-            var user = userCredential.user; 
-            var uid = user.uid;
-            var db = firebase.database().ref('users/' + uid);
-            db.on('value', (snapshot) => {
-                const data = snapshot.val();
-                console.log('data');
-                console.log(data);
-                const adduserdata = 'ADDUSERDATA';
+    
+    (async () => {
+      
+      try {
+        let userCredential = await firebaseConfig.auth().signInWithEmailAndPassword(email, password);
+        const uid = userCredential.user.uid;
+      let db = firebase.database().ref('users/' + uid);
+      db.on('value', (snapshot) => {
+          const data = snapshot.val();
+          const adduserdata = 'ADDUSERDATA';
                 dispatch({type: adduserdata, payload: {...data, uid}});
                 handleLogin();
-            });
+      })
+      } catch (error) {
+        console.log('Error caught:', error.message);
+        setErr('Comprueba tu correo y contrasena y trata otra vez')
+      }
+      
 
-          })
-          .catch((error) => {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            console.log(errorCode + ' ' + errorMessage);
-          });
+    })()
   }
 
  
@@ -58,6 +58,7 @@ function LoginFunctional() {
      <div className='loginsigninext'>        
         <div className='loginsigninint'>
         <form onSubmit={Submit}>
+        <Alert variant="danger" style={{visibility: err ? 'visible' : 'hidden' }}> {err} </Alert>
             <h3>Entrar</h3>
             <SocialLogin />
                 

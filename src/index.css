@@ -426,3 +426,15 @@ background-color: red;
 .popup-content {
   -webkit-animation: anvil 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
 }
+
+/* .same-line {
+  font-size: 1px  !important
+} */
+
+/* .near-btn-text {
+  font-size: 9px;
+} */
+
+/* .inline-btn-text {
+  display: inline-block !important;
+} */
