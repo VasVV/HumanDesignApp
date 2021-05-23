@@ -8,6 +8,11 @@ const pnfs = require("pn/fs");
 const captureWebsite = require('capture-website');
 const nodemailer = require("nodemailer");
 const puppeteer = require('puppeteer');
+const sharp = require('sharp');
+
+
+
+
 
 //stripe 
 const app = express();
@@ -40,7 +45,7 @@ app.post('/api/checkout', async (req, res) => {
     });
 
 
-    console.log(payment);
+    
     res.send({message: 'Sucess payment'});
 });
 
@@ -64,7 +69,7 @@ app.use('/', express.static(__dirname+'/../src/img/bodygraphs' ));
 // app.use(express.static(__dirname + '/public'));
 
 app.post('/downloadimg', (req, res) => {
-    //console.log(req.body);
+    
     let path = `./src/img/bodygraphs/${req.body.params.filename}`;
     https.get(req.body.params.url, function(res){
         const fileStream = fs.createWriteStream(`./src/img/bodygraphs/${req.body.params.filename}`);
@@ -112,6 +117,7 @@ const apiKey = 'YpL1QrATKdEETO3iWHsj0dtHPLr62tuN'
 
 
 app.post('/uploadimage', (req,res) => {
+    
     (async () => {
         const response = await client.upload(req.body.img);
         return response.data.link;
@@ -131,11 +137,37 @@ app.post('/downloadpdf', (req, res) => {
             width: 332
         });
     })();
+    console.log(loc)
+    let cropped = (__dirname+`/../src/img/bodygraphs/pngs/${p.name}CROPPED.png`).toString();
+    
+   
+    
 
+    
+    
 
     (async () => {
-        const response = await client.upload(loc);
-        console.log(response.data.link);
+        
+
+        try {
+            if (!fs.existsSync(cropped)) {
+                (async () => {
+                    await sharp(loc).extract({ width: 663, height: 620, left: 0, top: 70 }).toFile(cropped)
+                .then(function(new_file_info) {
+                    console.log("Image cropped and saved");
+                })
+                .catch(function(err) {
+                    console.log(err);
+                });   
+                })();
+            }
+          } catch(err) {
+            console.error(err)
+          }
+
+        const response = await client.upload(cropped);
+       console.log('response from imgur');
+       console.log(response);
         let puno = p.puertasUno[0];
     let pdos = p.puertasUno[1];
     let ptres = p.puertasDos[0];
@@ -144,7 +176,7 @@ app.post('/downloadpdf', (req, res) => {
     let estrategiaCap = estrategia.charAt(0).toUpperCase() + estrategia.slice(1).toLowerCase();
     let autoridad = p.autoridad;
     let autoridadCap = autoridad.charAt(0).toUpperCase() + autoridad.slice(1).toLowerCase();
- 
+   let Resumen = p.Resumen;
     const payload = {
         "title": "My PDF Title",
         "fontSize": 10,
@@ -190,7 +222,9 @@ app.post('/downloadpdf', (req, res) => {
             "CanalSeis": p.CanalSeis,
             "CanalSiete": p.CanalSiete,
             "CanalOcho": p.CanalOcho,
-            "Cuantas": p.cuantas
+            "Cuantas": p.cuantas,
+            "UserImage": p.UserImage,
+            "Resumen": Resumen
         }
       }
       
@@ -202,7 +236,7 @@ app.post('/downloadpdf', (req, res) => {
       async function getData(payload, options) {
         const anvilClient = new Anvil({ apiKey });
         const { statusCode, data } = await anvilClient.fillPDF(pdfTemplateID, payload, options);
-        console.log(statusCode);
+        
         
         fs.writeFileSync(`${p.name.split(' ').join('')}.pdf`, data, { encoding: null })
     }
@@ -234,7 +268,7 @@ app.post('/downloadpdfcompleto', (req, res) => {
 
     (async () => {
         const response = await client.upload(loc);
-        console.log(response.data.link);
+        
         let puno = p.puertasUno[0];
     let pdos = p.puertasUno[1];
     let ptres = p.puertasDos[0];
@@ -571,7 +605,7 @@ app.post('/downloadpdfcompleto', (req, res) => {
       async function getData(payload, options) {
         const anvilClient = new Anvil({ apiKey });
         const { statusCode, data } = await anvilClient.fillPDF('NXSN2jsh0YtxA7cDkjsY', payload, options);
-        console.log(statusCode);
+       
         
         fs.writeFileSync(`${p.name.split(' ').join('')}.pdf`, data, { encoding: null })
     }
@@ -586,6 +620,7 @@ app.post('/downloadpdfcompleto', (req, res) => {
 
 //sending email
 app.post('/sendmail', (req,res) => {
+    console.log('SENT')
     let p = req.body.params;
     async function main() {
         // Generate test SMTP service account from ethereal.email

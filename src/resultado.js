@@ -1,10 +1,13 @@
 import React, { Component } from "react";
-import { Container, Row, Col, Button, Popover } from 'react-bootstrap';
+import { Container, Row, Col, Button, Popover, Modal } from 'react-bootstrap';
 import logo from './img/logologo.png';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import Cropper from 'react-easy-crop';
+
+import firebase from './firebaseconfig';
 
 import ajnaAbierto from './img/AJNA BL.png';
 import ajnaCerrado from './img/AJNA COLOR.png';
@@ -844,7 +847,7 @@ const angulos = [
         
             }},
         
-            {Cакральный: {
+            {Сакральный: {
         
                 codename: 'sacral',
         
@@ -998,8 +1001,13 @@ export class Result extends Component {
             canalesCompleto: [],
             definicion: '',
             svgDownloaded: false,
-            
-            updatedtwo: true
+            userImage: '',
+            imageLocal: '',
+            crop: { x: 0, y: 0, width: 100, height: 100 },
+            zoom: 1,
+            aspect: 4 / 3,
+            updatedtwo: true,
+            text: ''
         }
     this.getCurrDate = this.getCurrDate.bind(this);
     this.translateHelper = this.translateHelper.bind(this);
@@ -1009,16 +1017,24 @@ export class Result extends Component {
     this.sendMail = this.sendMail.bind(this);
     this.svgRef = React.createRef();
     this.textChange = this.textChange.bind(this);
+    this.inputFile = React.createRef();
+    this.handleFileUpload = this.handleFileUpload.bind(this);
+    this.uploadFile = this.uploadFile.bind(this);
     }
 
 
     textChange(e) {
+        if (e.target.value.length <=275) {
+            let text = e.target.value.replace(/\s{2,}/g, ' ').replace(/\n/g, ' ');
         this.setState({
-            text: e.target.value
-        });
+            text
+        })
+        }
+
     }
 
     sendMail() {
+        console.log('sent')
         axios.post('http://localhost:3001/sendmail',{
             params: {
                 name: `${this.state.firstName}${this.state.lastName}`,
@@ -1285,6 +1301,8 @@ export class Result extends Component {
         const raiz = this.state.raizCentro;
         const bodygraph = this.state.bodygraph;
         const resumen = this.state.text;
+        const UserImage = this.state.userImage;
+        const Resumen = this.state.text;
         let params =  {
             bodygraph,
             name,
@@ -1326,7 +1344,9 @@ export class Result extends Component {
             CanalOcho,
             CanalNueve,
             resumen,
-            cuantas
+            cuantas,
+            UserImage,
+            Resumen
           }    
          axios.post('http://localhost:3001/downloadpdf', {params}).catch(error => console.log(error));
    }
@@ -1393,8 +1413,78 @@ export class Result extends Component {
             }   
     }
 
+    uploadFile() {
+        console.log(this.inputFile);
+        this.inputFile.current.click();
+      };
+
+      uploadImage = async(image) => {
+        if (image) {
+
+            const storage =  await firebase.storage();
+           
+            const storageRef = storage.ref();
+
+            
+            console.log(image);
+
+            const imageRef = storageRef.child(image.name);
+           
+            await imageRef.put(image)
+           
+           const imgLink = await imageRef.getDownloadURL();
+           console.log(imgLink);
+           let img = new Image();
+           img.src = imgLink;
+           img.onload = function () {
+            if (this.width > 300 || this.height > 300 ) {
+                alert('Tu imagen tiene que ser 300x300 pixeles o menos');
+                return;
+            }  
+        }
+        this.setState({
+            userImage: imgLink
+        })
+           
+          } else {
+            alert("Please upload an image first.");
+          }
+
+      
+    }
+
+    handleFileUpload(e) {
+        const { files } = e.target;
+        
+        if (files && files.length) {
+            
+            const filename = files[0].name;
+            const parts = filename.split(".");
+            const fileType = parts[parts.length - 1];
+            if (fileType == 'PNG' || fileType == 'JPG' || fileType == 'JPEG' || fileType == 'png' || fileType == 'jpg' || fileType == 'jpeg') {
+                const url = URL.createObjectURL(files[0]);
+                this.uploadImage(files[0]);  
+            } else {
+                alert('Solo puedes subir fotos en formato JPG o PNG')
+            }
+            
+        }
+        
+    } 
+
+    onCropChange = (crop) => {
+        this.setState({ crop })
+      }
     
+      onCropComplete = (croppedArea, croppedAreaPixels) => {
+        console.log(croppedArea, croppedAreaPixels)
+      }
     
+      onZoomChange = (zoom) => {
+        this.setState({ zoom })
+      }
+
+       
 
     render() {
         return (
@@ -1404,6 +1494,11 @@ export class Result extends Component {
                 <h1>Resultado</h1>
                 <Button onClick={this.convertToPdf}>Descargar</Button>
                 <Button onClick={this.sendMail}>Enviar correo</Button>
+                <Button onClick={e => this.uploadFile(e)}>Subir tu foto</Button>
+                    
+                 
+                <input type='file' id='file' name='image' ref={this.inputFile} style={{display: 'none'}} onChange={this.handleFileUpload}/>
+
                     <Container fluid>
                     <Row>
                         <Col><img className='logo' src={logo} alt='logo' /></Col>
@@ -1509,11 +1604,11 @@ export class Result extends Component {
                             nested
                         >
                             <div>
-                            Nos muestra cuantas activaciones de energía tienes  y como se interaccionan y componen en tu plano energético
+                            Nos muestra cuantas activaciones de energía tienes y como se interaccionan y componen en tu plano energético
                                 </div>
                                 </Popup>
                         </Col>
-                        <Col className='border lightyellow' xs={6}>Es la forma en que nuestrossistemas de energíase conectan entre sí, dando como resultado diferentes configuraciones, dependiendo la disposición de las puertas</Col>
+                        <Col className='border lightyellow' xs={6}>Es la forma en que nuestros sistemas de energía se conectan entre sí, dando como resultado diferentes configuraciones, dependiendo la disposición de las puertas</Col>
                         <Col className='border text-center' xs={3}>{this.state.definicion}</Col>
                     </Row>
                     </Container>
@@ -1584,7 +1679,9 @@ export class Result extends Component {
 
                         <Col className='border d-none d-lg-block '>
 
-                    <Row><img className='img-fluid h-100' src={this.state.bodygraph}/></Row>
+                    <Row>
+                        
+                        <img className='img-fluid h-100' src={this.state.bodygraph}/></Row>
                     <Popup
                             trigger={<Button className='popup-btn'> ? </Button>}
                             position="top center"
@@ -1743,8 +1840,8 @@ export class Result extends Component {
                         {this.state.canalesCompleto.map((e,i) => <Row className='border'>{i} {e}</Row>)}
                         
                        
-                        <Row>NOTAS Y RESUMEN</Row>
-                        <Row><input type='text' onChange={this.textChange} className=' form-control form-control-lg mb-2' /></Row>
+                        <Row>NOTAS Y RESUMEN Máximo { Math.abs(this.state.text.length - 275) } / 275 caracteres</Row>
+                        <Row><textarea type='text' className='resume-textbox' onChange={this.textChange} className=' form-control form-control-lg mb-2' value={this.state.text} style={{borderColor: this.state.text.length == 275 && 'red' }}/></Row>
                         
                         
 

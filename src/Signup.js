@@ -47,7 +47,7 @@ class SignUp extends Component {
     onChangeTime(e) {
 
         this.setState({
-            tob: e.format('HH:MM')
+            tob: e.format('HH:mm')
         })
     }
 

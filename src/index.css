@@ -438,3 +438,12 @@ background-color: red;
 /* .inline-btn-text {
   display: inline-block !important;
 } */
+
+.modal-cropper {
+  height: 400px !important;
+  width: auto !important;
+}
+
+.resume-textbox {
+  height: 200px !important;
+}
