@@ -213,7 +213,7 @@ app.post('/downloadpdf', (req, res) => {
             "PuertasDosDos": pcuatro,
             "CruzNombre": p.cruzNombre,
             "FechaDiseno": p.currdate,
-            "Logo": "https://i.imgur.com/o7LC7ua.jpg",
+            "Logo": p.logo,
             "CanalUno": p.CanalUno,
             "CanalDos": p.CanalDos,
             "CanalTres": p.CanalTres,

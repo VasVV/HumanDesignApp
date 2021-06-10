@@ -40,7 +40,6 @@ import sacralCerrado from './img/SACRAL COLOR.png';
 
 
 
-
 const angulos = [
 
  
@@ -843,7 +842,7 @@ const angulos = [
         
                 codename: 'plexo',
         
-                desc: 'PLEXO: TUS DECISIONES CORRECTAS SON ESAS QUE TOMAS DE FORMA CONSISTENTE EN TODO TU CICLO EMOCIONAL. UNA DECISON CORRECTA ES AQUELLA QUE TE RESUENA TANTO EN LO ALTO DE LA OLA EMOCIONAL COMO EN SU FASE MAS BAJA',
+                desc: 'PLEXO: TUS DECISIONES CORRECTAS SON ESAS QUE TOMAS DE FORMA CONSISTENTE EN TODO TU CICLO EMOCIONAL. UNA DECISON CORRECTA ES AQUELLA QUE TE RESUENA CORPORALMENTE TANTO EN LO ALTO DE LA OLA EMOCIONAL COMO EN SU FASE MAS BAJA',
         
             }},
         
@@ -859,7 +858,7 @@ const angulos = [
         
                 codename: 'bazo',
         
-                desc: 'BAZO: TU DICISIÓN CORRECTA ES ESA QUE TE LLEGA DE FORMA INSTANTANEA DESDE TU INSTINTO E INTUICION Y QUE NO SE REPITE MAS QUE UNA VEZ, ASI QUE HAS DE ESTAR ATENTO Y SER VALIENTE',
+                desc: 'BAZO: TU DICISIÓN CORRECTA ES ESA QUE TE LLEGA DE FORMA INSTANTANEA DESDE TU INSTINTO E INTUICION Y QUE NO SE REPITE MAS QUE UNA VEZ, ASI QUE HAS DE ESTAR ATENTO Y SER DECIDIDO',
         
             }},
         
@@ -978,6 +977,7 @@ const angulos = [
             6: 'Modelo de roles',
     
         };
+
     
      
 
@@ -1002,6 +1002,7 @@ export class Result extends Component {
             definicion: '',
             svgDownloaded: false,
             userImage: '',
+            logo: '',
             imageLocal: '',
             crop: { x: 0, y: 0, width: 100, height: 100 },
             zoom: 1,
@@ -1018,8 +1019,10 @@ export class Result extends Component {
     this.svgRef = React.createRef();
     this.textChange = this.textChange.bind(this);
     this.inputFile = React.createRef();
+    this.inputLogo = React.createRef();
     this.handleFileUpload = this.handleFileUpload.bind(this);
     this.uploadFile = this.uploadFile.bind(this);
+    this.uploadLogo = this.uploadLogo.bind(this);
     }
 
 
@@ -1270,8 +1273,8 @@ export class Result extends Component {
         const tipodesc = this.state.typeDescription;
         const corr1 = this.state.corr.split('Y')[1] ? this.state.corr.split('Y')[0] + '/' : this.state.corr;
         const incorr1 = this.state.incorr.split('Y')[1] ? this.state.incorr.split('Y')[0] + '/' : this.state.incorr;
-        const corr2 = this.state.corr.split('Y')[1] ? this.state.corr.split('Y')[1].toLowerCase() : '';
-        const incorr2 = this.state.incorr.split('Y')[1] ? this.state.incorr.split('Y')[1].toLowerCase() : '';
+        const corr2 = this.state.corr.split('Y')[1] ? this.state.corr.split('Y')[1].toUpperCase() : '';
+        const incorr2 = this.state.incorr.split('Y')[1] ? this.state.incorr.split('Y')[1].toUpperCase() : '';
         const estrategia = this.state.estrategia;
         const autoridad = this.state.autoridad;
         const perfilUno = this.state.perfilUno;
@@ -1303,6 +1306,7 @@ export class Result extends Component {
         const resumen = this.state.text;
         const UserImage = this.state.userImage;
         const Resumen = this.state.text;
+        const logo = this.state.logo;
         let params =  {
             bodygraph,
             name,
@@ -1346,9 +1350,12 @@ export class Result extends Component {
             resumen,
             cuantas,
             UserImage,
-            Resumen
+            Resumen,
+            logo
           }    
          axios.post('http://localhost:3001/downloadpdf', {params}).catch(error => console.log(error));
+
+        
    }
 
     componentDidMount() {
@@ -1418,7 +1425,12 @@ export class Result extends Component {
         this.inputFile.current.click();
       };
 
-      uploadImage = async(image) => {
+      uploadLogo() {
+        console.log(this.inputFile);
+        this.inputLogo.current.click();
+      };
+
+      uploadImage = async(image, whatImage, w, h) => {
         if (image) {
 
             const storage =  await firebase.storage();
@@ -1437,14 +1449,22 @@ export class Result extends Component {
            let img = new Image();
            img.src = imgLink;
            img.onload = function () {
-            if (this.width > 300 || this.height > 300 ) {
-                alert('Tu imagen tiene que ser 300x300 pixeles o menos');
+            if (this.width > w || this.height > h ) {
+                alert(`Tu imagen tiene que ser ${w}x${h} pixeles o menos`);
                 return;
             }  
         }
+
+        if (whatImage == 'photo') {
+
         this.setState({
             userImage: imgLink
         })
+        } else if (whatImage == 'logo') {
+            this.setState({
+                logo: imgLink
+            })
+        }
            
           } else {
             alert("Please upload an image first.");
@@ -1453,7 +1473,7 @@ export class Result extends Component {
       
     }
 
-    handleFileUpload(e) {
+    handleFileUpload(e, whatImage, w, h) {
         const { files } = e.target;
         
         if (files && files.length) {
@@ -1463,7 +1483,7 @@ export class Result extends Component {
             const fileType = parts[parts.length - 1];
             if (fileType == 'PNG' || fileType == 'JPG' || fileType == 'JPEG' || fileType == 'png' || fileType == 'jpg' || fileType == 'jpeg') {
                 const url = URL.createObjectURL(files[0]);
-                this.uploadImage(files[0]);  
+                this.uploadImage(files[0], whatImage, w, h);  
             } else {
                 alert('Solo puedes subir fotos en formato JPG o PNG')
             }
@@ -1495,9 +1515,10 @@ export class Result extends Component {
                 <Button onClick={this.convertToPdf}>Descargar</Button>
                 <Button onClick={this.sendMail}>Enviar correo</Button>
                 <Button onClick={e => this.uploadFile(e)}>Subir tu foto</Button>
-                    
-                 
-                <input type='file' id='file' name='image' ref={this.inputFile} style={{display: 'none'}} onChange={this.handleFileUpload}/>
+                <Button onClick={e => this.uploadLogo(e)}>Subir el logo</Button>    
+                <input type='file' id='logo' name='logo' ref={this.inputFile} style={{display: 'none'}} onChange={(e) => this.handleFileUpload(e, 'photo', 250, 200)}/>
+
+                <input type='file' id='file' name='image' ref={this.inputLogo} style={{display: 'none'}} onChange={(e) => this.handleFileUpload(e, 'logo', 80, 30)}/>
 
                     <Container fluid>
                     <Row>
