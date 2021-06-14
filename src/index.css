@@ -439,11 +439,69 @@ background-color: red;
   display: inline-block !important;
 } */
 
+.near-btn-text {
+  font-weight: bold;
+}
 .modal-cropper {
   height: 400px !important;
   width: auto !important;
 }
 
 .resume-textbox {
-  height: 200px !important;
+  height: 80px !important;
+  margin-left: 8% !important
+}
+
+#particles{
+  width: 100% !important;
+  height: 100% !important;
+  position: fixed;
+  background-color: #000;
+  background-image: url('');
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+.completed-tick {
+  max-width: 20px;
+  height:auto;
+}
+
+.result-btn {
+  margin-left: 20px;
+  background-color: white !important;
+  color: blue !important;
+  margin-bottom: 10px
+}
+
+.result-btn:hover {
+  background-color: lightblue !important;
+}
+
+.inner-btn-elem {
+  margin-right: 5px !important
+}
+
+.flex {
+  display:flex !important;
+  flex-direction: row !important;
+  width: 100% !important
+}
+
+.popup-btn {
+  padding: 0 5px 0 5px !important;
+  font-size: 14px;
+  margin-left: 10px;
+  background-color: white !important;
+  color: blue !important;
+}
+
+.popup-btn:hover {
+  background-color: lightblue !important;
+}
+
+.resultado-header {
+  text-align: center;
+  margin-bottom:10px
 }

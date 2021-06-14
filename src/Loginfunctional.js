@@ -66,12 +66,12 @@ function LoginFunctional() {
 
                 <div className="form-group">
                     <label>Email</label>
-                    <input type="email" className="form-control" placeholder="Enter email" name = 'email' onChange = {handleChangeEmail}/>
+                    <input type="email" className="form-control" placeholder="Entra tu correo electronico" name = 'email' onChange = {handleChangeEmail}/>
                 </div>
 
                 <div className="form-group">
                     <label>Contraseña</label>
-                    <input type="password" className="form-control" placeholder="Enter password" name = 'password' onChange = {handleChangePassword} />
+                    <input type="password" className="form-control" placeholder="Entra tu contrasena" name = 'password' onChange = {handleChangePassword} />
                 </div>
 
                 <button type="submit" className="btn btn-primary btn-block">Entrar

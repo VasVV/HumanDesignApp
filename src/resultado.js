@@ -1,11 +1,13 @@
 import React, { Component } from "react";
-import { Container, Row, Col, Button, Popover, Modal } from 'react-bootstrap';
+import { Container, Row, Col, Button, Popover, Modal, Spinner } from 'react-bootstrap';
 import logo from './img/logologo.png';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import Cropper from 'react-easy-crop';
+
+import Completed from './img/Complete_Symbol-512.png';
 
 import firebase from './firebaseconfig';
 
@@ -1008,7 +1010,11 @@ export class Result extends Component {
             zoom: 1,
             aspect: 4 / 3,
             updatedtwo: true,
-            text: ''
+            text: '',
+            generatingPDF: false,
+            PDFdownload: false,
+            messageSent: false,
+            messageSending: false,
         }
     this.getCurrDate = this.getCurrDate.bind(this);
     this.translateHelper = this.translateHelper.bind(this);
@@ -1036,13 +1042,21 @@ export class Result extends Component {
 
     }
 
-    sendMail() {
-        console.log('sent')
+    async sendMail() {
+        this.setState({
+            messageSending: true,
+            messageSent: false,
+        })
         axios.post('http://localhost:3001/sendmail',{
             params: {
                 name: `${this.state.firstName}${this.state.lastName}`,
                 mail: this.state.email
             }
+        }).then((res) => {
+            this.setState({
+                messageSent: true,
+                messageSending: false
+            })
         }).catch(err => console.log(err));
     }
  
@@ -1257,12 +1271,13 @@ export class Result extends Component {
    
      
    
+    
+    async convertToPdf() {
+        this.setState({
+            generatingPDF: true,
+            PDFdownload: false
+        });
 
-    convertToPdf() {
-        console.log('date');
-        console.log(this.state.date);
-        console.log('fecha');
-        console.log(this.state.fecha);
         const cuantas = this.state.cuantas;
         const name = `${this.state.firstName} ${this.state.lastName}`
         const fecha =  this.state.fecha;
@@ -1353,7 +1368,17 @@ export class Result extends Component {
             Resumen,
             logo
           }    
-         axios.post('http://localhost:3001/downloadpdf', {params}).catch(error => console.log(error));
+         axios.post('http://localhost:3001/downloadpdf', {params})
+         .then((res) => {
+             console.log(res);
+             this.setState({
+                 generatingPDF: false,
+                 PDFdownload: true
+             })
+             
+            
+         })
+         .catch(error => console.log(error));
 
         
    }
@@ -1460,10 +1485,12 @@ export class Result extends Component {
         this.setState({
             userImage: imgLink
         })
+        alert('Tu photo ha subido correctamente')
         } else if (whatImage == 'logo') {
             this.setState({
                 logo: imgLink
             })
+            alert('Tu logo ha subido correctamente')
         }
            
           } else {
@@ -1511,11 +1538,27 @@ export class Result extends Component {
             <div className='result'>
 
 
-                <h1>Resultado</h1>
-                <Button onClick={this.convertToPdf}>Descargar</Button>
-                <Button onClick={this.sendMail}>Enviar correo</Button>
-                <Button onClick={e => this.uploadFile(e)}>Subir tu foto</Button>
-                <Button onClick={e => this.uploadLogo(e)}>Subir el logo</Button>    
+                <h1 className='resultado-header'>Resultado</h1>
+                <div className='resultado-header'>
+                <Button onClick={this.convertToPdf} className='result-btn'> {this.state.generatingPDF&&<Spinner
+                    className='inner-btn-elem'
+                    as="span"
+                    animation="border"
+                    role="status"
+                    size='sm'
+                    aria-hidden="true"
+                    />}{this.state.PDFdownload && <img src={Completed} className='completed-tick inner-btn-elem' />}Descargar</Button>
+                <Button onClick={this.sendMail}  className='result-btn'> {this.state.messageSending&&<Spinner
+                    className='inner-btn-elem'
+                    as="span"
+                    animation="border"
+                    role="status"
+                    size='sm'
+                    aria-hidden="true"
+                    />}{this.state.messageSent && <img src={Completed} className='completed-tick inner-btn-elem' />} Enviar correo</Button>
+                <Button onClick={e => this.uploadFile(e)}  className='result-btn'>Subir tu foto</Button>
+                <Button onClick={e => this.uploadLogo(e)}  className='result-btn'>Subir el logo</Button>   
+                </div> 
                 <input type='file' id='logo' name='logo' ref={this.inputFile} style={{display: 'none'}} onChange={(e) => this.handleFileUpload(e, 'photo', 250, 200)}/>
 
                 <input type='file' id='file' name='image' ref={this.inputLogo} style={{display: 'none'}} onChange={(e) => this.handleFileUpload(e, 'logo', 80, 30)}/>
@@ -1541,12 +1584,11 @@ export class Result extends Component {
                     <Row>
                         
                         <Col className='border bold' xs={3}> 
-                        <div className='inline-btn-text'>
+                            
+                        <div className='flex'>
                         <div className='near-btn-text'>TIPO </div>
-
-                        
                         <Popup
-                            trigger={<Button className='same-line'>?</Button>}
+                            trigger={<Button className='popup-btn'> ? </Button>}
                             position="top center"
                             nested
                         >
@@ -1571,9 +1613,9 @@ export class Result extends Component {
 
                     <Row>
                         <Col className='border bold' xs={3}>
-                        <div className='inline-btn-text'>
+                        <div className='flex'>
                         <div className='near-btn-text'>   ESTRATEGIA </div>
-                        <div>
+                        
                         <Popup
                             className='popup-btn'
                             trigger={<Button className='popup-btn'> ? </Button>}
@@ -1585,7 +1627,7 @@ export class Result extends Component {
                                 </div>
                                 </Popup>
                                 </div>
-                                </div>
+                               
                         </Col>
                         <Col className='border lightyellow' xs={3} >COMO AFRONTAR LA VIDA</Col>
                         <Col className='border' >{this.state.estrategia}</Col>
@@ -1602,7 +1644,10 @@ export class Result extends Component {
                     </Row>
 
                     <Row>
-                        <Col className='border bold' xs={3}>AUTORIDAD
+                    
+                        <Col className='border bold' xs={3}>
+                        <div className='flex'>
+                            AUTORIDAD
                         <Popup
                             trigger={<Button className='popup-btn'> ? </Button>}
                             position="top center"
@@ -1612,13 +1657,16 @@ export class Result extends Component {
                             Es la forma sencilla y adecuada de que tu tipología aprenda a tomar las decisiones que te son adecuadas
                                 </div>
                                 </Popup>
+                                </div>
                         </Col>
                         <Col className='border lightyellow' xs={3}>COMO TOMAR LAS DECISIONES ADECUADAS</Col>
                         <Col className='border' xs={6}>{this.state.autoridad}</Col>
                     </Row>
 
                     <Row>
-                        <Col className='border bold' xs={3}>DEFINICIÓN
+                        <Col className='border bold' xs={3}>
+                        <div className='flex'>
+                            DEFINICIÓN
                         <Popup
                             trigger={<Button className='popup-btn'> ? </Button>}
                             position="top center"
@@ -1628,6 +1676,7 @@ export class Result extends Component {
                             Nos muestra cuantas activaciones de energía tienes y como se interaccionan y componen en tu plano energético
                                 </div>
                                 </Popup>
+                                </div>
                         </Col>
                         <Col className='border lightyellow' xs={6}>Es la forma en que nuestros sistemas de energía se conectan entre sí, dando como resultado diferentes configuraciones, dependiendo la disposición de las puertas</Col>
                         <Col className='border text-center' xs={3}>{this.state.definicion}</Col>
@@ -1750,7 +1799,9 @@ export class Result extends Component {
                         </Col>
                     </Row>
                     <Row >
-                        <Col className='border bold'>PERFIL 
+                        <Col className='border bold'>
+                            <div className='flex'>
+                        <div className='near-btn-text'>PERFIL </div>
                         <Popup
                             trigger={<Button className='popup-btn'> ? </Button>}
                             position="top center"
@@ -1760,6 +1811,7 @@ export class Result extends Component {
                             Muestran la energía que nos pone delante nuestro verdadero personaje
                                 </div>
                             </Popup>
+                            </div>
                         </Col>
                         <Col className='border lightyellow'>NUESTRO PERSONAJE AUTENTICO</Col>
                         
@@ -1790,7 +1842,9 @@ export class Result extends Component {
                             <Col className='border'>
                                 <Row>
                                     <Col  >
-                                    <Row>PUERTAS
+                                    <Row>
+                                    <div className='flex'>
+                                    <div className='near-btn-text'> PUERTAS </div>
                                     <Popup
                             trigger={<Button className='popup-btn'> ? </Button>}
                             position="top center"
@@ -1800,7 +1854,7 @@ export class Result extends Component {
                             Marcan las cualidades más poderosas que configuran tu plano energético
                                 </div>
                                 </Popup>
-
+                                </div>
                                     </Row>
                                     <Row className='lightyellow border-top'>LAS CUALIDADES</Row>
                                     <Row className='lightyellow'> QUE MARCAN TU VIDA</Row>
@@ -1825,7 +1879,9 @@ export class Result extends Component {
                         </Row>
 
                         <Row>
-                            <Col className='border'>CRUZ 
+                            <Col className='border'>
+                            <div className='flex'>
+                            <div className='near-btn-text'>     CRUZ </div>
 
                             <Popup
                             trigger={<Button className='popup-btn'> ? </Button>}
@@ -1836,7 +1892,7 @@ export class Result extends Component {
                             Muestra nuestro propósito a realizar en esta vida
                                 </div>
                                 </Popup>
-                            
+                            </div>
                             </Col>
                             <Col className='border lightyellow'>TU VERDADERO PROPÓSITO</Col>
                             <Col className='border'>{this.state.cruzstr}</Col>
@@ -1844,7 +1900,9 @@ export class Result extends Component {
 
                         <Row>
                             <Col className='border'></Col>
-                            <Col className='border'>CANALES
+                            <Col className='border'>
+                                 <div className='flex'>
+                                 <div className='near-btn-text'>CANALES</div>
                             <Popup
                             trigger={<Button className='popup-btn'> ? </Button>}
                             position="top center"
@@ -1854,6 +1912,7 @@ export class Result extends Component {
                             Muestran la energía de nuestras características vitales
                                 </div>
                                 </Popup>
+                                </div>
                             </Col>
                             <Col className='border lightyellow'>TUS CARACTERÍSTICAS VITALES</Col>
                         </Row>
@@ -1862,7 +1921,7 @@ export class Result extends Component {
                         
                        
                         <Row>NOTAS Y RESUMEN Máximo { Math.abs(this.state.text.length - 275) } / 275 caracteres</Row>
-                        <Row><textarea type='text' className='resume-textbox' onChange={this.textChange} className=' form-control form-control-lg mb-2' value={this.state.text} style={{borderColor: this.state.text.length == 275 && 'red' }}/></Row>
+                        <Row><textarea type='text'  onChange={this.textChange} className='resume-textbox form-control form-control-lg mb-2' value={this.state.text} style={{borderColor: this.state.text.length == 275 && 'red' }}/></Row>
                         
                         
 

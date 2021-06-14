@@ -220,25 +220,29 @@ class SignUp extends Component {
 
                         <div className="form-group">
                             <label>Nombre</label>
-                            <input type="text" className="form-control" placeholder="First name" name='fname' onChange={this.onChange} />
+                            <input type="text" className="form-control" placeholder="Tu nombre" name='fname' onChange={this.onChange} />
                         </div>
 
                         <div className="form-group">
                             <label>Apellido</label>
-                            <input type="text" className="form-control" placeholder="Last name" name='lname' onChange={this.onChange} />
+                            <input type="text" className="form-control" placeholder="Tu apellido" name='lname' onChange={this.onChange} />
                         </div>
 
                         <div className="form-group">
                             <label>Fecha de nacimiento</label>
                             <br />
-                            <DatePicker format={dateFormat} onChange={this.onChangeDate} />
+                            <DatePicker
+                            placeholder='Tu fecha de nacimiento'
+                            format={dateFormat} onChange={this.onChangeDate} />
                         
                         </div>
 
                         <div className="form-group">
                             <label>Hora de nacimiento</label>
                             <br />
-                            <TimePicker defaultValue={moment('00:00', 'HH:mm')} onChange={this.onChangeTime} name='tob' format='HH:mm' showNow={false} use12Hours={false} />
+                            <TimePicker
+                            
+                            defaultValue={moment('00:00', 'HH:mm')} onChange={this.onChangeTime} name='tob' format='HH:mm' showNow={false} use12Hours={false} />
 
                         </div>
 

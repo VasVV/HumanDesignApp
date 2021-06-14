@@ -17,7 +17,7 @@ const GooglePlaces = () => {
       <GooglePlacesAutocomplete
      apiKey="AIzaSyCN87TNsXwtIF-Doj8ODqf0gJI8vFQS1zY"                    
      autocompletionRequest={{ types: ['(cities)'] }}
-    
+    placeholder='Tu lugar de nacimiento'
      apiOptions={{ language: 'en'}}
      selectProps={{
         value,
