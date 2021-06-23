@@ -686,7 +686,7 @@ app.post("/sendmail", async(req, res) => {
     res.send("sent email");
 });
 
-app.listen(3001, () => {
+app.listen(process.env.PORT || 3001, () => {
   console.log("server listened", 3001);
 });
 
