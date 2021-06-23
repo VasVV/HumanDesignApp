@@ -7,7 +7,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import { createStore } from 'redux';
 import allReducers from './reducers'; //auto look for index.js
 import {Provider} from 'react-redux';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 

@@ -1,9 +1,14 @@
 const express = require("express");
 const Stripe = require("stripe");
 const cors = require("cors");
+
+
+
 const captureWebsite = require("capture-website");
 const nodemailer = require("nodemailer");
+
 const sharp = require("sharp");
+
 
 
 //stripe
