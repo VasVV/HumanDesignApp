@@ -1,16 +1,12 @@
 const express = require("express");
 const Stripe = require("stripe");
 const cors = require("cors");
-const btoa = require("btoa");
-var base64Img = require("base64-img");
-const path = require("path");
-const pnfs = require("pn/fs");
 const captureWebsite = require("capture-website");
 const nodemailer = require("nodemailer");
 const puppeteer = require("puppeteer");
 const sharp = require("sharp");
 const download = require('download');
-const http = require('http');
+
 
 //stripe
 const app = express();
