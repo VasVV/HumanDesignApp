@@ -3,9 +3,7 @@ const Stripe = require("stripe");
 const cors = require("cors");
 const captureWebsite = require("capture-website");
 const nodemailer = require("nodemailer");
-const puppeteer = require("puppeteer");
 const sharp = require("sharp");
-const download = require('download');
 
 
 //stripe
