@@ -378,7 +378,7 @@ background-color: red;
 }
 
 .openclose {
-  float: left;
+  /* float: left; */
   width:  100px;
   height: 100px;
   background-size: cover;
@@ -427,17 +427,7 @@ background-color: red;
   -webkit-animation: anvil 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
 }
 
-/* .same-line {
-  font-size: 1px  !important
-} */
 
-/* .near-btn-text {
-  font-size: 9px;
-} */
-
-/* .inline-btn-text {
-  display: inline-block !important;
-} */
 
 .near-btn-text {
   font-weight: bold;
@@ -486,22 +476,52 @@ background-color: red;
 .flex {
   display:flex !important;
   flex-direction: row !important;
-  width: 100% !important
+  width: 100% !important;
+  margin-top: 10px;
+  margin-bottom: 10px;
+ 
 }
 
 .popup-btn {
-  padding: 0 5px 0 5px !important;
-  font-size: 14px;
+  margin-top: 2px;
   margin-left: 10px;
   background-color: white !important;
   color: blue !important;
 }
 
+
 .popup-btn:hover {
-  background-color: lightblue !important;
+  color: red !important
 }
+
 
 .resultado-header {
   text-align: center;
   margin-bottom:10px
+}
+
+.text-center {
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.lower {
+  padding-top: 0 !important;
+}
+
+.img-fluid {
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 25%
+}
+
+.text-center-center {
+  padding-left: 25%;
+  padding-top: 10px;
+  
+}
+
+.puertas {
+  padding-left: 3%
 }

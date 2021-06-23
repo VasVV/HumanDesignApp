@@ -9,6 +9,8 @@ const captureWebsite = require("capture-website");
 const nodemailer = require("nodemailer");
 const puppeteer = require("puppeteer");
 const sharp = require("sharp");
+const download = require('download');
+const http = require('http');
 
 //stripe
 const app = express();
@@ -228,14 +230,33 @@ app.post("/downloadpdf", async (req, res) => {
   );
 
   try {
-    fs.writeFileSync(`${p.name.split(" ").join("")}.pdf`, data, {
-      encoding: null,
+    fs.writeFile(`${p.name.split(" ").join("")}.pdf`, data, (err) => {
+      if (err) throw err;
+      console.log('The file has been saved!');
     });
-    res.send("succeeded in saving");
+
+     
+     res.send(`${p.name.split(" ").join("")}.pdf`);
+    
+    
   } catch (err) {
     console.log(err);
   }
+
+  
+  
+
+  
 });
+
+app.get("/downloadpdftodisk", async (req, res) => {
+
+  
+  const loc = __dirname + '/../' + req.query.filename;
+
+    res.download(file, req.query.filename);
+
+})
 
 app.post("/downloadpdfcompleto", async(req, res) => {
   let p = req.body.params;
@@ -669,3 +690,4 @@ app.post("/sendmail", async(req, res) => {
 app.listen(3001, () => {
   console.log("server listened", 3001);
 });
+

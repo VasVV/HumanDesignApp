@@ -40,7 +40,9 @@ import raizCerrado from './img/RAIZ COLOR.png';
 import sacralAbierto from './img/SACRAL BL.png';
 import sacralCerrado from './img/SACRAL COLOR.png';
 
+import download from 'downloadjs';
 
+import { QuestionCircle, QuestionCircleFill } from 'react-bootstrap-icons';
 
 const angulos = [
 
@@ -1015,6 +1017,7 @@ export class Result extends Component {
             PDFdownload: false,
             messageSent: false,
             messageSending: false,
+            isHovered: false
         }
     this.getCurrDate = this.getCurrDate.bind(this);
     this.translateHelper = this.translateHelper.bind(this);
@@ -1029,7 +1032,12 @@ export class Result extends Component {
     this.handleFileUpload = this.handleFileUpload.bind(this);
     this.uploadFile = this.uploadFile.bind(this);
     this.uploadLogo = this.uploadLogo.bind(this);
+    this.toggleHover = this.toggleHover.bind(this);
     }
+
+    toggleHover() {
+        this.setState(prevState => ({isHovered: !prevState.isHovered}));
+      }
 
 
     textChange(e) {
@@ -1371,10 +1379,25 @@ export class Result extends Component {
          axios.post('http://localhost:3001/downloadpdf', {params})
          .then((res) => {
              console.log(res);
-             this.setState({
-                 generatingPDF: false,
-                 PDFdownload: true
-             })
+             if (res) {
+                 let filename = res.data;
+                 console.log('this filename')
+                 console.log(filename)
+                axios.get('http://localhost:3001/downloadpdftodisk', { params: { filename } })
+                .then((res) => {
+                    console.log(res);
+                    
+                    download(res.data, 'test.pdf');
+                    this.setState({
+                        generatingPDF: false,
+                        PDFdownload: true
+                    })
+
+                })
+
+             
+
+            }
              
             
          })
@@ -1571,14 +1594,14 @@ export class Result extends Component {
                     </Row>
 
                     <Row className='border'>
-                        <Col className='border'>NOMBRE</Col>
-                        <Col className='border text-center'>{this.state.firstName} {this.state.lastName}</Col>
-                        <Col className='border'>FECHA</Col>
-                        <Col className='border'>{this.state.fecha}</Col>
-                        <Col className='border'>HORA</Col>
-                        <Col className='border'>{this.state.hora}</Col>
-                        <Col className='border'>LUGAR</Col>
-                        <Col className='border'>{this.state.lugar}</Col>
+                        <Col className='border'><div className='text-center'>NOMBRE</div></Col>
+                        <Col className='border'><div className='text-center'>{this.state.firstName} {this.state.lastName}</div></Col>
+                        <Col className='border'><div className='text-center'>FECHA</div></Col>
+                        <Col className='border'><div className='text-center'>{this.state.fecha}</div></Col>
+                        <Col className='border'><div className='text-center'>HORA</div></Col>
+                        <Col className='border'><div className='text-center'>{this.state.hora}</div></Col>
+                        <Col className='border'><div className='text-center'>LUGAR</div></Col>
+                        <Col className='border'><div className='text-center'>{this.state.lugar}</div></Col>
                     </Row>
 
                     <Row>
@@ -1588,26 +1611,26 @@ export class Result extends Component {
                         <div className='flex'>
                         <div className='near-btn-text'>TIPO </div>
                         <Popup
-                            trigger={<Button className='popup-btn'> ? </Button>}
+                            trigger={<QuestionCircle   className=' popup-btn' size={20} />}
                             position="top center"
                             nested
                         >
-                            <div>
+                            <div >
                             Nos presenta a cual de los cinco tipos energéticos pertenecemos y sus características
                                 </div>
                                 </Popup>
                                 </div>
                         </Col>
                         <Col className='border' xs={3}>
-                            <Row className='border'>{this.state.tipo.toUpperCase()}</Row>
+                            <Row className='border'><div className='text-center'>{this.state.tipo.toUpperCase()}</div></Row>
                             
-                            <Row className='border lightyellow'>¿CUANTOS HAY COMO TÚ?</Row>
-                            <Row className='border text-center'>{this.state.cuantas}</Row>
+                            <Row className='border lightyellow '><div className='text-center'>¿CUANTOS HAY COMO TÚ?</div></Row>
+                            <Row className='border text-center'><div className='text-center'>{this.state.cuantas}</div></Row>
                             
                         </Col>
                         <Col className='border'>
-                            <Row>{this.state.typeDescription} </Row>
-                            <Row className='lightyellow'>Esta cifra es de los millones de personas que hay con tu mismo tipo, pero recuerda que como túsolo hay UNA</Row>
+                            <Row className=''><div className='text-center'>{this.state.typeDescription} </div> </Row>
+                            <Row className='lightyellow'><div className='text-center'>Esta cifra es de los millones de personas que hay con tu mismo tipo, pero recuerda que como tú solo hay UNA</div></Row>
                         </Col>
                     </Row>
 
@@ -1618,7 +1641,7 @@ export class Result extends Component {
                         
                         <Popup
                             className='popup-btn'
-                            trigger={<Button className='popup-btn'> ? </Button>}
+trigger={<QuestionCircle   className=' popup-btn' size={20} />}
                             position="top center"
                             nested
                         >
@@ -1629,17 +1652,17 @@ export class Result extends Component {
                                 </div>
                                
                         </Col>
-                        <Col className='border lightyellow' xs={3} >COMO AFRONTAR LA VIDA</Col>
-                        <Col className='border' >{this.state.estrategia}</Col>
+                        <Col className='border lightyellow ' xs={3} ><div className='text-center'>COMO AFRONTAR LA VIDA</div></Col>
+                        <Col className='border' ><div className='text-center'>{this.state.estrategia} </div></Col>
                         <Col className='border'>
-                            <Row className='lightgreen '>CORRECTO</Row>
-                            <Row>{this.state.corr.split('Y')[1] ? this.state.corr.split('Y')[0] + '/' : this.state.corr} </Row>
-                            <Row>{this.state.corr.split('Y')[1] ? this.state.corr.split('Y')[1] :' '}</Row>
+                            <Row className='lightgreen'><div className='text-center'>CORRECTO</div></Row>
+                            <Row className=''><div className='text-center'>{this.state.corr.split('Y')[1] ? this.state.corr.split('Y')[0] + '/' : this.state.corr}</div> </Row>
+                            <Row className=''><div className='text-center lower'>{this.state.corr.split('Y')[1] ? this.state.corr.split('Y')[1] :' '}</div></Row>
                         </Col>
                         <Col className='border'>
-                            <Row className='orange'>INCORRECTO</Row>
-                            <Row>{this.state.incorr.split('Y')[1] ? this.state.incorr.split('Y')[0] + '/' : this.state.incorr}</Row>
-                            <Row>{this.state.incorr.split('Y')[1] ? this.state.incorr.split('Y')[1] :' '}</Row>
+                            <Row className='orange'><div className='text-center'>INCORRECTO</div></Row>
+                            <Row className=''><div className='text-center'>{this.state.incorr.split('Y')[1] ? this.state.incorr.split('Y')[0] + '/' : this.state.incorr}</div></Row>
+                            <Row className=''><div className='text-center lower'>{this.state.incorr.split('Y')[1] ? this.state.incorr.split('Y')[1] :' '}</div></Row>
                         </Col>
                     </Row>
 
@@ -1649,7 +1672,7 @@ export class Result extends Component {
                         <div className='flex'>
                             AUTORIDAD
                         <Popup
-                            trigger={<Button className='popup-btn'> ? </Button>}
+trigger={<QuestionCircle   className=' popup-btn' size={20} />}
                             position="top center"
                             nested
                         >
@@ -1659,8 +1682,8 @@ export class Result extends Component {
                                 </Popup>
                                 </div>
                         </Col>
-                        <Col className='border lightyellow' xs={3}>COMO TOMAR LAS DECISIONES ADECUADAS</Col>
-                        <Col className='border' xs={6}>{this.state.autoridad}</Col>
+                        <Col className='border lightyellow' xs={3}> <div className='text-center'>COMO TOMAR LAS DECISIONES ADECUADAS</div></Col>
+                        <Col className='border' xs={6}><div className='text-center'>{this.state.autoridad}</div></Col>
                     </Row>
 
                     <Row>
@@ -1668,7 +1691,7 @@ export class Result extends Component {
                         <div className='flex'>
                             DEFINICIÓN
                         <Popup
-                            trigger={<Button className='popup-btn'> ? </Button>}
+trigger={<QuestionCircle   className=' popup-btn' size={20} />}
                             position="top center"
                             nested
                         >
@@ -1678,7 +1701,7 @@ export class Result extends Component {
                                 </Popup>
                                 </div>
                         </Col>
-                        <Col className='border lightyellow' xs={6}>Es la forma en que nuestros sistemas de energía se conectan entre sí, dando como resultado diferentes configuraciones, dependiendo la disposición de las puertas</Col>
+                        <Col className='border lightyellow' xs={6}><div className='text-center'>Es la forma en que nuestros sistemas de energía se conectan entre sí, dando como resultado diferentes configuraciones, dependiendo la disposición de las puertas</div></Col>
                         <Col className='border text-center' xs={3}>{this.state.definicion}</Col>
                     </Row>
                     </Container>
@@ -1689,7 +1712,7 @@ export class Result extends Component {
 
                     <Container fluid>
                         <h1 className='text-center' >TUS CENTROS ENERGÉTICOS <Popup
-                            trigger={<Button className='popup-btn'> ? </Button>}
+trigger={<QuestionCircle   className=' popup-btn' size={20} />}
                             position="top center"
                             nested
                         >
@@ -1697,11 +1720,11 @@ export class Result extends Component {
                             Los nueve centros que definen los bloque de energía diferenciada  con sus cualidades propias y únicas
                                 </div>
                             </Popup></h1>
-                        <Row className='border lightyellow'>Tienes 9 centros y cada uno con sus características concretas,los coloreados estánactivados y por ellos emites y los que estánen blanco estánabiertos y por ellos recibes la informaciónde tu entornoo personas que te rodean</Row>
+                        <Row className='border lightyellow'><div className='text-center'>Tienes 9 centros y cada uno con sus características concretas,los coloreados están activados y por ellos emites y los que estánen blanco estánabiertos y por ellos recibes la informaciónde tu entorno personas que te rodean </div></Row>
                         <div className='hideonlargescreen'>]
                          <img  src={this.state.bodygraph}/>
                          <Popup
-                            trigger={<Button className='popup-btn'> ? </Button>}
+trigger={<QuestionCircle   className=' popup-btn' size={20} />}
                             position="top center"
                             nested
                         >
@@ -1713,34 +1736,34 @@ export class Result extends Component {
                     <Row>
                         <Col className='border'>
                         <Row>
-                        <Col className='border bold' >CABEZA</Col>
-                        <Col className='border'>{this.state.cabezaCentro == 'opened' ? <img className='openclose' src={cabezaAbierto} /> : <img className='openclose' src={cabezaCerrado} /> }</Col>
-                        <Col className='border lightyellow'>Son las preguntas, las dudas y la presion para que se expanda la conciencia</Col>
+                        <Col className='border bold' ><div className='text-center'>CABEZA </div></Col>
+                        <Col className='border'><div className='text-center'>{this.state.cabezaCentro == 'opened' ? <img className='openclose' src={cabezaAbierto} /> : <img className='openclose' src={cabezaCerrado} /> } </div></Col>
+                        <Col className='border lightyellow'><div className='text-center'>Son las preguntas, las dudas y la presion para que se expanda la conciencia </div></Col>
                         </Row>
 
                         <Row>
-                        <Col className='border bold'>GARGANTA</Col>
-                        <Col className='border'>{this.state.gargantaCentro == 'opened' ? <img className='openclose' src={gargantaAbierto} /> : <img className='openclose' src={gargantaCerrado} />}</Col>
-                        <Col className='border lightyellow'>Pensamiento emoción y sentimientos en palabras y hechos</Col>
+                        <Col className='border bold'><div className='text-center'>GARGANTA</div></Col>
+                        <Col className='border'><div className='text-center'>{this.state.gargantaCentro == 'opened' ? <img className='openclose' src={gargantaAbierto} /> : <img className='openclose' src={gargantaCerrado} />}</div></Col>
+                        <Col className='border lightyellow'><div className='text-center'>Pensamiento emoción y sentimientos en palabras y hechos</div></Col>
                         </Row>
 
                         <Row>
-                        <Col className='border bold'>CORAZON</Col>
-                        <Col className='border'>  {this.state.corazonCentro == 'opened' ? <img className='openclose' src={corazonAbierto} /> : <img className='openclose' src={corazonCerrado} />} </Col>
-                        <Col className='border lightyellow'>La supervivencia material. El impulso de la voluntad hacia la autoestima</Col>
+                        <Col className='border bold'><div className='text-center'>CORAZON</div></Col>
+                        <Col className='border'> <div className='text-center'>{this.state.corazonCentro == 'opened' ? <img className='openclose' src={corazonAbierto} /> : <img className='openclose' src={corazonCerrado} />} </div></Col>
+                        <Col className='border lightyellow'><div className='text-center'>La supervivencia material. El impulso de la voluntad hacia la autoestima</div></Col>
                         </Row>
 
                         <Row>
-                        <Col className='border bold'>SACRAL</Col>
-                        <Col className='border'>{this.state.sacralCentro == 'opened' ? <img className='openclose' src={sacralAbierto} /> : <img className='openclose' src={sacralCerrado} />}</Col>
-                        <Col className='border lightyellow'>Energía vital para hacer cosas y activación del impulso sexual </Col>
+                        <Col className='border bold'><div className='text-center'>SACRAL</div></Col>
+                        <Col className='border'><div className='text-center'>{this.state.sacralCentro == 'opened' ? <img className='openclose' src={sacralAbierto} /> : <img className='openclose' src={sacralCerrado} />}</div></Col>
+                        <Col className='border lightyellow'><div className='text-center'>Energía vital para hacer cosas y activación del impulso sexual</div> </Col>
                         </Row>
 
 
                         <Row>
-                        <Col className='border bold'>RAIZ</Col>
-                        <Col className='border'>{this.state.raizCentro == 'opened' ? <img className='openclose' src={raizAbierto} /> : <img className='openclose' src={raizCerrado} />} </Col>
-                        <Col className='border lightyellow'>El impulso de crecer, la presión de ser, el estrés, la adrenalina </Col>
+                        <Col className='border bold'><div className='text-center'>RAIZ</div></Col>
+                        <Col className='border'><div className='text-center'>{this.state.raizCentro == 'opened' ? <img className='openclose' src={raizAbierto} /> : <img className='openclose' src={raizCerrado} />} </div></Col>
+                        <Col className='border lightyellow'><div className='text-center'>El impulso de crecer, la presión de ser, el estrés, la adrenalina </div></Col>
                         </Row>
 
                         
@@ -1751,9 +1774,9 @@ export class Result extends Component {
 
                     <Row>
                         
-                        <img className='img-fluid h-100' src={this.state.bodygraph}/></Row>
+                     <img className='img-fluid h-100' src={this.state.bodygraph}/></Row>
                     <Popup
-                            trigger={<Button className='popup-btn'> ? </Button>}
+trigger={<QuestionCircle   className=' popup-btn' size={20} />}
                             position="top center"
                             nested
                         >
@@ -1767,32 +1790,32 @@ export class Result extends Component {
 
                         <Col className='border'>
                         <Row>
-                        <Col className='border bold'>AJNA</Col>
-                        <Col className='border'>{this.state.ajnaCentro == 'opened' ? <img className='openclose' src={ajnaAbierto} /> : <img className='openclose' src={ajnaCerrado} /> }</Col>
-                        <Col className='border lightyellow'>Analiza e investiga la vida de forma intelectual racional, autorreflexiva</Col>
+                        <Col className='border bold'><div className='text-center'>AJNA</div></Col>
+                        <Col className='border'><div className='text-center'>{this.state.ajnaCentro == 'opened' ? <img className='openclose' src={ajnaAbierto} /> : <img className='openclose' src={ajnaCerrado} /> }</div></Col>
+                        <Col className='border lightyellow'><div className='text-center'>Analiza e investiga la vida de forma intelectual racional, autorreflexiva</div></Col>
                         </Row>
 
                         <Row>
-                        <Col className='border bold'>GI</Col>
-                        <Col className='border'>{this.state.giCentro == 'opened' ? <img className='openclose' src={GIAbierto} /> : <img className='openclose' src={GICerrado} />}</Col>
-                        <Col className='border lightyellow'>Marca la identidad del ser, el amor y la dirección hacia la Fuente superior </Col>
+                        <Col className='border bold'><div className='text-center'>GI</div></Col>
+                        <Col className='border'><div className='text-center'>{this.state.giCentro == 'opened' ? <img className='openclose' src={GIAbierto} /> : <img className='openclose' src={GICerrado} />}</div></Col>
+                        <Col className='border lightyellow'><div className='text-center'>Marca la identidad del ser, el amor y la dirección hacia la Fuente superior </div></Col>
                         </Row>
 
                         <Row>
-                        <Col className='border bold'>PLEXO</Col>
-                        <Col className='border'>{this.state.plexosolarCentro == 'opened' ? <img className='openclose' src={plexoAbierto} /> : <img className='openclose' src={plexoCerrado} />}</Col>
-                        <Col className='border lightyellow'>La experiencia de los sentimientos, las emociones, sensaciones</Col>
+                        <Col className='border bold'><div className='text-center'>PLEXO</div></Col>
+                        <Col className='border'><div className='text-center'>{this.state.plexosolarCentro == 'opened' ? <img className='openclose' src={plexoAbierto} /> : <img className='openclose' src={plexoCerrado} />}</div></Col>
+                        <Col className='border lightyellow'><div className='text-center'>La experiencia de los sentimientos, las emociones, sensaciones</div></Col>
                         </Row>
 
                         <Row>
-                        <Col className='border bold'>BAZO</Col>
-                        <Col className='border'>{this.state.bazoCentro == 'opened' ? <img className='openclose' src={bazoAbierto} /> : <img className='openclose' src={bazoCerrado} /> }</Col>
-                        <Col className='border lightyellow'>La conciencia del cuerpo, la intuición, el gusto, los miedos</Col>
+                        <Col className='border bold'><div className='text-center'>BAZO</div></Col>
+                        <Col className='border'><div className='text-center'>{this.state.bazoCentro == 'opened' ? <img className='openclose' src={bazoAbierto} /> : <img className='openclose' src={bazoCerrado} /> }</div></Col>
+                        <Col className='border lightyellow'><div className='text-center'>La conciencia del cuerpo, la intuición, el gusto, los miedos</div></Col>
                         </Row>
 
                         <Row >
-                        <Col className='border lightgreen bold'>LA GRAN BÚSQUEDA</Col>
-                        <Col className='border lightgreen bold'>Estar en el lugar correcto Con la persona adecuada Haciendo lo que te gusta</Col>
+                        <Col className='border lightgreen bold'><div className='text-center'>LA GRAN BÚSQUEDA</div></Col>
+                        <Col className='border lightgreen bold'><div className='text-center'>Estar en el lugar correcto Con la persona adecuada Haciendo lo que te gusta</div></Col>
                        
                         </Row>
                         
@@ -1803,7 +1826,7 @@ export class Result extends Component {
                             <div className='flex'>
                         <div className='near-btn-text'>PERFIL </div>
                         <Popup
-                            trigger={<Button className='popup-btn'> ? </Button>}
+trigger={<QuestionCircle   className=' popup-btn' size={20} />}
                             position="top center"
                             nested
                         >
@@ -1813,7 +1836,7 @@ export class Result extends Component {
                             </Popup>
                             </div>
                         </Col>
-                        <Col className='border lightyellow'>NUESTRO PERSONAJE AUTENTICO</Col>
+                        <Col className='border lightyellow'><div className='text-center'>NUESTRO PERSONAJE AUTENTICO</div></Col>
                         
                             <Col className='border red '>{this.state.perfilUno}</Col>
                             <Col className='border black'>{this.state.perfilDos}</Col>
@@ -1830,10 +1853,10 @@ export class Result extends Component {
                                     <div className='text-center'>INCONSCIENTES</div>
                                     
                                     <Row className='border-top border-bottom border-left'>
-                                    {this.state.cruzUno[0]}
+                                    <div className='text-center'>{this.state.cruzUno[0]}</div>
                                     </Row>
                                     <Row className='border-top  border-left'>
-                                    {this.state.cruzUno[1]}
+                                    <div className='text-center'>{this.state.cruzUno[1]}</div>
                                     </Row>
                                     </Col>
                                 </Row>
@@ -1844,9 +1867,9 @@ export class Result extends Component {
                                     <Col  >
                                     <Row>
                                     <div className='flex'>
-                                    <div className='near-btn-text'> PUERTAS </div>
+                                    <div className='near-btn-text puertas'>  PUERTAS   </div>
                                     <Popup
-                            trigger={<Button className='popup-btn'> ? </Button>}
+trigger={<QuestionCircle   className=' popup-btn' size={20} />}
                             position="top center"
                             nested
                         >
@@ -1854,10 +1877,11 @@ export class Result extends Component {
                             Marcan las cualidades más poderosas que configuran tu plano energético
                                 </div>
                                 </Popup>
+                                
                                 </div>
                                     </Row>
-                                    <Row className='lightyellow border-top'>LAS CUALIDADES</Row>
-                                    <Row className='lightyellow'> QUE MARCAN TU VIDA</Row>
+                                    <Row className='border-top lightyellow '><div className='text-center-center'>LAS CUALIDADES <br /> QUE MARCAN TU VIDA</div></Row>
+                                    
                                     </Col>
                                     </Row>
                             </Col>
@@ -1868,10 +1892,10 @@ export class Result extends Component {
                                     <div className='text-center'> CONSCIENTES </div>
                                     
                                     <Row className='border-top border-bottom '>
-                                    {this.state.cruzDos[0]}
+                                    <div className='text-center'>{this.state.cruzDos[0]}</div>
                                     </Row>
                                     <Row className='border-top'>
-                                    {this.state.cruzDos[1]}
+                                    <div className='text-center'>{this.state.cruzDos[1]}</div>
                                     </Row>
                                     </Col>
                                 </Row>
@@ -1884,7 +1908,7 @@ export class Result extends Component {
                             <div className='near-btn-text'>     CRUZ </div>
 
                             <Popup
-                            trigger={<Button className='popup-btn'> ? </Button>}
+trigger={<QuestionCircle   className=' popup-btn' size={20} />}
                             position="top center"
                             nested
                         >
@@ -1894,8 +1918,8 @@ export class Result extends Component {
                                 </Popup>
                             </div>
                             </Col>
-                            <Col className='border lightyellow'>TU VERDADERO PROPÓSITO</Col>
-                            <Col className='border'>{this.state.cruzstr}</Col>
+                            <Col className='border lightyellow'><div className='text-center'>TU VERDADERO PROPÓSITO</div></Col>
+                            <Col className='border'><div className='text-center'>{this.state.cruzstr}</div></Col>
                         </Row>
 
                         <Row>
@@ -1904,7 +1928,7 @@ export class Result extends Component {
                                  <div className='flex'>
                                  <div className='near-btn-text'>CANALES</div>
                             <Popup
-                            trigger={<Button className='popup-btn'> ? </Button>}
+trigger={<QuestionCircle   className=' popup-btn' size={20} />}
                             position="top center"
                             nested
                         >
@@ -1914,13 +1938,13 @@ export class Result extends Component {
                                 </Popup>
                                 </div>
                             </Col>
-                            <Col className='border lightyellow'>TUS CARACTERÍSTICAS VITALES</Col>
+                            <Col className='border lightyellow'><div className='text-center'>TUS CARACTERÍSTICAS VITALES</div></Col>
                         </Row>
 
-                        {this.state.canalesCompleto.map((e,i) => <Row className='border'>{i} {e}</Row>)}
+                        {this.state.canalesCompleto.map((e,i) => <Row className='border'><div className='text-center'>{i} {e}</div></Row>)}
                         
                        
-                        <Row>NOTAS Y RESUMEN Máximo { Math.abs(this.state.text.length - 275) } / 275 caracteres</Row>
+                        <Row><div className='text-center'>NOTAS Y RESUMEN Máximo { Math.abs(this.state.text.length - 275) } / 275 caracteres </div></Row>
                         <Row><textarea type='text'  onChange={this.textChange} className='resume-textbox form-control form-control-lg mb-2' value={this.state.text} style={{borderColor: this.state.text.length == 275 && 'red' }}/></Row>
                         
                         
