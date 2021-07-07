@@ -18,20 +18,11 @@ export class Dashboard extends React.Component {
           rerendered: false
         };
         this.displayCredentials = this.displayCredentials.bind(this);
-        this.svgWorker = this.svgWorker.bind(this);
         this.displayParts = this.displayParts.bind(this);
         this.svgRef = React.createRef();
       }
 
-      svgWorker () {
-         
-         axios.post(`${window.location.origin}/downloadimg`, {
-            params: {
-              url: this.state.userdata.bodygraph,
-              filename: `${this.state.userdata.firstName}${this.state.userdata.lastName}.svg`,
-            }
-          }).catch(errr => console.log(errr));
-    }
+      
    
 
     displayParts() {
@@ -117,7 +108,7 @@ export class Dashboard extends React.Component {
       return (
         <div className='dashboard'>
       <h1 className='header-dashboard'>Hola, {this.state.userdata.firstName} </h1>
-      {this.state.userdata.firstName ? <ReactSVG ref={this.svgRef} id='bodygrap3h' src={`${process.env.PUBLIC_URL}/img/bodygraphs/${this.state.userdata.firstName}${this.state.userdata.lastName}.svg`} /> : ''}
+      {this.state.userdata.firstName ? <ReactSVG ref={this.svgRef} id='bodygrap3h' src={`/src/img/bodygraphs/${this.state.userdata.firstName}${this.state.userdata.lastName}.svg`} /> : ''}
       <Link to={"/paymentoptions"}>
         <button className="btn btn-primary btn-block dashboard-btn">
           Diseno Individual
