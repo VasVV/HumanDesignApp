@@ -53,14 +53,14 @@ client = new ImgurClient({
 //download image
 const https = require("https");
 const fs = require("fs");
-app.use("/", express.static(__dirname + "/../src/img/bodygraphs"));
+// app.use("/", express.static(__dirname + "/../src/img/bodygraphs"));
 // app.use('/img/bodygraphs', express.static(__dirname + '/img/bodygraphs'));
 // app.use(express.static(__dirname + '/public'));
 
 app.post("/downloadimg", (req, res) => {
   https.get(req.body.params.url, function (res) {
     const fileStream = fs.createWriteStream(
-      path.join(__dirname, `/../src/img/bodygraphs/${req.body.params.filename}`)
+      `${process.env.PUBLIC_URL}/img/bodygraphs/${req.body.params.filename}`
     );
     res.pipe(fileStream);
     fileStream.on("finish", function () {
