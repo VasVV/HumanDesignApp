@@ -64,7 +64,7 @@ class SocialLogin extends Component {
             console.log(results.bodygraph);
             console.log(`${this.state.fname}${this.state.lname}.svg`)
 
-            axios.post('http://localhost:3001/downloadimg', {
+            axios.post(`${window.location.origin}/downloadimg`, {
                 params: {
                     url: results.bodygraph,
              filename: `${this.state.fname}${this.state.lname}.svg`,

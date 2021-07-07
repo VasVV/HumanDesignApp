@@ -22,7 +22,7 @@ var bodyParser = require("body-parser");
 app.use(bodyParser({ limit: "4MB" }));
 app.use(bodyParser.urlencoded({ limit: "5mb", extended: true }));
 
-app.use(cors({ origin: "http://localhost:3000" }));
+app.use(cors({origin: true}));
 
 app.use(express.json());
 
@@ -250,10 +250,11 @@ app.post("/downloadpdf", async (req, res) => {
 
 app.get("/downloadpdftodisk", async (req, res) => {
 
-  
   const loc = __dirname + '/../' + req.query.filename;
+  var filestream = fs.createReadStream(loc);
+  filestream.pipe(res);
 
-    res.download(file, req.query.filename);
+    
 
 })
 
@@ -685,6 +686,8 @@ app.post("/sendmail", async(req, res) => {
 
     res.send("sent email");
 });
+
+app.use(express.static(path.join(__dirname, '../build')));
 
 app.listen(process.env.PORT || 3001, () => {
   console.log("server listened", 3001);

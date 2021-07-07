@@ -50,7 +50,8 @@
     "eject": "react-scripts eject",
     "server": "node server",
     "react": "react-scripts start",
-    "dev": "concurrently \"npm run server \" \"npm run react\" "
+    "dev": "concurrently \"npm run server \" \"npm run react\" ",
+    "heroku-postbuild": "npm run build"
   },
   "eslintConfig": {
     "extends": [

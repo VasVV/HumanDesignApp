@@ -1055,7 +1055,7 @@ export class Result extends Component {
             messageSending: true,
             messageSent: false,
         })
-        axios.post('http://localhost:3001/sendmail',{
+        axios.post(`${window.location.origin}/sendmail`,{
             params: {
                 name: `${this.state.firstName}${this.state.lastName}`,
                 mail: this.state.email
@@ -1376,18 +1376,24 @@ export class Result extends Component {
             Resumen,
             logo
           }    
-         axios.post('http://localhost:3001/downloadpdf', {params})
+         axios.post(`${window.location.origin}/downloadpdf`, {params})
          .then((res) => {
              console.log(res);
              if (res) {
                  let filename = res.data;
-                 console.log('this filename')
-                 console.log(filename)
-                axios.get('http://localhost:3001/downloadpdftodisk', { params: { filename } })
+                
+                axios(`${window.location.origin}/downloadpdftodisk`, {
+                    method: 'GET',
+                    responseType: 'blob',
+                    params: { filename }
+                })
                 .then((res) => {
                     console.log(res);
-                    
-                    download(res.data, 'test.pdf');
+                    const file = new Blob(
+                        [res.data], 
+                        {type: 'application/pdf'});
+                        const fileURL = URL.createObjectURL(file);
+                        download(fileURL);
                     this.setState({
                         generatingPDF: false,
                         PDFdownload: true

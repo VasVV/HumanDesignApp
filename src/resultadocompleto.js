@@ -2529,7 +2529,7 @@ export class ResultadoCompleto extends Component {
     }
 
     sendMail() {
-        axios.post('http://localhost:3001/sendmail',{
+        axios.post(`${window.location.origin}/sendmail`,{
             params: {
                 name: `${this.state.firstName}${this.state.lastName}`,
                 mail: this.state.email
@@ -3458,7 +3458,7 @@ export class ResultadoCompleto extends Component {
           }    
           console.log(params);
           console.log('params');
-         axios.post('http://localhost:3001/downloadpdfcompleto', {params}).catch(error => console.log(error));
+         axios.post(`${window.location.origin}/downloadpdfcompleto`, {params}).catch(error => console.log(error));
    }
 
     componentDidMount() {

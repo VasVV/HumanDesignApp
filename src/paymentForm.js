@@ -28,7 +28,7 @@ const CheckoutFormInner = (props) => {
         const { id } = paymentMethod;
         console.log('id');
         console.log(id)
-        const data = await axios.post('http://localhost:3001/api/checkout', 
+        const data = await axios.post(`${window.location.origin}}/api/checkout`, 
         {
             id,
             amount: props.price,
