@@ -26,7 +26,7 @@ app.use(cors({origin: true}));
 
 app.use(express.json());
 
-app.post(path.join(__dirname, '../src/api/chekout'), async (req, res) => {
+app.post('/checkout', async (req, res) => {
   const { id, amount, description } = req.body;
 
   const payment = await stripe.paymentIntents.create({
