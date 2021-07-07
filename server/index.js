@@ -111,7 +111,7 @@ app.post("/downloadpdf", async (req, res) => {
   // }
 
   let cropped = (
-    __dirname + `/../src/img/bodygraphs/pngs/${p.name}.png`
+    __dirname + `/../src/img/bodygraphs/pngs/${p.name}CROPPED.png`
   ).toString();
 
   try {
