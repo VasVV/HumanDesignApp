@@ -7,7 +7,7 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import Cropper from 'react-easy-crop';
 
-import Completed from process.env.PUBLIC_URL + '/img/Complete_Symbol-512.png';
+//import Completed from process.env.PUBLIC_URL + '/img/Complete_Symbol-512.png';
 
 import firebase from './firebaseconfig';
 
