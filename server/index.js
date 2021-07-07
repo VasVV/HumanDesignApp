@@ -19,10 +19,7 @@ const stripe = new Stripe(
 
 var bodyParser = require("body-parser");
 
-const browser = await puppeteer.launch({
-                  headless: true,
-                  args: ['--no-sandbox','--disable-setuid-sandbox']
-                })
+
 
 app.use(bodyParser({ limit: "4MB" }));
 app.use(bodyParser.urlencoded({ limit: "5mb", extended: true }));
@@ -102,7 +99,7 @@ app.post("/downloadpdf", async (req, res) => {
   let loc = (
     __dirname + `/../src/img/bodygraphs/pngs/${p.name}.png`
   ).toString();
-  
+
     //puppeteer problem
   // try {
   //   await captureWebsite.file(p.bodygraph, loc, {
