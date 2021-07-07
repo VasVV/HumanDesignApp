@@ -8,7 +8,7 @@ const captureWebsite = require("capture-website");
 const nodemailer = require("nodemailer");
 
 const sharp = require("sharp");
-
+const path = require('path');
 
 
 //stripe
