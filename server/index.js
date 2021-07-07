@@ -61,7 +61,7 @@ app.post("/downloadimg", (req, res) => {
   let path = `./src/img/bodygraphs/${req.body.params.filename}`;
   https.get(req.body.params.url, function (res) {
     const fileStream = fs.createWriteStream(
-      `./src/img/bodygraphs/${req.body.params.filename}`
+      __dirname + `/../src/img/bodygraphs/${req.body.params.filename}`
     );
     res.pipe(fileStream);
     fileStream.on("finish", function () {
