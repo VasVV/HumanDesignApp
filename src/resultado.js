@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Button, Popover, Modal, Spinner } from 'react-bootstrap';
-import logo from process.env.PUBLIC_URL + '/img/logologo.png';
+
 import {connect} from 'react-redux';
 import axios from 'axios';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import Cropper from 'react-easy-crop';
 
+//import logo from process.env.PUBLIC_URL + '/img/logologo.png';
 //import Completed from process.env.PUBLIC_URL + '/img/Complete_Symbol-512.png';
 
 import firebase from './firebaseconfig';
