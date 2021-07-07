@@ -11,34 +11,34 @@ import Completed from process.env.PUBLIC_URL + '/img/Complete_Symbol-512.png';
 
 import firebase from './firebaseconfig';
 
-import ajnaAbierto from process.env.PUBLIC_URL + '/img/AJNA BL.png';
-import ajnaCerrado from process.env.PUBLIC_URL + '/img/AJNA COLOR.png';
+// import ajnaAbierto from process.env.PUBLIC_URL + '/img/AJNA BL.png';
+// import ajnaCerrado from process.env.PUBLIC_URL + '/img/AJNA COLOR.png';
 
-import bazoAbierto from process.env.PUBLIC_URL + '/img/BAZO BL.png';
-import bazoCerrado from process.env.PUBLIC_URL + '/img/BAZO COLOR.png';
+// import bazoAbierto from process.env.PUBLIC_URL + '/img/BAZO BL.png';
+// import bazoCerrado from process.env.PUBLIC_URL + '/img/BAZO COLOR.png';
 
-import cabezaAbierto from process.env.PUBLIC_URL + '/img/CABEZA BL.png';
-import cabezaCerrado from process.env.PUBLIC_URL + '/img/CABEZA COLOR.png';
+// import cabezaAbierto from process.env.PUBLIC_URL + '/img/CABEZA BL.png';
+// import cabezaCerrado from process.env.PUBLIC_URL + '/img/CABEZA COLOR.png';
 
-import corazonAbierto from process.env.PUBLIC_URL + '/img/CORAZON BL.png';
-import corazonCerrado from process.env.PUBLIC_URL + '/img/CORAZON COLOR.png';
+// import corazonAbierto from process.env.PUBLIC_URL + '/img/CORAZON BL.png';
+// import corazonCerrado from process.env.PUBLIC_URL + '/img/CORAZON COLOR.png';
 
-import gargantaAbierto from process.env.PUBLIC_URL + '/img/GARGANTA BL.png';
-import gargantaCerrado from process.env.PUBLIC_URL + '/img/GARGANTA COLOR.png';
+// import gargantaAbierto from process.env.PUBLIC_URL + '/img/GARGANTA BL.png';
+// import gargantaCerrado from process.env.PUBLIC_URL + '/img/GARGANTA COLOR.png';
 
-import GIAbierto from process.env.PUBLIC_URL + '/img/GI BL.png';
-import GICerrado from process.env.PUBLIC_URL + '/img/GI COLOR.png';
+// import GIAbierto from process.env.PUBLIC_URL + '/img/GI BL.png';
+// import GICerrado from process.env.PUBLIC_URL + '/img/GI COLOR.png';
 
-import plexoAbierto from process.env.PUBLIC_URL + '/img/PLEXO BL.png';
-import plexoCerrado from process.env.PUBLIC_URL + '/img/PLEXO COLOR.png';
-
-
-import raizAbierto from process.env.PUBLIC_URL + '/img/RAIZ BL.png';
-import raizCerrado from process.env.PUBLIC_URL + '/img/RAIZ COLOR.png';
+// import plexoAbierto from process.env.PUBLIC_URL + '/img/PLEXO BL.png';
+// import plexoCerrado from process.env.PUBLIC_URL + '/img/PLEXO COLOR.png';
 
 
-import sacralAbierto from process.env.PUBLIC_URL + '/img/SACRAL BL.png';
-import sacralCerrado from process.env.PUBLIC_URL + '/img/SACRAL COLOR.png';
+// import raizAbierto from process.env.PUBLIC_URL + '/img/RAIZ BL.png';
+// import raizCerrado from process.env.PUBLIC_URL + '/img/RAIZ COLOR.png';
+
+
+// import sacralAbierto from process.env.PUBLIC_URL + '/img/SACRAL BL.png';
+// import sacralCerrado from process.env.PUBLIC_URL + '/img/SACRAL COLOR.png';
 
 import download from 'downloadjs';
 
