@@ -19,6 +19,11 @@ const stripe = new Stripe(
 
 var bodyParser = require("body-parser");
 
+const browser = await puppeteer.launch({
+                  headless: true,
+                  args: ['--no-sandbox','--disable-setuid-sandbox']
+                })
+
 app.use(bodyParser({ limit: "4MB" }));
 app.use(bodyParser.urlencoded({ limit: "5mb", extended: true }));
 
@@ -97,18 +102,19 @@ app.post("/downloadpdf", async (req, res) => {
   let loc = (
     __dirname + `/../src/img/bodygraphs/pngs/${p.name}.png`
   ).toString();
-
-  try {
-    await captureWebsite.file(p.bodygraph, loc, {
-      height: 350,
-      width: 332,
-    });
-  } catch (err) {
-    console.log(err);
-  }
+  
+    //puppeteer problem
+  // try {
+  //   await captureWebsite.file(p.bodygraph, loc, {
+  //     height: 350,
+  //     width: 332,
+  //   });
+  // } catch (err) {
+  //   console.log(err);
+  // }
 
   let cropped = (
-    __dirname + `/../src/img/bodygraphs/pngs/${p.name}CROPPED.png`
+    __dirname + `/../src/img/bodygraphs/pngs/${p.name}.png`
   ).toString();
 
   try {
