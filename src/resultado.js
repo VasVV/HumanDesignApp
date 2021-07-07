@@ -1,47 +1,44 @@
-
-const PUBLICURL = process.env.PUBLIC_URL;
-
 import React, { Component } from "react";
 import { Container, Row, Col, Button, Popover, Modal, Spinner } from 'react-bootstrap';
-import logo from `${PUBLICURL}/img/logologo.png`;
+import logo from process.env.PUBLIC_URL + '/img/logologo.png';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import Cropper from 'react-easy-crop';
 
-import Completed from `${PUBLICURL}/img/Complete_Symbol-512.png`;
+import Completed from process.env.PUBLIC_URL + '/img/Complete_Symbol-512.png';
 
 import firebase from './firebaseconfig';
 
-import ajnaAbierto from `${PUBLICURL}/img/AJNA BL.png`;
-import ajnaCerrado from `${PUBLICURL}/img/AJNA COLOR.png`;
+import ajnaAbierto from process.env.PUBLIC_URL + '/img/AJNA BL.png';
+import ajnaCerrado from process.env.PUBLIC_URL + '/img/AJNA COLOR.png';
 
-import bazoAbierto from `${PUBLICURL}/img/BAZO BL.png`;
-import bazoCerrado from `${PUBLICURL}/img/BAZO COLOR.png`;
+import bazoAbierto from process.env.PUBLIC_URL + '/img/BAZO BL.png';
+import bazoCerrado from process.env.PUBLIC_URL + '/img/BAZO COLOR.png';
 
-import cabezaAbierto from `${PUBLICURL}/img/CABEZA BL.png`;
-import cabezaCerrado from `${PUBLICURL}/img/CABEZA COLOR.png`;
+import cabezaAbierto from process.env.PUBLIC_URL + '/img/CABEZA BL.png';
+import cabezaCerrado from process.env.PUBLIC_URL + '/img/CABEZA COLOR.png';
 
-import corazonAbierto from `${PUBLICURL}/img/CORAZON BL.png`;
-import corazonCerrado from `${PUBLICURL}/img/CORAZON COLOR.png`;
+import corazonAbierto from process.env.PUBLIC_URL + '/img/CORAZON BL.png';
+import corazonCerrado from process.env.PUBLIC_URL + '/img/CORAZON COLOR.png';
 
-import gargantaAbierto from `${PUBLICURL}/img/GARGANTA BL.png`;
-import gargantaCerrado from `${PUBLICURL}/img/GARGANTA COLOR.png`;
+import gargantaAbierto from process.env.PUBLIC_URL + '/img/GARGANTA BL.png';
+import gargantaCerrado from process.env.PUBLIC_URL + '/img/GARGANTA COLOR.png';
 
-import GIAbierto from `${PUBLICURL}/img/GI BL.png`;
-import GICerrado from `${PUBLICURL}/img/GI COLOR.png`;
+import GIAbierto from process.env.PUBLIC_URL + '/img/GI BL.png';
+import GICerrado from process.env.PUBLIC_URL + '/img/GI COLOR.png';
 
-import plexoAbierto from `${PUBLICURL}/img/PLEXO BL.png`;
-import plexoCerrado from `${PUBLICURL}/img/PLEXO COLOR.png`;
-
-
-import raizAbierto from `${PUBLICURL}/img/RAIZ BL.png`;
-import raizCerrado from `${PUBLICURL}/img/RAIZ COLOR.png`;
+import plexoAbierto from process.env.PUBLIC_URL + '/img/PLEXO BL.png';
+import plexoCerrado from process.env.PUBLIC_URL + '/img/PLEXO COLOR.png';
 
 
-import sacralAbierto from `${PUBLICURL}/img/SACRAL BL.png`;
-import sacralCerrado from `${PUBLICURL}/img/SACRAL COLOR.png`;
+import raizAbierto from process.env.PUBLIC_URL + '/img/RAIZ BL.png';
+import raizCerrado from process.env.PUBLIC_URL + '/img/RAIZ COLOR.png';
+
+
+import sacralAbierto from process.env.PUBLIC_URL + '/img/SACRAL BL.png';
+import sacralCerrado from process.env.PUBLIC_URL + '/img/SACRAL COLOR.png';
 
 import download from 'downloadjs';
 
@@ -1544,7 +1541,7 @@ export class Result extends Component {
                 const url = URL.createObjectURL(files[0]);
                 this.uploadImage(files[0], whatImage, w, h);  
             } else {
-                alert('Solo puedes subir fotos en formato JPG o png')
+                alert('Solo puedes subir fotos en formato JPG o PNG')
             }
             
         }
