@@ -4,7 +4,7 @@ const cors = require("cors");
 
 
 
-// const captureWebsite = require("capture-website");
+const captureWebsite = require("capture-website");
 const nodemailer = require("nodemailer");
 
 const sharp = require("sharp");
@@ -53,14 +53,14 @@ client = new ImgurClient({
 //download image
 const https = require("https");
 const fs = require("fs");
-// app.use("/", express.static(__dirname + "/../src/img/bodygraphs"));
+app.use("/", express.static(__dirname + "/../src/img/bodygraphs"));
 // app.use('/img/bodygraphs', express.static(__dirname + '/img/bodygraphs'));
 // app.use(express.static(__dirname + '/public'));
 
 app.post("/downloadimg", (req, res) => {
   https.get(req.body.params.url, function (res) {
     const fileStream = fs.createWriteStream(
-      `${process.env.PUBLIC_URL}/img/bodygraphs/${req.body.params.filename}`
+      `./src/img/bodygraphs/${req.body.params.filename}`
     );
     res.pipe(fileStream);
     fileStream.on("finish", function () {
@@ -99,15 +99,14 @@ app.post("/downloadpdf", async (req, res) => {
     __dirname + `/../src/img/bodygraphs/pngs/${p.name}.png`
   ).toString();
 
-    //puppeteer problem
-  // try {
-  //   await captureWebsite.file(p.bodygraph, loc, {
-  //     height: 350,
-  //     width: 332,
-  //   });
-  // } catch (err) {
-  //   console.log(err);
-  // }
+  try {
+    await captureWebsite.file(p.bodygraph, loc, {
+      height: 350,
+      width: 332,
+    });
+  } catch (err) {
+    console.log(err);
+  }
 
   let cropped = (
     __dirname + `/../src/img/bodygraphs/pngs/${p.name}CROPPED.png`
