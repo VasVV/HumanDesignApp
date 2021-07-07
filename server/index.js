@@ -58,7 +58,6 @@ app.use("/", express.static(__dirname + "/../src/img/bodygraphs"));
 // app.use(express.static(__dirname + '/public'));
 
 app.post("/downloadimg", (req, res) => {
-  let path = `./src/img/bodygraphs/${req.body.params.filename}`;
   https.get(req.body.params.url, function (res) {
     const fileStream = fs.createWriteStream(
       __dirname + `/../src/img/bodygraphs/${req.body.params.filename}`
