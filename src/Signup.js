@@ -116,7 +116,7 @@ class SignUp extends Component {
 
             const results = await data.result.results;
 
-            axios.post(`${window.location.origin}/downloadimg`, {
+            axios.post(`http://localhost:3001/downloadimg`, {
                     params: {
                         url: results.bodygraph,
                         filename: `${this.state.fname}${this.state.lname}.svg`,
