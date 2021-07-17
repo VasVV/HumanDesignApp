@@ -80,11 +80,14 @@ app.post("/downloadimg", (req, res) => {
   });
   res.send("downloaded");
 
-  // async function imgur() {
-  //     const response = await client.upload(path);
-  //     console.log(response.link);
-  // }
-  // imgur();
+  try {
+    if (fs.existsSync(path)) {
+      console.log(req.body.params.filename + ' exists')
+    }
+  } catch(err) {
+    console.log (req.body.params.filename + ' doenst exist ERROR!')
+    console.error(err)
+  }
 });
 
 //uploading image to imgur
