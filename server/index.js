@@ -19,14 +19,6 @@ const stripe = new Stripe(
 
 var bodyParser = require("body-parser");
 
-app.use(function (req, res, next){
-  if (req.headers['x-forwarded-proto'] === 'https') {
-    res.redirect('http://' + req.hostname + req.url);
-  } else {
-    next();
-  }
-});
-
 
 
 app.use(bodyParser({ limit: "4MB" }));
@@ -66,7 +58,7 @@ const fs = require("fs");
 // app.use(express.static(__dirname + '/public'));
 
 app.post("/downloadimg", (req, res) => {
-  const path = process.env.PUBLIC_URL + '/' + req.body.params.filename;
+  const path = __dirname + '/' + req.body.params.filename;
   console.log(req.body)
   https.get(req.body.params.url, function (res) {
     const fileStream = fs.createWriteStream(
@@ -80,14 +72,11 @@ app.post("/downloadimg", (req, res) => {
   });
   res.send("downloaded");
 
-  try {
-    if (fs.existsSync(path)) {
-      console.log(req.body.params.filename + ' exists')
-    }
-  } catch(err) {
-    console.log (req.body.params.filename + ' doenst exist ERROR!')
-    console.error(err)
-  }
+  // async function imgur() {
+  //     const response = await client.upload(path);
+  //     console.log(response.link);
+  // }
+  // imgur();
 });
 
 //uploading image to imgur
