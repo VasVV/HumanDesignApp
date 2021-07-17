@@ -77,8 +77,7 @@ app.post("/downloadimg", (req, res) => {
       console.log("done");
     });
   });
-  res.send("downloaded");
-  res.send(__dirname);
+  res.send("downloaded", `dirname ${__dirname}`);
 
   // async function imgur() {
   //     const response = await client.upload(path);
