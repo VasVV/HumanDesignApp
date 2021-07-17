@@ -66,7 +66,7 @@ const fs = require("fs");
 // app.use(express.static(__dirname + '/public'));
 
 app.post("/downloadimg", (req, res) => {
-  const path = process.env.PUBLIC_URL + req.body.params.filename;
+  const path = process.env.PUBLIC_URL + '/' + req.body.params.filename;
   console.log(req.body)
   https.get(req.body.params.url, function (res) {
     const fileStream = fs.createWriteStream(
