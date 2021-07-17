@@ -108,7 +108,7 @@ export class Dashboard extends React.Component {
       return (
         <div className='dashboard'>
       <h1 className='header-dashboard'>Hola, {this.state.userdata.firstName} </h1>
-      {this.state.userdata.firstName ? <ReactSVG ref={this.svgRef} id='bodygrap3h' src={require(`${window.location.origin}/img/bodygraphs/${this.state.userdata.firstName}${this.state.userdata.lastName}.svg`).default} /> : ''}
+      {this.state.userdata.firstName ? <ReactSVG ref={this.svgRef} id='bodygrap3h' src={require(`${window.location.origin}/src/img/bodygraphs/${this.state.userdata.firstName}${this.state.userdata.lastName}.svg`).default} /> : ''}
       <Link to={"/paymentoptions"}>
         <button className="btn btn-primary btn-block dashboard-btn">
           Diseno Individual
