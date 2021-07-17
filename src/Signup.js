@@ -299,7 +299,7 @@ class SignUp extends Component {
 
 function mapStateToProps(state, ownProps) {
     return {
-        userCity: state.userCity.label
+        userCity: state.userCity
     };
 }
 
