@@ -65,6 +65,7 @@ const fs = require("fs");
 
 app.post("/downloadimg", (req, res) => {
   const path = __dirname + '/' + req.body.params.filename;
+ 
   console.log(req.body)
   https.get(req.body.params.url, function (res) {
     const fileStream = fs.createWriteStream(
@@ -77,6 +78,7 @@ app.post("/downloadimg", (req, res) => {
     });
   });
   res.send("downloaded");
+  res.send(__dirname);
 
   // async function imgur() {
   //     const response = await client.upload(path);
